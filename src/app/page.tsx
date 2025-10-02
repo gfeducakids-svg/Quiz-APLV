@@ -62,7 +62,7 @@ export default function Home() {
             asChild
             size="lg"
             variant="destructive"
-            className="w-full md:w-auto h-16 text-xl font-bold shadow-lg transform hover:scale-105 transition-transform"
+            className="w-full md:w-auto h-16 text-lg font-bold shadow-lg transform hover:scale-105 transition-transform"
           >
             <Link href="/quiz">DESCOBRIR MEUS ERROS AGORA</Link>
           </Button>
