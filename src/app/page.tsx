@@ -7,19 +7,19 @@ import { Card } from '@/components/ui/card';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] bg-background text-foreground py-12 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-4">
       <div className="relative w-full max-w-4xl mx-auto text-center">
         <div className="absolute top-[-2.5rem] right-0 md:right-4 transform translate-y-1/2 md:translate-y-0">
           <Badge
             variant="destructive"
-            className="text-xs md:text-sm py-1 px-3 shadow-lg font-semibold"
+            className="text-xs py-1 px-3 shadow-lg font-semibold"
           >
             DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
           </Badge>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-headline font-extrabold text-destructive !leading-tight">
-          Você Está Cometendo Esses 3 Erros Fatais <br className="hidden md:block" />
+        <h1 className="text-3xl md:text-5xl font-headline font-extrabold text-foreground !leading-tight">
+          Você Está Cometendo Esses <span className="text-destructive">3 Erros Fatais</span> <br className="hidden md:block" />
           na Alimentação do Seu Filho com APLV?
         </h1>
 
@@ -76,7 +76,7 @@ export default function Home() {
           alimentação dos filhos
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-2 text-sm text-destructive font-semibold">
+        <div className="mt-10 flex items-center justify-center gap-2 text-sm text-destructive font-semibold group">
           <AlertTriangle className="h-4 w-4 transition-transform group-hover:scale-125" />
           <p>
             Cada dia que você continua cometendo esses erros pode estar
