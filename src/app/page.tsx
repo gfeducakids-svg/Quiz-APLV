@@ -67,7 +67,7 @@ export default function Home() {
             <Link href="/quiz">DESCOBRIR MEUS ERROS AGORA</Link>
           </Button>
           <p className="mt-3 text-sm text-muted-foreground">
-            Leva 1 minuto • Resultado imediato • 100% gratuito
+            Leva 1 Minuto Resultado imediato e preciso
           </p>
         </div>
 
