@@ -71,10 +71,6 @@ export default function Home() {
           </p>
         </div>
 
-        <p className="mt-6 text-sm font-semibold text-primary">
-          O Cardápio Sem Leite da Mãe Prevenida
-        </p>
-
         <div className="mt-8 flex items-center justify-center gap-2 text-base font-medium text-muted-foreground/90">
           ⭐ Mais de 12.347 mães já descobriram seus erros e transformaram a
           alimentação dos filhos
