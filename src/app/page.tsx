@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-4">
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="absolute top-[-2.5rem] right-0 md:right-4 transform translate-y-1/2 md:translate-y-0">
+        <div className="absolute -top-12 sm:-top-8 right-0 left-0 mx-auto w-fit">
           <Badge
             variant="destructive"
             className="text-xs py-1 px-3 shadow-lg font-semibold"
