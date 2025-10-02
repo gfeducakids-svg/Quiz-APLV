@@ -6,10 +6,6 @@ export function Footer() {
           © {new Date().getFullYear()} Maternal APLV Quiz. Todos os direitos
           reservados.
         </p>
-        <p className="mt-2">
-          Este quiz é uma ferramenta de autoconhecimento e não substitui o
-          diagnóstico e acompanhamento de um profissional de saúde qualificado.
-        </p>
       </div>
     </footer>
   );
