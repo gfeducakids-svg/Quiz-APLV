@@ -76,10 +76,10 @@ export default function Home() {
           alimentação dos filhos
         </div>
 
-        <div className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground/80 italic">
-          <AlertTriangle className="h-4 w-4" />
+        <div className="mt-10 flex items-center justify-center gap-2 text-sm text-destructive font-semibold">
+          <AlertTriangle className="h-4 w-4 transition-transform group-hover:scale-125" />
           <p>
-            Atenção: Cada dia que você continua cometendo esses erros pode estar
+            Cada dia que você continua cometendo esses erros pode estar
             prejudicando a saúde e o desenvolvimento do seu filho.
           </p>
         </div>
