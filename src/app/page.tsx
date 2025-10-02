@@ -111,15 +111,6 @@ export default function Home() {
         
         <div className="my-8 h-[1px] bg-border max-w-sm mx-auto"></div>
 
-
-        <div className="mt-8 rounded-lg bg-[#F0F9FF] p-4 flex flex-col items-center justify-center gap-2 text-base font-medium text-[#1E40AF] max-w-md mx-auto">
-          <span className="text-[#FBBF24]">⭐⭐⭐⭐⭐</span>
-          <p>
-            Mais de 12.347 mães já descobriram seus erros e transformaram a
-            alimentação dos filhos
-          </p>
-        </div>
-
         <div className="mt-10 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-[#F59E0B] max-w-xl mx-auto">
           <AlertTriangle className="h-5 w-5 text-[#F59E0B] flex-shrink-0 transition-transform group-hover:scale-125" />
           <p className="text-accent-foreground text-left">
