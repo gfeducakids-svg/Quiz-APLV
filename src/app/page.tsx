@@ -16,7 +16,7 @@ export default function Home() {
               background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
               boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
             }}
-            className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
+            className="inline-flex items-center rounded-full text-white px-3 py-1 text-xs font-semibold"
           >
             DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
           </div>
