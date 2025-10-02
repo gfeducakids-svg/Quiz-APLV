@@ -10,14 +10,16 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground pt-8 pb-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div
-          style={{
-            background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
-            boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
-          }}
-          className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
-        >
-          DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
+        <div className="inline-block">
+          <div
+            style={{
+              background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
+              boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
+            }}
+            className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
+          >
+            DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
+          </div>
         </div>
 
         <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-4">
@@ -26,13 +28,13 @@ export default function Home() {
           Alimentação do Seu Filho com APLV?
         </h1>
 
-        <p className="mt-5 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
+        <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
           Cada erro pode estar causando reações, traumas alimentares e noites de
           pânico que você{' '}
           <span className="text-primary font-semibold">NEM IMAGINA</span>.
         </p>
 
-        <div className="mt-8 max-w-2xl mx-auto">
+        <div className="mt-6 max-w-2xl mx-auto">
           <Image
             src="https://i.imgur.com/5xnxaBQ.png"
             alt="Mãe com filho"
@@ -42,7 +44,7 @@ export default function Home() {
           />
         </div>
 
-        <Card className="mt-8 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
+        <Card className="mt-6 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
           <p className="text-sm md:text-base mb-6 text-[#6B7280]">
             Este diagnóstico de 8 perguntas vai revelar exatamente o que você
             não está vendo na sua luta contra a APLV — e te dar um{' '}
@@ -86,7 +88,7 @@ export default function Home() {
           </ul>
         </Card>
 
-        <div className="mt-10">
+        <div className="mt-8">
           <Button
             asChild
             variant="default"
@@ -107,9 +109,9 @@ export default function Home() {
           </p>
         </div>
         
-        <div className="my-8 h-[1px] bg-border max-w-sm mx-auto"></div>
+        <div className="my-6 h-[1px] bg-border max-w-sm mx-auto"></div>
 
-        <div className="mt-10 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-[#F59E0B] max-w-xl mx-auto">
+        <div className="mt-8 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-[#F59E0B] max-w-xl mx-auto">
           <AlertTriangle className="h-5 w-5 text-[#F59E0B] flex-shrink-0 transition-transform group-hover:scale-125" />
           <p className="text-accent-foreground text-left">
             Cada dia que você continua cometendo esses erros pode estar
