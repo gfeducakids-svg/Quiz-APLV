@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, AlertTriangle, Shield, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -32,6 +33,16 @@ export default function Home() {
           pânico que você{' '}
           <span className="text-primary font-semibold">NEM IMAGINA</span>.
         </p>
+
+        <div className="mt-8 max-w-2xl mx-auto">
+          <Image
+            src="https://i.imgur.com/5xnxaBQ.png"
+            alt="Mãe com filho"
+            width={700}
+            height={400}
+            className="rounded-lg shadow-lg mx-auto"
+          />
+        </div>
 
         <Card className="mt-8 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
           <p className="text-sm md:text-base mb-6 text-[#6B7280]">
