@@ -18,7 +18,7 @@ export default function Home() {
           </Badge>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-headline font-extrabold text-destructive !leading-tight">
+        <h1 className="text-3xl md:text-5xl font-headline font-extrabold text-destructive !leading-tight">
           Você Está Cometendo Esses 3 Erros Fatais <br className="hidden md:block" />
           na Alimentação do Seu Filho com APLV?
         </h1>
