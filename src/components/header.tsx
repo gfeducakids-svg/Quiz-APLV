@@ -7,7 +7,7 @@ export function Header() {
       <div className="container mx-auto flex items-center gap-2">
         <Leaf className="h-6 w-6 text-primary" />
         <Link href="/" className="text-xl font-headline font-bold">
-          Maternal APLV Quiz
+          O Cardápio Sem Leite da Mãe Prevenida
         </Link>
       </div>
     </header>
