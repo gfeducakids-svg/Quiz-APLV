@@ -9,7 +9,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="absolute -top-12 sm:-top-8 right-0 left-0 mx-auto w-fit mb-24">
+        <div className="mb-8">
           <div
             style={{
               background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
@@ -21,7 +21,7 @@ export default function Home() {
           </div>
         </div>
 
-        <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight mt-24 font-headline">
+        <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline">
           Você Está Cometendo Esses{' '}
           <span className="text-secondary font-bold">3 Erros Fatais</span> na
           Alimentação do Seu Filho com APLV?
