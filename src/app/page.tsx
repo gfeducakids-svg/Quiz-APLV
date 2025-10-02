@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Leaf } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="mt-10">
           <Button asChild size="lg" className="font-bold text-lg">
             <Link href="/quiz">
-              <Leaf className="mr-2 h-5 w-5" />
+              <BookOpen className="mr-2 h-5 w-5" />
               Começar o Quiz e Descobrir
             </Link>
           </Button>
