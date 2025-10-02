@@ -1,6 +1,7 @@
 'use server';
 
 import { identifyPersonaErrors } from '@/ai/flows/identify-persona-errors';
+import { generateUrgentCTA } from '@/ai/flows/generate-urgent-cta';
 import type { Persona } from '@/lib/types';
 import { redirect } from 'next/navigation';
 
@@ -43,14 +44,21 @@ export async function submitQuiz(answers: string[]) {
   const persona = getPersona(answers);
 
   try {
-    const aiResult = await identifyPersonaErrors({
+    const personaErrorsResult = await identifyPersonaErrors({
       persona,
       quizAnswers: answers,
     });
 
+    const urgentCtaResult = await generateUrgentCTA({
+      persona,
+      errors: personaErrorsResult.errors,
+    });
+
     const result = {
       persona,
-      ...aiResult,
+      diagnosis: personaErrorsResult.diagnosis,
+      errors: personaErrorsResult.errors,
+      cta: urgentCtaResult.cta,
     };
 
     const encodedResult = encodeURIComponent(JSON.stringify(result));

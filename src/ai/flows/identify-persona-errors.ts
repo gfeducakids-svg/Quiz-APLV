@@ -32,8 +32,9 @@ const IdentifyPersonaErrorsOutputSchema = z.object({
   errors: z
     .array(z.string())
     .describe('The 3 most probable feeding errors the mother is making.'),
-  cta: z.string().describe('The call to action for the given persona.'),
-  diagnosis: z.string().describe('Emotional diagnosis for the persona'),
+  diagnosis: z
+    .string()
+    .describe('Emotional diagnosis for the persona. Example: "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE"'),
 });
 export type IdentifyPersonaErrorsOutput = z.infer<
   typeof IdentifyPersonaErrorsOutputSchema
@@ -53,24 +54,29 @@ const prompt = ai.definePrompt({
   output: {
     schema: IdentifyPersonaErrorsOutputSchema,
   },
-  prompt: `You are an expert copywriter specializing in quizzes of high conversion in the maternal-infant health niche.
-Based on the persona of the mother and her quiz answers, you will identify the 3 most probable feeding errors she is making and provide a relevant emotional diagnosis and call to action.
+  prompt: `Você é um copywriter especialista em saúde materno-infantil.
+Sua tarefa é criar um diagnóstico emocional e identificar 3 erros de alimentação com base no perfil de uma mãe.
 
 Persona: {{{persona}}}
-Quiz Answers: {{#each quizAnswers}}{{{this}}}\n{{/each}}
+Respostas do Quiz: {{#each quizAnswers}}{{{this}}}\n{{/each}}
 
-Instructions:
-1.  Analyze the persona and quiz answers to understand the mother's emotional state and challenges.
-2.  Identify the 3 most probable feeding errors the mother is making based on her persona and quiz answers.
-3.  Create a short emotional diagnosis (2-3 sentences) that resonates with the mother's feelings and challenges.
-4.  Craft a call to action that creates a sense of urgency and encourages the mother to take action.
+Siga EXATAMENTE estas instruções:
+1. Analise a Persona e as respostas para entender os desafios da mãe.
+2. Crie um "diagnóstico emocional" curto e impactante (1-2 frases) que ressoe com o perfil dela.
+3. Liste os 3 erros mais prováveis que ela comete na alimentação.
 
-Output:
-{
-  "errors": ["error 1", "error 2", "error 3"],
-  "cta": "Call to action",
-  "diagnosis": "Emotional diagnosis"
-}
+Exemplos de Diagnósticos:
+- "Mãe em Pânico Inicial": "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE."
+- "Mãe Guerreira Esgotada": "Você já lutou demais sozinha. Cada dia que passa, a culpa só cresce..."
+- "Mãe Racional Estratégica": "Você SABE que precisa de um sistema. Parar de improvisar está custando caro."
+- "Mãe Desacreditada ao Extremo": "Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?"
+
+Exemplos de Erros:
+- Confiar em rótulos "sem lactose" que ainda contêm leite.
+- Repetir as mesmas 3 receitas por medo de errar e causar reações.
+- Acreditar que "só um pouquinho" não vai fazer mal.
+
+Responda APENAS com o JSON. NÃO inclua texto adicional.
 `,
 });
 
