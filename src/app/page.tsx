@@ -10,19 +10,17 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground pt-8 pb-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="mb-4">
-          <div
-            style={{
-              background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
-              boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
-            }}
-            className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
-          >
-            DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
-          </div>
+        <div
+          style={{
+            background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
+            boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
+          }}
+          className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
+        >
+          DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
         </div>
 
-        <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline">
+        <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-4">
           Você Está Cometendo Esses{' '}
           <span className="text-secondary font-bold">3 Erros Fatais</span> na
           Alimentação do Seu Filho com APLV?
@@ -105,7 +103,7 @@ export default function Home() {
             </Link>
           </Button>
           <p className="mt-3 text-sm text-[#94A3B8]">
-            Leva 1 Minuto Resultado imediato e preciso
+            Resultado Imediato e Preciso | Leva 1 Minuto
           </p>
         </div>
         
