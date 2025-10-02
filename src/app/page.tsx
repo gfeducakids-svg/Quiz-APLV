@@ -1,84 +1,117 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, AlertTriangle } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, Shield, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 
-
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-6 md:px-10 relative overflow-hidden">
+      <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="absolute -top-12 sm:-top-8 right-0 left-0 mx-auto w-fit">
-          <Badge
-            variant="destructive"
-            className="text-xs py-1 px-3 shadow-lg font-semibold"
+        <div className="absolute -top-12 sm:-top-8 right-0 left-0 mx-auto w-fit mb-24">
+          <div
+            style={{
+              background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
+              boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
+            }}
+            className="inline-flex items-center rounded-full text-white px-4 py-1.5 text-xs font-semibold"
           >
             DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
-          </Badge>
+          </div>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-headline font-extrabold text-black !leading-tight">
-          Você Está Cometendo Esses <span className="text-destructive">3 Erros Fatais</span> <br className="hidden md:block" />
-          na Alimentação do Seu Filho com APLV?
+        <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight mt-24 font-headline">
+          Você Está Cometendo Esses{' '}
+          <span className="text-secondary font-bold">3 Erros Fatais</span> na
+          Alimentação do Seu Filho com APLV?
         </h1>
 
-        <p className="mt-4 text-lg md:text-2xl text-foreground/80 max-w-3xl mx-auto">
+        <p className="mt-5 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
           Cada erro pode estar causando reações, traumas alimentares e noites de
-          pânico que você NEM IMAGINA.
+          pânico que você{' '}
+          <span className="text-primary font-semibold">NEM IMAGINA</span>.
         </p>
 
         <Card className="mt-8 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
-          <p className="text-base md:text-lg mb-4 text-foreground/90">
-            Este diagnóstico de 8 perguntas vai revelar exatamente o que você não
-            está vendo na sua luta contra a APLV — e te dar um plano de ação
-            imediato.
+          <p className="text-sm md:text-base mb-6 text-[#6B7280]">
+            Este diagnóstico de 8 perguntas vai revelar exatamente o que você
+            não está vendo na sua luta contra a APLV — e te dar um{' '}
+            <span className="text-primary font-semibold">
+              plano de ação imediato
+            </span>
+            .
           </p>
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             <li className="flex items-start">
-              <CheckCircle2 className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
-              <span className="text-foreground/90">
-                Descubra qual o seu <span className="font-bold">perfil</span> de
-                mãe APLV
+              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
+                <CheckCircle2 className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-foreground/90 pt-0.5">
+                Descubra qual o seu{' '}
+                <span className="font-bold text-primary">perfil</span> de mãe
+                APLV
               </span>
             </li>
             <li className="flex items-start">
-              <CheckCircle2 className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
-              <span className="text-foreground/90">
-                Receba <span className="font-bold">receitas seguras</span> específicas para sua situação
+              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
+                <CheckCircle2 className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-foreground/90 pt-0.5">
+                Receba{' '}
+                <span className="font-bold text-primary">
+                  receitas seguras
+                </span>{' '}
+                específicas para sua situação
               </span>
             </li>
             <li className="flex items-start">
-              <CheckCircle2 className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
-              <span className="text-foreground/90">
-                Pare de ter <span className="font-bold">medo na hora de alimentar</span> seu filho
+              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
+                <CheckCircle2 className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-foreground/90 pt-0.5">
+                Pare de ter{' '}
+                <span className="font-bold text-primary">medo na hora de alimentar</span> seu filho
               </span>
             </li>
           </ul>
         </Card>
 
-        <div className="mt-8">
+        <div className="mt-10">
           <Button
             asChild
-            size="lg"
-            variant="destructive"
-            className="w-full md:w-auto h-16 text-lg font-bold shadow-lg transform hover:scale-105 transition-transform"
+            variant="default"
+            className="w-full md:w-auto h-auto text-lg font-bold shadow-lg transform hover:scale-105 transition-transform text-white"
+            style={{
+              background: 'linear-gradient(to right, #7FB685, #68A876)',
+              borderRadius: '12px',
+              padding: '18px 40px',
+              boxShadow: '0 6px 20px rgba(127, 182, 133, 0.4)',
+            }}
           >
-            <Link href="/quiz">DESCOBRIR MEUS ERROS AGORA</Link>
+            <Link href="/quiz">
+              DESCOBRIR MEUS ERROS AGORA <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </Button>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="mt-3 text-sm text-[#94A3B8]">
             Leva 1 Minuto Resultado imediato e preciso
           </p>
         </div>
+        
+        <div className="my-8 h-[1px] bg-border max-w-sm mx-auto"></div>
 
-        <div className="mt-8 flex items-center justify-center gap-2 text-base font-medium text-muted-foreground/90">
-          ⭐ Mais de 12.347 mães já descobriram seus erros e transformaram a
-          alimentação dos filhos
+
+        <div className="mt-8 rounded-lg bg-[#F0F9FF] p-4 flex items-center justify-center gap-3 text-base font-medium text-[#1E40AF] max-w-md mx-auto">
+          <span className="text-[#FBBF24]">⭐⭐⭐⭐⭐</span>
+          <p>
+            Mais de 12.347 mães já descobriram seus erros e transformaram a
+            alimentação dos filhos
+          </p>
         </div>
 
-        <div className="mt-10 flex items-center justify-center gap-2 text-sm text-destructive font-semibold group">
-          <AlertTriangle className="h-4 w-4 transition-transform group-hover:scale-125" />
-          <p>
+        <div className="mt-10 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-[#F59E0B] max-w-xl mx-auto">
+          <AlertTriangle className="h-5 w-5 text-[#F59E0B] flex-shrink-0 transition-transform group-hover:scale-125" />
+          <p className="text-accent-foreground text-left">
             Cada dia que você continua cometendo esses erros pode estar
             prejudicando a saúde e o desenvolvimento do seu filho.
           </p>

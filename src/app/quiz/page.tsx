@@ -19,16 +19,20 @@ export default function QuizPage() {
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
 
   const handleAnswer = (answer: string) => {
+    setSelectedOption(answer);
     const newAnswers = [...answers, answer];
-    setAnswers(newAnswers);
-
-    if (currentQuestionIndex < quizQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      startTransition(() => {
-        submitQuiz(newAnswers);
-      });
-    }
+    
+    setTimeout(() => {
+        setAnswers(newAnswers);
+        if (currentQuestionIndex < quizQuestions.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setSelectedOption(null);
+        } else {
+          startTransition(() => {
+            submitQuiz(newAnswers);
+          });
+        }
+    }, 300);
   };
 
   return (
@@ -43,7 +47,7 @@ export default function QuizPage() {
 
         <Card
           key={currentQuestionIndex}
-          className="border-0 md:border shadow-none md:shadow-sm animate-in fade-in-50 duration-500"
+          className="border-0 md:border shadow-none md:shadow-sm animate-in fade-in-50 duration-500 bg-transparent md:bg-card"
         >
           <CardHeader>
             <CardTitle className="text-2xl md:text-3xl font-headline text-center leading-tight">
@@ -57,11 +61,12 @@ export default function QuizPage() {
                   key={index}
                   variant="outline"
                   size="lg"
-                  disabled={isPending}
+                  disabled={isPending || selectedOption !== null}
                   className={cn(
-                    'text-base h-auto py-4 whitespace-normal justify-start text-left',
+                    'text-base h-auto py-4 whitespace-normal justify-start text-left transition-all duration-300',
                     'hover:bg-accent hover:border-primary',
-                    'focus:bg-accent focus:border-primary focus:ring-2 focus:ring-ring'
+                    'focus:bg-accent focus:border-primary focus:ring-2 focus:ring-ring',
+                    selectedOption === option && 'bg-primary text-primary-foreground border-primary'
                   )}
                   onClick={() => handleAnswer(option)}
                 >
