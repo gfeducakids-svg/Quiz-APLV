@@ -36,7 +36,7 @@ export default function Home() {
 
         <div className="mt-8 max-w-2xl mx-auto">
           <Image
-            src="https://i.imgur.com/4T9ZwR8.png"
+            src="https://i.imgur.com/5xnxaBQ.png"
             alt="Mãe com filho"
             width={700}
             height={400}
