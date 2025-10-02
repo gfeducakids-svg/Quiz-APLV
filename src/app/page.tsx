@@ -9,7 +9,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground py-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="mb-8">
+        <div className="mb-4">
           <div
             style={{
               background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
@@ -101,7 +101,7 @@ export default function Home() {
         <div className="my-8 h-[1px] bg-border max-w-sm mx-auto"></div>
 
 
-        <div className="mt-8 rounded-lg bg-[#F0F9FF] p-4 flex items-center justify-center gap-3 text-base font-medium text-[#1E40AF] max-w-md mx-auto">
+        <div className="mt-8 rounded-lg bg-[#F0F9FF] p-4 flex flex-col items-center justify-center gap-2 text-base font-medium text-[#1E40AF] max-w-md mx-auto">
           <span className="text-[#FBBF24]">⭐⭐⭐⭐⭐</span>
           <p>
             Mais de 12.347 mães já descobriram seus erros e transformaram a
