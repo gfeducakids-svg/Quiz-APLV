@@ -252,19 +252,6 @@ export default function PersonaResultPage() {
         </div>
       </motion.section>
 
-      {/* Section 4: Testimonial */}
-      <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
-        <div className="max-w-2xl mx-auto bg-background p-8 rounded-2xl border border-border shadow-lg text-center">
-            <StarRating />
-            <p className="text-lg md:text-xl italic text-foreground-secondary my-4 leading-relaxed">
-                <span className='text-3xl text-primary/50 font-serif leading-none mr-1'>"</span>
-                {pageData.testimonial.text}
-                <span className='text-3xl text-primary/50 font-serif leading-none ml-1'>"</span>
-            </p>
-            <p className="font-bold text-primary-dark">— {pageData.testimonial.author}</p>
-            <p className="text-sm text-foreground-secondary">({pageData.testimonial.detail})</p>
-        </div>
-      </motion.section>
       
       {/* Section 5: Solution */}
       <motion.section variants={itemVariants} className="py-10 px-6">
@@ -333,6 +320,20 @@ export default function PersonaResultPage() {
                     {pageData.ctaButton.text}
                 </button>
                 <p className="mt-3 text-sm text-foreground-secondary">{pageData.ctaSubtitle}</p>
+            </motion.section>
+
+            {/* Section 4: Testimonial */}
+            <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
+              <div className="max-w-2xl mx-auto bg-background p-8 rounded-2xl border border-border shadow-lg text-center">
+                  <StarRating />
+                  <p className="text-lg md:text-xl italic text-foreground-secondary my-4 leading-relaxed">
+                      <span className='text-3xl text-primary/50 font-serif leading-none mr-1'>"</span>
+                      {pageData.testimonial.text}
+                      <span className='text-3xl text-primary/50 font-serif leading-none ml-1'>"</span>
+                  </p>
+                  <p className="font-bold text-primary-dark">— {pageData.testimonial.author}</p>
+                  <p className="text-sm text-foreground-secondary">({pageData.testimonial.detail})</p>
+              </div>
             </motion.section>
 
             {/* Guarantee */}
