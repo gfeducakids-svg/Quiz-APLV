@@ -3,6 +3,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
+import { ChatWidget } from '@/components/chat/ChatWidget';
 
 export const metadata: Metadata = {
   title: 'Maternal APLV Quiz',
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         <main className="flex-grow">{children}</main>
         <Footer />
+        <ChatWidget />
         <Toaster />
       </body>
     </html>
