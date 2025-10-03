@@ -12,7 +12,6 @@ interface ResultPageProps {
     theme: string;
     badgeText: string;
     title: React.ReactNode;
-    validationText: React.ReactNode;
     errors: { title: string; description: string }[];
     testimonial: { text: string; author: string, detail: string };
     solutionTitle: string;
@@ -33,7 +32,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-iniciante-insegura': {
     badgeText: 'MÃE INICIANTE INSEGURA',
     title: "Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.",
-    validationText: "Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.",
     errors: [
       { title: 'Confiar em receitas "sem lactose" aleatórias', description: '73% têm traços de leite escondidos' },
       { title: 'Testar receitas sem saber se são seguras', description: 'Seu filho vira experimento' },
@@ -55,14 +53,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investmentReason: (<> <p className="font-bold text-lg mb-2">Por que vale a pena?</p> <ul className='text-left space-y-1'><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />R$ 97 uma vez vs R$ 800/mês produtos errados</li><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />1000 receitas = R$ 0,10 por receita</li><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />Economia de 6 meses de sofrimento</li></ul></>),
     ctaButton: { text: 'QUERO AS 1000 RECEITAS AGORA' },
     ctaSubtitle: 'Acesso imediato • Pagamento seguro • Garantia total',
-    guaranteeTitle: 'GARANTIA INCONDICIONAL',
+    guaranteeTitle: 'GARANTIA INCONDICIONAL DE 7 DIAS',
     guaranteeText: (<><p className="mb-4">Nós sabemos o MEDO que você sente antes de investir em algo novo para o seu filho. Por isso: Teste o Cardápio Sem Leite por 7 dias inteiros.</p><ul className="space-y-2 text-left mb-4"><li>Não eliminou suas dúvidas?</li><li>Não se sentiu mais segura?</li><li>Não encontrou receitas que funcionaram?</li><li>Simplesmente mudou de ideia?</li></ul><p className="font-bold">Devolvemos 100% do seu dinheiro. SEM perguntas. SEM burocracia. SEM julgamentos.</p></>),
     guaranteeImpact: "Você literalmente NÃO TEM NADA A PERDER. Só tem a GANHAR paz de espírito."
   },
   'mae-estrategista-pratica': {
     badgeText: 'MÃE ESTRATEGISTA PRÁTICA',
     title: 'Você precisa de VARIEDADE, não mais improviso.',
-    validationText: "Você já sabe o básico. Tem 8-10 receitas que funcionam. Mas seu filho enjoou. Lancheira sempre igual. Festas são difíceis.",
     errors: [
       { title: 'Falta de variedade estratégica', description: 'Sempre as mesmas receitas porque não conhece outras' },
       { title: 'Não ter receitas rápidas catalogadas', description: 'Improvisa quando está sem tempo' },
@@ -81,7 +78,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investmentReason: <p className='font-bold'>ROI: Você economiza R$ 300-500/mês não comprando produtos errados ou jogando comida fora.</p>,
     ctaButton: { text: 'QUERO VARIEDADE INFINITA AGORA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
-    guaranteeTitle: 'GARANTIA SEM ENROLAÇÃO',
+    guaranteeTitle: 'GARANTIA SEM ENROLAÇÃO - 7 DIAS',
     guaranteeText: (<><p className="mb-4">Nós entregamos resultados. E sabemos disso. Por isso oferecemos garantia INCONDICIONAL:</p><ul className="space-y-2 text-left mb-4"><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não achou as receitas práticas o suficiente?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não resolveu seu problema de variedade?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não economizou tempo como esperava?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Qualquer motivo?</li></ul><p className="font-bold">→ 100% do dinheiro de volta. Sem questionário.</p></>),
     guaranteeImpact: "Simples assim. Você testa, decide, pronto. Zero risco. Só benefícios."
   },
@@ -90,11 +87,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: (q7:string) => {
         const moneySpentMap: { [key: string]: string } = { '0': "pelo menos R$ 500", '1': "entre R$ 500 e R$ 1.500", '2': "entre R$ 1.500 e R$ 3.000", '3': "mais de R$ 3.000", '4': "uma quantia que nem quer calcular" };
         return `Você já tentou muito. Mas nunca teve TUDO em um só lugar.`;
-    },
-    validationText: (q7:string) => {
-      const moneySpentMap: { [key: string]: string } = { '0': "pelo menos R$ 500", '1': "entre R$ 500 e R$ 1.500", '2': "entre R$ 1.500 e R$ 3.000", '3': "mais de R$ 3.000", '4': "uma quantia que nem quer calcular" };
-      const spent = moneySpentMap[q7] || "muito";
-      return `Você já gastou ${spent}. Já tentou nutricionista, grupos, cursos. Ainda não resolveu. A verdade? Você teve PEDAÇOS. Nunca o mapa completo.`;
     },
     errors: [
       { title: 'Ter receitas espalhadas (caderno, WhatsApp, Google)', description: 'Perde tempo procurando' },
@@ -117,14 +109,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     ctaButton: { text: 'DAR UMA ÚLTIMA CHANCE' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
-    guaranteeTitle: 'GARANTIA REFORÇADA',
-    guaranteeText: (<><p className="mb-4">Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou. Desta vez é <strong>DIFERENTE</strong>. E provamos:</p><p className='font-bold mb-4'>Garantia INCONDICIONAL de 7 dias completos.</p><ul className="space-y-2 text-left mb-4"><li>Não sentiu que FINALMENTE encontrou a solução completa?</li><li>Não viu diferença das outras coisas que tentou?</li><li>Ainda está cansada e sem respostas?</li><li>Simplesmente não se conectou com o material?</li></ul></>),
+    guaranteeTitle: 'GARANTIA REFORÇADA - 7 DIAS',
+    guaranteeText: (<><p className="mb-4">Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou.</p><p className='font-bold mb-4'>Desta vez é DIFERENTE. E provamos:</p><p className='font-bold mb-4'>Garantia INCONDICIONAL de 7 dias completos.</p><ul className="space-y-2 text-left mb-4"><li>Não sentiu que FINALMENTE encontrou a solução completa?</li><li>Não viu diferença das outras coisas que tentou?</li><li>Ainda está cansada e sem respostas?</li><li>Simplesmente não se conectou com o material?</li></ul><p className='font-bold'>→ Devolução TOTAL. Sem perguntas. Sem constrangimento.</p></>),
     guaranteeImpact: "→ Devolução TOTAL. Sem perguntas. Sem constrangimento."
   },
   'mae-racional-cientifica': {
     badgeText: 'MÃE RACIONAL CIENTÍFICA',
     title: 'Você quer dados. Aqui estão.',
-    validationText: (<div className='max-w-2xl mx-auto space-y-6'><div><h3 className='text-xl font-bold text-primary-dark'>OS NÚMEROS:</h3><ul className="list-disc list-inside ml-4"><li>1000 receitas catalogadas</li><li>100% com informação nutricional (kcal + macros)</li><li>12.347 clientes (98.2% satisfação)</li><li>1.8% taxa devolução (vs. média de 15% do mercado)</li></ul></div><div><h3 className='text-xl font-bold text-primary-dark'>O ROI:</h3><ul className="list-disc list-inside ml-4"><li>Investimento: R$ 97</li><li>Economia Média Ano 1: R$ 3.600+ (vs nutricionista)</li><li>Retorno Sobre Investimento: ~3.700%</li></ul></div></div>),
     errors: [
       { title: 'Improvisar sem sistema', description: 'Custo estimado: R$ 800/mês em produtos errados' },
       { title: 'Receitas sem dados nutricionais', description: 'Custo: Incerteza sobre o balanço nutricional' },
@@ -194,7 +185,6 @@ export default function PersonaResultPage() {
   
   const q7 = searchParams.get('q7') || '0';
   const finalTitle = typeof pageData.title === 'function' ? pageData.title(q7) : pageData.title;
-  const finalValidationText = typeof pageData.validationText === 'function' ? pageData.validationText(q7) : pageData.validationText;
   const finalInvestmentReason = typeof pageData.investmentReason === 'function' ? pageData.investmentReason(q7) : pageData.investmentReason;
 
   return (
@@ -220,13 +210,6 @@ export default function PersonaResultPage() {
         </h1>
       </motion.header>
       <div className="h-px bg-border"></div>
-
-      {/* Section 2: Emotional Validation */}
-      <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
-        <div className="text-xl md:text-2xl text-foreground-secondary leading-relaxed text-center max-w-2xl mx-auto">
-          {finalValidationText}
-        </div>
-      </motion.section>
 
       {/* Section 3: The 3 Errors */}
       <motion.section variants={itemVariants} className="py-10 px-6 bg-background-light">
@@ -289,10 +272,10 @@ export default function PersonaResultPage() {
       <div className="bg-background py-10 px-6">
         <div className="max-w-2xl mx-auto space-y-8">
             {/* Urgency */}
-            <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6">
+            <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl md:text-2xl font-bold text-destructive-dark">⏰ OFERTA POR TEMPO LIMITADO</h3>
                 <div className="flex items-center justify-center gap-2 mt-4">
-                  <div className="text-2xl md:text-3xl font-bold text-destructive-dark">
+                  <div className="text-3xl md:text-4xl font-bold text-destructive-dark">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
                   </div>
                 </div>
@@ -351,5 +334,3 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
-
-    
