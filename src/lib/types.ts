@@ -1,8 +1,8 @@
 export type Persona =
-  | 'Mãe Iniciante Insegura'
-  | 'Mãe Estrategista Prática'
-  | 'Mãe Veterana Cansada'
-  | 'Mãe Racional Científica';
+  | 'Mãe em Pânico Inicial'
+  | 'Mãe Guerreira Esgotada'
+  | 'Mãe Racional Estratégica'
+  | 'Mãe Desacreditada ao Extremo';
 
 export interface QuizQuestion {
   id: number;

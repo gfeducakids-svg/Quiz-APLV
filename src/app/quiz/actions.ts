@@ -6,23 +6,23 @@ import { scoringMatrix } from './scoring';
 
 function getPersona(answers: number[]): Persona {
   const scores: Record<Persona, number> = {
-    'Mãe Iniciante Insegura': 0,
-    'Mãe Estrategista Prática': 0,
-    'Mãe Veterana Cansada': 0,
-    'Mãe Racional Científica': 0,
+    'Mãe em Pânico Inicial': 0,
+    'Mãe Guerreira Esgotada': 0,
+    'Mãe Racional Estratégica': 0,
+    'Mãe Desacreditada ao Extremo': 0,
   };
 
   answers.forEach((answerIndex, questionIndex) => {
     const questionScores = scoringMatrix[questionIndex]?.[answerIndex];
     if (questionScores) {
-      scores['Mãe Iniciante Insegura'] += questionScores.I;
-      scores['Mãe Estrategista Prática'] += questionScores.E;
-      scores['Mãe Veterana Cansada'] += questionScores.V;
-      scores['Mãe Racional Científica'] += questionScores.R;
+      scores['Mãe em Pânico Inicial'] += questionScores.I;
+      scores['Mãe Guerreira Esgotada'] += questionScores.E;
+      scores['Mãe Racional Estratégica'] += questionScores.V;
+      scores['Mãe Desacreditada ao Extremo'] += questionScores.R;
     }
   });
 
-  let topPersona: Persona = 'Mãe Estrategista Prática';
+  let topPersona: Persona = 'Mãe Racional Estratégica';
   let maxScore = -1;
   let tiedPersonas: Persona[] = [];
 
@@ -39,22 +39,16 @@ function getPersona(answers: number[]): Persona {
 
   // Handle ties based on priority
   if (tiedPersonas.length > 1) {
-    // Priority 1: Pergunta 7 (Gasto)
     const moneySpentAnswer = answers[6]; // index 6
-    if (moneySpentAnswer >= 3) { // > R$3000 ou "Nem quero calcular"
-      if (tiedPersonas.includes('Mãe Veterana Cansada')) return 'Mãe Veterana Cansada';
+    if (moneySpentAnswer >= 3) {
+      if (tiedPersonas.includes('Mãe Desacreditada ao Extremo')) return 'Mãe Desacreditada ao Extremo';
     }
     
-    // Priority 2: Pergunta 1 (Idade)
-    const ageAnswer = answers[0]; // index 0
-    // No specific tie-breaker rule for age in the new spec, but let's keep it just in case.
-
-    // Priority 3: Default to 'Mãe Estrategista Prática'
-    if (tiedPersonas.includes('Mãe Estrategista Prática')) {
-        return 'Mãe Estrategista Prática';
+    // Fallback to 'Mãe Guerreira Esgotada'
+    if (tiedPersonas.includes('Mãe Guerreira Esgotada')) {
+        return 'Mãe Guerreira Esgotada';
     }
     
-    // Fallback to the first tied persona if the default is not an option
     return tiedPersonas[0];
   }
 
@@ -71,9 +65,8 @@ export async function submitQuiz(answers: number[]) {
   const persona = getPersona(answers);
   const personaSlug = persona.toLowerCase().replace(/ /g, '-');
   
-  // Pass answers to results page via encoded search params
   const answerValues = {
-    q7: answers[6] // Gasto
+    q7: answers[6]
   }
   const params = new URLSearchParams(Object.entries(answerValues).map(([key, value]) => [key, value.toString()]));
 
