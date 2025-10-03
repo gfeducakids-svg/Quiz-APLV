@@ -98,7 +98,7 @@ export default function Home() {
             }}
           >
             <Link href="/quiz">
-              DESCOBRIR MEUS ERROS AGORA <ArrowRight className="ml-2 h-5 w-5" />
+              FAZER MEU DIAGNÓSTICO GRATUITO <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
           <p className="mt-3 text-sm text-[#94A3B8]">
