@@ -53,7 +53,7 @@ const itemVariants = {
 const pagesData = {
   'mae-iniciante-insegura': {
     badgeText: 'MÃE INICIANTE INSEGURA',
-    socialProof: '8.243 mães saíram do pânico que você está sentindo',
+    socialProof: '',
     title: 'Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.',
     errors: [
       {
@@ -124,7 +124,7 @@ const pagesData = {
   },
   'mae-estrategista-pratica': {
     badgeText: 'MÃE ESTRATEGISTA PRÁTICA',
-    socialProof: 'Você precisa de VARIEDADE, não mais improviso',
+    socialProof: '',
     title: 'Você já sabe o básico. Tem 8-10 receitas que funcionam. Mas seu filho enjoou. Lancheira sempre igual. Festas são difíceis.',
     errors: [
       {
@@ -181,7 +181,7 @@ const pagesData = {
   },
   'mae-veterana-cansada': {
     badgeText: 'MÃE VETERANA CANSADA',
-    socialProof: 'Você já tentou muito. Mas nunca teve TUDO em um só lugar',
+    socialProof: '',
     title: (q7:string) => {
         const moneySpentMap: { [key: string]: string } = {
             '0': "pelo menos R$ 500",
@@ -245,7 +245,7 @@ const pagesData = {
   },
   'mae-racional-cientifica': {
     badgeText: 'MÃE RACIONAL CIENTÍFICA',
-    socialProof: 'Você quer dados. Aqui estão.',
+    socialProof: '',
     title: (
         <div className="text-left max-w-md mx-auto">
             <p className="font-bold text-lg">OS NÚMEROS:</p>
