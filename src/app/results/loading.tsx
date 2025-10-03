@@ -15,9 +15,7 @@ import { testimonials } from '@/lib/placeholder-images';
 
 const loadingTexts = [
   'Estamos processando suas respostas...',
-  'Criando um resultado preciso para você...',
-  'Analisando seu perfil emocional...',
-  'Identificando os erros mais comuns...',
+  'Criando um Resultado Preciso para você...',
 ];
 
 export default function ResultsLoading() {

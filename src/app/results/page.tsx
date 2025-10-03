@@ -1,11 +1,7 @@
-import { Suspense } from 'react';
-import ResultsClient from './ResultsClient';
-import ResultsLoading from './loading';
+import { redirect } from "next/navigation";
 
 export default function ResultsPage() {
-  return (
-    <Suspense fallback={<ResultsLoading />}>
-      <ResultsClient />
-    </Suspense>
-  );
+    // This is a catch-all in case someone lands on /results directly.
+    // The actual results are on dynamic routes.
+    redirect('/quiz');
 }

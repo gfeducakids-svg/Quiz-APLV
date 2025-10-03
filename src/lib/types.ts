@@ -1,13 +1,17 @@
 export type Persona =
-  | 'Mãe em Pânico Inicial'
-  | 'Mãe Guerreira Esgotada'
-  | 'Mãe Racional Estratégica'
-  | 'Mãe Desacreditada ao Extremo';
+  | 'Mãe Iniciante Insegura'
+  | 'Mãe Estrategista Prática'
+  | 'Mãe Veterana Cansada'
+  | 'Mãe Racional Científica';
 
 export interface QuizQuestion {
   id: number;
   question: string;
-  options: string[];
+  subtitle?: string;
+  options: {
+    text: string;
+    icon: string;
+  }[];
 }
 
 export interface QuizResult {

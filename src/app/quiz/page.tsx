@@ -6,21 +6,22 @@ import { submitQuiz } from './actions';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<number[]>([]);
   const [isPending, startTransition] = useTransition();
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
 
-  const handleAnswer = (answer: string) => {
-    setSelectedOption(answer);
-    const newAnswers = [...answers, answer];
+  const handleAnswer = (optionIndex: number) => {
+    setSelectedOption(optionIndex);
+    const newAnswers = [...answers, optionIndex];
     
     setTimeout(() => {
         setAnswers(newAnswers);
@@ -32,7 +33,13 @@ export default function QuizPage() {
             submitQuiz(newAnswers);
           });
         }
-    }, 300);
+    }, 500);
+  };
+
+  const cardVariants = {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -50 },
   };
 
   return (
@@ -45,47 +52,98 @@ export default function QuizPage() {
           <Progress value={progress} className="mt-2 h-2" />
         </div>
 
-        <Card
-          key={currentQuestionIndex}
-          className="border-0 md:border shadow-none md:shadow-sm animate-in fade-in-50 duration-500 bg-transparent md:bg-card"
-        >
-          <CardHeader>
-            <CardTitle className="text-2xl md:text-3xl font-headline text-center leading-tight">
-              {currentQuestion.question}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col space-y-3">
-              {currentQuestion.options.map((option, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  size="lg"
-                  disabled={isPending || selectedOption !== null}
-                  className={cn(
-                    'text-base h-auto py-4 whitespace-normal justify-start text-left transition-all duration-300',
-                    'hover:bg-accent hover:border-primary',
-                    'focus:bg-accent focus:border-primary focus:ring-2 focus:ring-ring',
-                    selectedOption === option && 'bg-primary text-primary-foreground border-primary'
-                  )}
-                  onClick={() => handleAnswer(option)}
-                >
-                  {isPending && selectedOption === option ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  ) : null}
-                  {option}
-                </Button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentQuestionIndex}
+            variants={cardVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+          >
+            <Card
+              className="border-0 md:border shadow-none md:shadow-sm bg-transparent md:bg-card"
+            >
+              <CardHeader className="text-center">
+                <CardTitle className="text-2xl md:text-3xl font-headline leading-tight">
+                  {currentQuestion.question}
+                </CardTitle>
+                {currentQuestion.subtitle && (
+                  <CardDescription className="text-base pt-2">{currentQuestion.subtitle}</CardDescription>
+                )}
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-3">
+                  {currentQuestion.options.map((option, index) => (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      size="lg"
+                      disabled={isPending || selectedOption !== null}
+                      className={cn(
+                        'text-base h-auto py-4 whitespace-normal justify-start text-left transition-all duration-300 relative',
+                        'hover:bg-primary/10 hover:border-primary',
+                        'focus:bg-primary/10 focus:border-primary focus:ring-2 focus:ring-ring',
+                        selectedOption === index && 'bg-primary text-primary-foreground border-primary hover:bg-primary hover:text-primary-foreground'
+                      )}
+                      onClick={() => handleAnswer(index)}
+                    >
+                      <span className="mr-4 text-2xl">{option.icon}</span>
+                      <span className="flex-1">{option.text}</span>
+                      {selectedOption === index && (
+                          <motion.div 
+                              initial={{ scale: 0, rotate: -90 }}
+                              animate={{ scale: 1, rotate: 0 }}
+                              className="absolute right-4 bg-white rounded-full p-0.5">
+                              <CheckCircle className="h-5 w-5 text-primary" />
+                          </motion.div>
+                      )}
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </AnimatePresence>
       </div>
       {isPending && (
-        <div className="fixed inset-0 bg-background/80 flex flex-col items-center justify-center z-50">
+        <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 space-y-2">
           <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          <p className="mt-4 text-lg font-semibold">Analisando suas respostas...</p>
+          <p className="text-lg font-semibold">Analisando suas respostas...</p>
+          <p className="text-sm text-muted-foreground">Identificando seu perfil...</p>
+          <p className="text-sm text-muted-foreground">Preparando suas recomendações personalizadas...</p>
         </div>
       )}
     </div>
   );
+}
+
+function CheckCircle(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <motion.path 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.3, type: "tween", ease: "easeOut" }}
+                d="M22 11.08V12a10 10 0 1 1-5.93-9.14" 
+            />
+            <motion.polyline
+                 initial={{ pathLength: 0 }}
+                 animate={{ pathLength: 1 }}
+                 transition={{ duration: 0.3, delay: 0.2, type: "tween", ease: "easeOut" }}
+                 points="22 4 12 14.01 9 11.01"
+            />
+        </svg>
+    )
 }
