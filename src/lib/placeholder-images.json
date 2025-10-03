@@ -1,3 +1,23 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [],
+  "testimonials": [
+    {
+      "id": "testimonial-1",
+      "description": "Depoimento de uma mãe feliz com seu bebê.",
+      "imageUrl": "https://picsum.photos/seed/t1/600/400",
+      "imageHint": "testimonial happy"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Outro depoimento sobre o sucesso do método.",
+      "imageUrl": "https://picsum.photos/seed/t2/600/400",
+      "imageHint": "testimonial success"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Depoimento mostrando a transformação na alimentação.",
+      "imageUrl": "https://picsum.photos/seed/t3/600/400",
+      "imageHint": "testimonial food"
+    }
+  ]
 }

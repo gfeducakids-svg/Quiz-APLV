@@ -1,56 +1,79 @@
-import { Skeleton } from '@/components/ui/skeleton';
+'use client';
+
+import { useState, useEffect } from 'react';
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
+import { Loader2 } from 'lucide-react';
+import { testimonials } from '@/lib/placeholder-images';
+
+const loadingTexts = [
+  'Estamos processando suas respostas...',
+  'Criando um resultado preciso para você...',
+  'Analisando seu perfil emocional...',
+  'Identificando os erros mais comuns...',
+];
 
 export default function ResultsLoading() {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % loadingTexts.length);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="container mx-auto max-w-3xl py-8 md:py-12 animate-pulse">
-      <div className="text-center mb-8">
-        <Skeleton className="h-10 w-3/4 mx-auto" />
-        <Skeleton className="h-4 w-1/2 mx-auto mt-4" />
+    <div className="container mx-auto max-w-3xl py-8 md:py-12 flex flex-col items-center justify-center min-h-[70vh]">
+      <Loader2 className="h-12 w-12 animate-spin text-primary mb-6" />
+      <p className="text-xl font-semibold text-foreground/80 mb-12 text-center h-8">
+        {loadingTexts[currentTextIndex]}
+      </p>
+
+      <div className="w-full max-w-xl">
+        <h3 className="text-center text-2xl font-headline font-bold text-primary mb-6">
+          Enquanto isso, veja o que outras mães dizem:
+        </h3>
+        <Carousel
+          opts={{
+            align: 'start',
+            loop: true,
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {testimonials.map((testimonial) => (
+              <CarouselItem key={testimonial.id}>
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex flex-col items-center justify-center p-6">
+                      <div className="w-full h-64 relative rounded-lg overflow-hidden">
+                        <Image
+                          src={testimonial.imageUrl}
+                          alt={testimonial.description}
+                          fill
+                          className="object-cover"
+                          data-ai-hint={testimonial.imageHint}
+                        />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
-
-      <Card className="mb-8">
-        <CardHeader className="items-center">
-          <Skeleton className="h-12 w-12 rounded-full" />
-          <Skeleton className="h-8 w-1/2 mt-4" />
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-2">
-            <Skeleton className="h-6 w-full" />
-            <Skeleton className="h-6 w-5/6" />
-          </div>
-        </CardContent>
-      </Card>
-
-      <div className="text-center mb-6">
-        <Skeleton className="h-8 w-2/3 mx-auto" />
-      </div>
-
-      <div className="space-y-4 mb-8">
-        {[...Array(3)].map((_, i) => (
-          <div key={i} className="flex items-start space-x-4 p-4 rounded-lg border">
-            <Skeleton className="h-6 w-6 rounded-full" />
-            <div className="space-y-2 flex-1">
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-3/4" />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <Card className="bg-secondary/30 border-secondary">
-        <CardHeader>
-          <Skeleton className="h-6 w-full" />
-        </CardHeader>
-        <CardFooter>
-          <Skeleton className="h-12 w-full" />
-        </CardFooter>
-      </Card>
     </div>
   );
 }
