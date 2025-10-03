@@ -266,7 +266,7 @@ export default function PersonaResultPage() {
         <div className="max-w-2xl mx-auto space-y-8">
             <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl md:text-2xl font-bold text-destructive-dark">⏰ OFERTA POR TEMPO LIMITADO</h3>
-                <div className="flex items-center justify-center gap-2 mt-4">
+                <div className="mt-4">
                   <div className="text-2xl md:text-3xl font-bold text-destructive-dark">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
                   </div>
@@ -282,7 +282,11 @@ export default function PersonaResultPage() {
             {!pageData.investmentText && <motion.section variants={itemVariants}>{finalInvestmentReason}</motion.section>}
 
             <motion.section variants={itemVariants} className="text-center">
-                <button className={cn(
+                <button
+                    onClick={() => {
+                        // TODO: add link to checkout
+                    }}
+                    className={cn(
                     'w-full max-w-lg mx-auto text-center text-xl md:text-2xl font-bold uppercase text-primary-foreground py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
                     'bg-gradient-to-r from-primary to-primary-dark',
                     'hover:shadow-[0_10px_30px_hsla(var(--primary),0.4)] hover:-translate-y-1',
@@ -292,19 +296,6 @@ export default function PersonaResultPage() {
                     {pageData.ctaButton.text}
                 </button>
                 <p className="mt-3 text-sm text-foreground-secondary">{pageData.ctaSubtitle}</p>
-            </motion.section>
-
-            <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
-              <div className="max-w-2xl mx-auto bg-background p-8 rounded-2xl border border-border shadow-lg text-center">
-                  <StarRating />
-                  <p className="text-lg md:text-xl italic text-foreground-secondary my-4 leading-relaxed">
-                      <span className='text-3xl text-primary/50 font-serif leading-none mr-1'>"</span>
-                      {pageData.testimonial.text}
-                      <span className='text-3xl text-primary/50 font-serif leading-none ml-1'>"</span>
-                  </p>
-                  <p className="font-bold text-primary-dark">— {pageData.testimonial.author}</p>
-                  <p className="text-sm text-foreground-secondary">({pageData.testimonial.detail})</p>
-              </div>
             </motion.section>
 
             <motion.section variants={itemVariants} className="text-center bg-background p-8 rounded-2xl border-2 border-primary shadow-md">
