@@ -10,16 +10,14 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground pt-8 pb-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
-        <div className="inline-block">
-          <div
-            style={{
-              background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
-              boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
-            }}
-            className="inline-flex items-center rounded-full text-white px-2 py-1 text-xs font-semibold"
-          >
-            DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
-          </div>
+        <div
+          style={{
+            background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
+            boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
+          }}
+          className="inline-flex items-center rounded-full text-white px-2 py-1 text-xs font-semibold"
+        >
+          DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
         </div>
 
         <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-4">
@@ -59,9 +57,8 @@ export default function Home() {
                 <CheckCircle2 className="h-5 w-5 text-primary" />
               </div>
               <span className="text-foreground/90 pt-0.5">
-                Descubra qual o seu{' '}
-                <span className="font-bold text-primary">perfil</span> de mãe
-                APLV
+                Qual o seu <span className="font-bold text-primary">perfil</span> de mãe
+                APLV (e o cardápio ideal para você)
               </span>
             </li>
             <li className="flex items-start">
