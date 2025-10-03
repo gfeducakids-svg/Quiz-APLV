@@ -2,7 +2,7 @@
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, Clock, Gift, X, Star, Zap } from 'lucide-react';
+import { Check, Shield, Gift, X, Star, Zap } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -111,7 +111,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA REFORÇADA - 7 DIAS',
     guaranteeText: (<><p className="mb-4">Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou.</p><p className='font-bold mb-4'>Desta vez é DIFERENTE. E provamos:</p><p className='font-bold mb-4'>Garantia INCONDICIONAL de 7 dias completos.</p><ul className="space-y-2 text-left mb-4"><li>Não sentiu que FINALMENTE encontrou a solução completa?</li><li>Não viu diferença das outras coisas que tentou?</li><li>Ainda está cansada e sem respostas?</li><li>Simplesmente não se conectou com o material?</li></ul><p className='font-bold'>→ Devolução TOTAL. Sem perguntas. Sem constrangimento.</p></>),
-    guaranteeImpact: "→ Devolução TOTAL. Sem perguntas. Sem constrangimento."
+    guaranteeImpact: "Dê uma última chance, com risco zero. Se não for a solução, seu dinheiro volta 100%."
   },
   'mae-racional-cientifica': {
     badgeText: 'MÃE RACIONAL CIENTÍFICA',
@@ -156,14 +156,12 @@ const personaThemes: Record<string, string> = {
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 }}};
 const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 }}};
 
-// Helper component for star ratings
 const StarRating = () => (
   <div className="flex justify-center gap-1 text-star">
     {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5" fill="currentColor" />)}
   </div>
 );
 
-// Main Page Component
 export default function PersonaResultPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -194,7 +192,6 @@ export default function PersonaResultPage() {
       animate="visible"
       variants={containerVariants}
     >
-      {/* Section 1: Header */}
       <motion.header
         variants={itemVariants}
         className="text-center py-12 px-6 md:px-10 bg-gradient-to-b from-primary-light/50 to-background-light"
@@ -210,8 +207,7 @@ export default function PersonaResultPage() {
         </h1>
       </motion.header>
       <div className="h-px bg-border"></div>
-
-      {/* Section 3: The 3 Errors */}
+      
       <motion.section variants={itemVariants} className="py-10 px-6 bg-background-light">
         <div className="max-w-3xl mx-auto">
             <div className="p-6 md:p-8 bg-destructive-light border-l-4 border-destructive text-destructive-dark mb-8 rounded-r-lg">
@@ -235,8 +231,6 @@ export default function PersonaResultPage() {
         </div>
       </motion.section>
 
-      
-      {/* Section 5: Solution */}
       <motion.section variants={itemVariants} className="py-10 px-6">
         <div className="max-w-4xl mx-auto">
             <div className="p-8 md:p-10 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground rounded-t-2xl text-center">
@@ -268,20 +262,17 @@ export default function PersonaResultPage() {
         </div>
       </motion.section>
 
-      {/* Section 6 & 7 & 8: Offer, CTA, Guarantee */}
       <div className="bg-background py-10 px-6">
         <div className="max-w-2xl mx-auto space-y-8">
-            {/* Urgency */}
             <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl md:text-2xl font-bold text-destructive-dark">⏰ OFERTA POR TEMPO LIMITADO</h3>
                 <div className="flex items-center justify-center gap-2 mt-4">
-                  <div className="text-3xl md:text-4xl font-bold text-destructive-dark">
+                  <div className="text-2xl md:text-3xl font-bold text-destructive-dark">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
                   </div>
                 </div>
             </motion.section>
 
-            {/* Investment */}
             {pageData.investmentText &&
             <motion.section variants={itemVariants} className="text-center bg-gradient-to-b from-primary-light/70 to-background p-8 border-2 border-primary rounded-2xl shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-2">💰 INVESTIMENTO</h3>
@@ -290,8 +281,6 @@ export default function PersonaResultPage() {
             </motion.section>}
             {!pageData.investmentText && <motion.section variants={itemVariants}>{finalInvestmentReason}</motion.section>}
 
-
-            {/* CTA Button */}
             <motion.section variants={itemVariants} className="text-center">
                 <button className={cn(
                     'w-full max-w-lg mx-auto text-center text-xl md:text-2xl font-bold uppercase text-primary-foreground py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
@@ -305,7 +294,6 @@ export default function PersonaResultPage() {
                 <p className="mt-3 text-sm text-foreground-secondary">{pageData.ctaSubtitle}</p>
             </motion.section>
 
-            {/* Section 4: Testimonial */}
             <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
               <div className="max-w-2xl mx-auto bg-background p-8 rounded-2xl border border-border shadow-lg text-center">
                   <StarRating />
@@ -319,11 +307,9 @@ export default function PersonaResultPage() {
               </div>
             </motion.section>
 
-            {/* Guarantee */}
             <motion.section variants={itemVariants} className="text-center bg-background p-8 rounded-2xl border-2 border-primary shadow-md">
                 <Shield className="h-12 w-12 text-primary mx-auto mb-2"/>
                 <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-1">{pageData.guaranteeTitle}</h3>
-                <p className='font-bold text-2xl text-primary-dark mb-4'>7 DIAS</p>
                 <div className="text-foreground-secondary leading-relaxed space-y-3">{pageData.guaranteeText}</div>
                 <div className="mt-4 p-4 bg-primary-light rounded-lg font-bold text-primary-dark">
                     {pageData.guaranteeImpact}
