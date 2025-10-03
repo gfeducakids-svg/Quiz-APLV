@@ -32,7 +32,7 @@ interface ResultPageProps {
 const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-iniciante-insegura': {
     badgeText: 'MÃE INICIANTE INSEGURA',
-    title: "8.243 mães saíram do pânico que você está sentindo",
+    title: "Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.",
     validationText: "Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.",
     errors: [
       { title: 'Confiar em receitas "sem lactose" aleatórias', description: '73% têm traços de leite escondidos' },
@@ -207,7 +207,7 @@ export default function PersonaResultPage() {
       {/* Section 1: Header */}
       <motion.header
         variants={itemVariants}
-        className="text-center py-12 px-6 md:px-10 bg-gradient-to-b from-primary-light to-background"
+        className="text-center py-12 px-6 md:px-10 bg-gradient-to-b from-primary-light/50 to-background-light"
       >
         <motion.div
             variants={itemVariants}
@@ -223,9 +223,9 @@ export default function PersonaResultPage() {
 
       {/* Section 2: Emotional Validation */}
       <motion.section variants={itemVariants} className="py-10 px-6 bg-background">
-        <p className="text-xl md:text-2xl text-foreground-secondary leading-relaxed text-center max-w-2xl mx-auto">
+        <div className="text-xl md:text-2xl text-foreground-secondary leading-relaxed text-center max-w-2xl mx-auto">
           {finalValidationText}
-        </p>
+        </div>
       </motion.section>
 
       {/* Section 3: The 3 Errors */}
@@ -305,15 +305,15 @@ export default function PersonaResultPage() {
             <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6">
                 <h3 className="text-xl md:text-2xl font-bold text-destructive-dark">⏰ OFERTA POR TEMPO LIMITADO</h3>
                 <div className="flex items-center justify-center gap-2 mt-4">
-                    <p className="text-2xl md:text-3xl font-bold text-destructive-dark">
-                        <CountdownTimer initialMinutes={pageData.countdownMinutes} />
-                    </p>
+                  <div className="text-2xl md:text-3xl font-bold text-destructive-dark">
+                      <CountdownTimer initialMinutes={pageData.countdownMinutes} />
+                  </div>
                 </div>
             </motion.section>
 
             {/* Investment */}
             {pageData.investmentText &&
-            <motion.section variants={itemVariants} className="text-center bg-gradient-to-b from-primary-light to-background p-8 border-2 border-primary rounded-2xl shadow-lg">
+            <motion.section variants={itemVariants} className="text-center bg-gradient-to-b from-primary-light/70 to-background p-8 border-2 border-primary rounded-2xl shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-2">💰 INVESTIMENTO</h3>
                 <p className="text-5xl md:text-7xl font-black text-primary-dark">{pageData.investmentText}</p>
                 <div className="mt-4 text-foreground-secondary max-w-xl mx-auto">{finalInvestmentReason}</div>
@@ -326,7 +326,7 @@ export default function PersonaResultPage() {
                 <button className={cn(
                     'w-full max-w-lg mx-auto text-center text-xl md:text-2xl font-bold uppercase text-primary-foreground py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
                     'bg-gradient-to-r from-primary to-primary-dark',
-                    'hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.4)] hover:-translate-y-1',
+                    'hover:shadow-[0_10px_30px_hsla(var(--primary),0.4)] hover:-translate-y-1',
                     'animate-pulse'
                 )}>
                     <Check className="inline-block h-7 w-7 mr-2"/>
@@ -350,3 +350,5 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
+
+    
