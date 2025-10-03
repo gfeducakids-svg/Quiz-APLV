@@ -56,6 +56,15 @@ function getPersona(answers: number[]): Persona {
   return topPersona;
 }
 
+const normalizeString = (str: string) => {
+  return str
+    .toLowerCase()
+    .normalize('NFD') // Decompose accented characters
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/ /g, '-'); // Replace spaces with hyphens
+};
+
+
 export async function submitQuiz(answers: number[]) {
   if (answers.length !== 8) {
     redirect('/quiz?error=incomplete');
@@ -63,7 +72,7 @@ export async function submitQuiz(answers: number[]) {
   }
 
   const persona = getPersona(answers);
-  const personaSlug = persona.toLowerCase().replace(/ /g, '-');
+  const personaSlug = normalizeString(persona);
   
   const answerValues = {
     q7: answers[6]
