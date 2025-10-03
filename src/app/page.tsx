@@ -16,16 +16,16 @@ export default function Home() {
               background: 'linear-gradient(to right, #FF8C6B, #FF6B9D)',
               boxShadow: '0 4px 15px rgba(255, 107, 157, 0.3)',
             }}
-            className="inline-flex items-center rounded-full text-white px-3 py-1 text-xs font-semibold"
+            className="inline-flex items-center rounded-full text-white px-2 py-1 text-xs font-semibold"
           >
             DIAGNÓSTICO GRATUITO - POR TEMPO LIMITADO
           </div>
         </div>
 
         <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-4">
-          Você Está Cometendo Esses{' '}
-          <span className="text-secondary font-bold">3 Erros Fatais</span> na
-          Alimentação do Seu Filho com APLV?
+          Descubra Por Que Seu Filho com APLV Ainda{' '}
+          <span className="text-secondary font-bold">Não Come Sem Medo</span> (E
+          Como Mudar Isso em 7 Dias)
         </h1>
 
         <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
