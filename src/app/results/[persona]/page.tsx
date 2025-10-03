@@ -111,10 +111,12 @@ const pagesData = {
     offerRemainingText: 'Restam 23 acessos com desconto hoje',
     countdownMinutes: 14,
     guaranteeText: (
-      <p>
-        Teste por 7 dias. Se não eliminar 80% das suas dúvidas, devolvemos 100%
-        do valor. Sem perguntas.
-      </p>
+      <div className="space-y-4">
+        <p>Nós sabemos o MEDO que você sente antes de investir em algo novo para o seu filho. Por isso: Teste o Cardápio Sem Leite por 7 dias inteiros.</p>
+        <p>Não eliminou suas dúvidas?<br/>Não se sentiu mais segura?<br/>Não encontrou receitas que funcionaram?<br/>Simplesmente mudou de ideia?</p>
+        <p className="font-bold">Devolvemos 100% do seu dinheiro. SEM perguntas. SEM burocracia. SEM julgamentos.</p>
+        <p className="font-bold text-lg">Você literalmente NÃO TEM NADA A PERDER.<br/>Só tem a GANHAR paz de espírito.</p>
+      </div>
     ),
     ctaButton: {
       text: '✅ QUERO AS 1000 RECEITAS AGORA',
@@ -169,9 +171,17 @@ const pagesData = {
     offerRemainingText: '18 acessos restantes hoje',
     countdownMinutes: 11,
     guaranteeText: (
-      <p>
-        Teste. Se não encontrar pelo menos 50 receitas novas que você ame, devolução total.
-      </p>
+       <div className="space-y-4">
+        <p>Nós entregamos resultados. E sabemos disso. Por isso oferecemos garantia INCONDICIONAL:</p>
+        <ul className="list-none space-y-1">
+          <li>❌ Não achou as receitas práticas o suficiente?</li>
+          <li>❌ Não resolveu seu problema de variedade?</li>
+          <li>❌ Não economizou tempo como esperava?</li>
+          <li>❌ Qualquer motivo?</li>
+        </ul>
+        <p className="font-bold">→ 100% do dinheiro de volta. Sem questionário.</p>
+        <p className="font-bold text-lg">Simples assim. Você testa, decide, pronto.<br/>Zero risco. Só benefícios.</p>
+      </div>
     ),
     ctaButton: {
       text: '✅ QUERO VARIEDADE INFINITA AGORA',
@@ -233,9 +243,18 @@ const pagesData = {
     offerRemainingText: '15 vagas',
     countdownMinutes: 9,
     guaranteeText: (
-      <p>
-        7 dias para testar. Se não sentir que DESTA VEZ é diferente, devolução 100%. Zero risco.
-      </p>
+      <div className="space-y-4">
+        <p>Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou.</p>
+        <p className='font-bold'>Desta vez é DIFERENTE. E provamos:</p>
+        <p>Garantia INCONDICIONAL de 7 dias completos.</p>
+        <ul className="list-none space-y-1">
+            <li>Não sentiu que FINALMENTE encontrou a solução completa?</li>
+            <li>Não viu diferença das outras coisas que tentou?</li>
+            <li>Ainda está cansada e sem respostas?</li>
+            <li>Simplesmente não se conectou com o material?</li>
+        </ul>
+        <p className="font-bold text-lg">→ Devolução TOTAL. Sem perguntas. Sem constrangimento.</p>
+      </div>
     ),
     ctaButton: {
       text: '✅ DAR UMA ÚLTIMA CHANCE',
@@ -373,7 +392,7 @@ function ResultPageContent({
             🎯 SEU DIAGNÓSTICO: {badgeText}
             </Badge>
         </motion.div>
-        <motion.p variants={itemVariants} className="text-lg text-foreground/80 mt-4">{socialProof}</motion.p>
+        
       </header>
 
       <motion.section variants={itemVariants} className="text-center bg-destructive/10 border border-destructive rounded-lg p-6 mb-10 shadow-lg">
@@ -497,5 +516,3 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
-
-    
