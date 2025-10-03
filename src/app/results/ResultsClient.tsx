@@ -65,7 +65,8 @@ export default function ResultsClient() {
 
     if (data) {
       try {
-        const decodedResult = JSON.parse(decodeURIComponent(data));
+        const decodedString = Buffer.from(data, 'base64').toString('utf-8');
+        const decodedResult = JSON.parse(decodedString);
         setResult(decodedResult);
       } catch (e) {
         setError('Houve um problema ao carregar seus resultados.');

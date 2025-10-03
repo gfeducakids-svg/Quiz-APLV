@@ -61,7 +61,8 @@ export async function submitQuiz(answers: string[]) {
       cta: urgentCtaResult.cta,
     };
 
-    const encodedResult = encodeURIComponent(JSON.stringify(result));
+    const resultString = JSON.stringify(result);
+    const encodedResult = Buffer.from(resultString).toString('base64');
     redirect(`/results?data=${encodedResult}`);
   } catch (error) {
     console.error('AI flow failed:', error);
