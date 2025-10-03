@@ -376,6 +376,12 @@ function ResultPageContent({
         <motion.p variants={itemVariants} className="text-lg text-foreground/80 mt-4">{socialProof}</motion.p>
       </header>
 
+      <motion.section variants={itemVariants} className="text-center bg-destructive/10 border border-destructive rounded-lg p-6 mb-10 shadow-lg">
+        <h3 className="text-xl md:text-2xl font-headline font-bold text-destructive">⏰ OFERTA POR TEMPO LIMITADO</h3>
+        <p className="text-lg mt-2">🔥 {offerRemainingText}</p>
+        <p className="text-2xl font-bold mt-2">⏱️ Oferta expira em: <CountdownTimer initialMinutes={countdownMinutes} /></p>
+      </motion.section>
+
       <motion.hr variants={itemVariants} className="border-border border-dashed my-8" />
 
       <motion.section variants={itemVariants} className="mb-10 text-center">
@@ -445,15 +451,7 @@ function ResultPageContent({
       </motion.section>
 
       <motion.hr variants={itemVariants} className="border-border border-dashed my-8" />
-
-      <motion.section variants={itemVariants} className="text-center bg-destructive/10 border border-destructive rounded-lg p-6 mb-10 shadow-lg">
-        <h3 className="text-xl md:text-2xl font-headline font-bold text-destructive">⏰ OFERTA POR TEMPO LIMITADO</h3>
-        <p className="text-lg mt-2">🔥 {offerRemainingText}</p>
-        <p className="text-2xl font-bold mt-2">⏱️ Oferta expira em: <CountdownTimer initialMinutes={countdownMinutes} /></p>
-      </motion.section>
       
-      <motion.hr variants={itemVariants} className="border-border border-dashed my-8" />
-
       <motion.section variants={itemVariants} className="text-center bg-card p-6 rounded-lg border border-primary/50 mb-10 shadow-sm">
         <h3 className="text-xl md:text-2xl font-headline font-bold mb-4">🛡️ GARANTIA 7 DIAS</h3>
         <div className="text-foreground/90">{guaranteeText}</div>
@@ -499,3 +497,5 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
+
+    
