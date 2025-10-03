@@ -27,10 +27,14 @@ const config: Config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
+        'background-light': 'hsl(var(--background-light))',
         foreground: 'hsl(var(--foreground))',
+        'foreground-secondary': 'hsl(var(--foreground-secondary))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          light: 'hsl(var(--primary-light))',
+          dark: 'hsl(var(--primary-dark))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -39,6 +43,8 @@ const config: Config = {
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
+          light: 'hsl(var(--destructive-light))',
+          dark: 'hsl(var(--destructive-dark))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -56,11 +62,12 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        star: 'hsl(var(--star))',
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 8px)',
       },
       keyframes: {
         'accordion-down': {
@@ -71,15 +78,10 @@ const config: Config = {
           from: {height: 'var(--radix-accordion-content-height)'},
           to: {height: '0'},
         },
-        'fade-in': {
-          from: { opacity: '0' },
-          to: { opacity: '1' },
-        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.5s ease-in-out',
       },
     },
   },

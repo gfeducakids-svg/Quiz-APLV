@@ -4,53 +4,74 @@
 
 @layer base {
   :root {
-    --background: 36 100% 98%; /* #FFFBF5 - off-white quente */
-    --foreground: 210 29% 24%; /* #2C3E50 - cinza escuro */
-    --card: 30 50% 98%; /* #fafaf9 */
-    --card-foreground: 210 29% 24%;
-    --popover: 36 100% 98%;
-    --popover-foreground: 210 29% 24%;
-    --primary: 128 25% 61%; /* #7FB685 - verde sálvia */
-    --primary-foreground: 36 100% 98%;
-    --secondary: 13 81% 67%; /* #E8755E - coral forte */
+    --background-light: 210 20% 98%; /* #F9FAFB */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 224 23% 16%; /* #1F2937 */
+    --foreground-secondary: 220 9% 45%; /* #6B7280 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 23% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 23% 16%;
+
+    --primary: 158 72% 43%; /* #10B981 */
+    --primary-light: 158 84% 90%; /* #D1FAE5 */
+    --primary-dark: 158 92% 25%; /* #047857 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 13 81% 67%; /* kept from old theme for components */
     --secondary-foreground: 36 100% 98%;
-    --muted: 215 14% 65%; /* #94A3B8 - cinza claro */
-    --muted-foreground: 215 14% 35%;
-    --accent: 34 80% 95%; /* #FFF4E6 - amarelo muito suave (para warning) */
-    --accent-foreground: 28 80% 35%; /* #92400E - marrom escuro (para warning) */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+
+    --muted: 220 13% 91%;
+    --muted-foreground: 220 9% 45%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 224 23% 16%;
+
+    --destructive: 3.9 86% 61%; /* #EF4444 */
+    --destructive-light: 3.9 93% 94%; /* #FEF2F2 */
+    --destructive-dark: 3.9 72% 51%; /* #DC2626 */
+    --destructive-foreground: 0 0% 100%;
+
     --border: 220 13% 91%; /* #E5E7EB */
     --input: 220 13% 91%;
-    --ring: 128 25% 61%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --ring: 158 72% 43%;
+
+    --star: 39 92% 56%; /* #F59E0B */
+    --radius: 0.75rem; /* 12px */
   }
 
   .dark {
-    --background: 210 29% 10%;
-    --foreground: 36 100% 98%;
-    --card: 210 29% 12%;
-    --card-foreground: 36 100% 98%;
-    --popover: 210 29% 10%;
-    --popover-foreground: 36 100% 98%;
-    --primary: 128 25% 61%;
-    --primary-foreground: 36 100% 98%;
-    --secondary: 13 81% 67%;
-    --secondary-foreground: 36 100% 98%;
-    --muted: 215 14% 25%;
-    --muted-foreground: 215 14% 65%;
-    --accent: 34 80% 15%;
-    --accent-foreground: 28 80% 85%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 215 14% 30%;
-    --input: 215 14% 30%;
-    --ring: 128 25% 61%;
+    /* Dark mode is not defined in the new design, but we keep the structure */
+    --background: 224 23% 16%;
+    --foreground: 210 20% 98%;
+  }
+
+  /* Per-Persona Themes */
+  .theme-iniciante {
+    --primary: 158 72% 43%; /* #10B981 */
+    --primary-light: 158 84% 90%; /* #D1FAE5 */
+    --primary-dark: 158 92% 25%; /* #047857 */
+    --ring: 158 72% 43%;
+  }
+  .theme-estrategista {
+    --primary: 36 100% 50%; /* #FF9800 */
+    --primary-light: 36 100% 85%; /* #FFE0B2 */
+    --primary-dark: 30 100% 45%; /* #E65100 */
+    --ring: 36 100% 50%;
+  }
+  .theme-veterana {
+    --primary: 4 90% 58%; /* #F44336 */
+    --primary-light: 4 100% 91%; /* #FFCDD2 */
+    --primary-dark: 4 68% 44%; /* #C62828 */
+    --ring: 4 90% 58%;
+  }
+  .theme-racional {
+    --primary: 207 90% 54%; /* #2196F3 */
+    --primary-light: 207 93% 86%; /* #BBDEFB */
+    --primary-dark: 211 79% 29%; /* #0D47A1 */
+    --ring: 207 90% 54%;
   }
 }
 
@@ -60,6 +81,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F0E6D8' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }
