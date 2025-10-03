@@ -27,9 +27,7 @@ export default function Home() {
         </h1>
 
         <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
-          Cada erro pode estar causando reações, traumas alimentares e noites de
-          pânico que você{' '}
-          <span className="text-primary font-semibold">NEM IMAGINA</span>.
+          Mães como você eliminaram 90% das reações em 7 dias ao corrigir esses 3 pontos (que você ainda não viu).
         </p>
 
         <div className="mt-6 max-w-2xl mx-auto">
