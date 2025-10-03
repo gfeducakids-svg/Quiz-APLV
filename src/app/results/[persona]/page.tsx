@@ -397,7 +397,6 @@ function ResultPageContent({
 
       <motion.section variants={itemVariants} className="text-center bg-destructive/10 border border-destructive rounded-lg p-6 mb-10 shadow-lg">
         <h3 className="text-xl md:text-2xl font-headline font-bold text-destructive">⏰ OFERTA POR TEMPO LIMITADO</h3>
-        <p className="text-lg mt-2">🔥 {offerRemainingText}</p>
         <p className="text-2xl font-bold mt-2">⏱️ Oferta expira em: <CountdownTimer initialMinutes={countdownMinutes} /></p>
       </motion.section>
 
