@@ -104,8 +104,9 @@ const chatFlow = ai.defineFlow(
 
     const lastUserMessage = chatHistory.pop();
     
-    if (!lastUserMessage || lastUserMessage.role !== 'user') {
-        // This case should ideally not happen in a normal conversation flow.
+    if (!lastUserMessage || lastUserMessage.role !== 'user' || !lastUserMessage.content) {
+        // This case should ideally not happen in a normal conversation flow,
+        // but this check prevents a crash if the history is malformed.
         return { message: "Desculpe, não entendi sua mensagem. Pode repetir?" };
     }
 
