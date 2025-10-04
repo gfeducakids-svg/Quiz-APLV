@@ -70,14 +70,9 @@ export function ChatWidget() {
         
       const response = await chat({ history: historyForApi });
       
-      const responseLength = response.message.length;
-      const delay = responseLength > 100 ? 3000 : 2000;
-      
-      setTimeout(() => {
-          const botMessage: Message = { role: 'model', content: response.message };
-          setMessages((prev) => [...prev, botMessage]);
-          setIsLoading(false);
-      }, delay);
+      const botMessage: Message = { role: 'model', content: response.message };
+      setMessages((prev) => [...prev, botMessage]);
+      setIsLoading(false);
 
     } catch (error) {
       console.error('Error calling chat flow:', error);
@@ -85,10 +80,8 @@ export function ChatWidget() {
         role: 'model',
         content: 'Desculpe, estou com um problema para me conectar. Tente novamente em alguns instantes.',
       };
-      setTimeout(() => {
-        setMessages((prev) => [...prev, errorMessage]);
-        setIsLoading(false);
-      }, 2000);
+      setMessages((prev) => [...prev, errorMessage]);
+      setIsLoading(false);
     }
   };
 
