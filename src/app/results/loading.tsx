@@ -16,10 +16,12 @@ import Autoplay from "embla-carousel-autoplay";
 
 
 const loadingTexts = [
-  'Estamos processando suas respostas...',
-  'Criando um Resultado Preciso para você...',
-  'Analisando seus maiores desafios...',
-  'Cruzando dados com mais de 5.000 mães...'
+  'Analisando suas respostas...',
+  'Preparando seu diagnóstico personalizado...',
+  'Identificando seu perfil de Mãe APLV...',
+  'Cruzando dados com milhares de outras mães...',
+  'Selecionando as melhores receitas para você...',
+  'Quase pronto! Finalizando seu resultado...'
 ];
 
 export default function ResultsLoading() {
@@ -31,7 +33,7 @@ export default function ResultsLoading() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prevIndex) => (prevIndex + 1) % loadingTexts.length);
-    }, 2500);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, []);
@@ -44,7 +46,7 @@ export default function ResultsLoading() {
       </p>
 
       <div className="w-full max-w-xl">
-        <h3 className="text-center text-2xl font-headline font-bold text-primary mb-6">
+        <h3 className="text-center text-xl font-semibold text-foreground/90 mb-6">
           Veja quem já conseguiu. Você será a próxima!
         </h3>
         <Carousel
