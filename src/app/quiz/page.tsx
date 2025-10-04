@@ -131,9 +131,7 @@ export default function QuizPage() {
 
       <div className="container mx-auto max-w-2xl py-8 md:py-12 relative z-10">
         <div className="space-y-6">
-          <div className="w-full px-4 mb-2">
-            <h1 className="text-3xl font-bold text-center text-gray-800 font-headline">Descubra seu Perfil de Mãe APLV</h1>
-            <p className="text-center text-gray-500 mb-6">Responda 8 perguntas e receba um diagnóstico gratuito.</p>
+          <div className="w-full px-4 mb-8">
             <div className="flex gap-1.5">
               {Array.from({ length: quizQuestions.length }).map((_, index) => (
                 <div
