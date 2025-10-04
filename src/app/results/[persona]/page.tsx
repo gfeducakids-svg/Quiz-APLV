@@ -14,9 +14,7 @@ interface ResultPageProps {
     badgeText: string;
     title: React.ReactNode;
     socialProof: string;
-    validationText: string;
     errors: { title: string; description: string }[];
-    testimonial: { text: string; author: string; detail:string; };
     solutionTitle: string;
     solutionSections: { title: string; items: string[], details?: string[] }[];
     countdownMinutes: number;
@@ -39,13 +37,11 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE EM PÂNICO INICIAL',
     title: "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE.",
     socialProof: 'Mães como você eliminaram 90% das reações em 7 dias ao corrigir esses 3 pontos.',
-    validationText: "Você está no início. Cada refeição é um campo minado. Pesquisa sem parar mas fica mais confusa.",
     errors: [
       { title: 'Confiar em rótulos "sem lactose" que ainda contêm leite.', description: '73% têm traços de leite escondidos' },
       { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho enjoa, você se desespera' },
       { title: 'Acreditar que "só um pouquinho" não vai fazer mal.', description: 'Inflama o intestino e atrasa a cura' },
     ],
-    testimonial: { text: 'Tinha 3 receitas. Passava mal de ansiedade. Com as 1000 receitas do Cardápio, já fiz 47 receitas diferentes. Meu filho come FELIZ.', author: 'Ana Paula, SP', detail: '(filho 16 meses)' },
     solutionTitle: 'O CARDÁPIO SEM LEITE DA MÃE PREVENIDA',
     solutionSections: [
         { title: '✅ 1000 RECEITAS TESTADAS organizadas por:', items: ['Idade (6 meses a 18+ anos)', 'Refeição (café, lanche, almoço, jantar, sobremesa)', 'Tempo de preparo (5min a 60min)', 'Dificuldade (fácil, média, avançada)'], details: ['Calorias (kcal)', 'Proteínas, carboidratos, gorduras', 'Passo a passo detalhado', 'Ingredientes exatos'] },
@@ -56,7 +52,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '97',
         anchorPrice: '197',
-        justifications: ['1000 receitas = R$ 0,10 cada', 'Paz de espírito não tem preço', 'Menos que 1 semana errando']
+        justifications: [
+            '1000 receitas com INFO NUTRICIONAL completa',
+            'Organizadas por idade, tempo e refeição',
+            'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+            'Guia SOS para agir rápido em reações',
+            'Acesso vitalício'
+        ]
     },
     ctaButton: { text: 'QUERO AS 1000 RECEITAS AGORA' },
     ctaSubtitle: 'Acesso imediato • Pagamento seguro • Garantia total',
@@ -68,13 +70,11 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
     title: 'Você já lutou demais sozinha. Cada dia que passa, a culpa só cresce...',
     socialProof: 'Mais de 5.000 mães esgotadas como você hoje têm paz para alimentar seus filhos.',
-    validationText: "Você está cansada de pensar, cansada de cozinhar, cansada de se preocupar. A energia está no fim.",
     errors: [
       { title: 'Falta de variedade estratégica', description: 'Sempre as mesmas receitas porque não conhece outras' },
       { title: 'Não ter receitas rápidas catalogadas', description: 'Improvisa quando está sem tempo' },
       { title: 'Festas sem solução pronta', description: 'Seu filho fica triste ou você se estressa preparando' },
     ],
-    testimonial: { text: 'Meu filho enjoava de tudo. Eu chorava de frustração. Hoje, ele pede pra ver o cardápio e escolher! É inacreditável.', author: 'Juliana, MG', detail: '(filho 4 anos)' },
     solutionTitle: 'O CARDÁPIO SEM LEITE - 1000 RECEITAS',
     solutionSections: [
         { title: '📂 ORGANIZAÇÃO INTELIGENTE', items: ['Café da manhã (200 opções)', 'Lanches escolares (200 opções)', 'Almoços (200 opções)', 'Jantares (200 opções)', 'Sobremesas (200 opções)', 'Festas (200 opções)']},
@@ -86,7 +86,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '97',
         anchorPrice: '197',
-        justifications: ['1000 receitas = R$ 0,10 cada', 'Economiza R$ 300-500/mês', 'Retorno em menos de 1 semana']
+        justifications: [
+            '1000 receitas com INFO NUTRICIONAL completa',
+            'Organizadas por idade, tempo e refeição',
+            'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+            'Guia SOS para agir rápido em reações',
+            'Acesso vitalício'
+        ]
     },
     ctaButton: { text: 'QUERO VARIEDADE INFINITA AGORA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
@@ -98,13 +104,11 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
     title: `Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?`,
     socialProof: 'Para as mães que, como você, já tinham perdido a esperança e hoje vivem uma nova realidade.',
-    validationText: "Você já gastou, já tentou, já se frustrou. A confiança em novas soluções está no zero. É compreensível.",
     errors: [
       { title: 'Ter receitas espalhadas (caderno, WhatsApp, Google)', description: 'Perde tempo procurando' },
       { title: 'Receitas sem info nutricional', description: 'Não sabe se está balanceado' },
       { title: 'Achar que "já viu tudo"', description: 'Das 1000 receitas, 850+ você nunca viu' },
     ],
-    testimonial: { text: 'Eu era a cética. "Mais um curso". Mas a garantia me pegou. E em 3 dias eu vi que era diferente. Organizado, completo. Hoje, eu recomendo de olhos fechados.', author: 'Carla, RJ', detail: '(filho 13 anos)' },
     solutionTitle: 'O QUE VOCÊ NUNCA TEVE - O CARDÁPIO COMPLETO',
     solutionSections: [
         { title: '✅ 1000 RECEITAS EM UM SÓ LUGAR', items: ['Organizadas por idade, refeição, tempo', 'Com info nutricional completa (kcal + macros)', 'Para toda fase da vida do seu filho'] },
@@ -115,7 +119,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '97',
         anchorPrice: '197',
-        justifications: ['R$ 97 vs <strong>R$ 3.000+</strong> que você já gastou', 'Tudo em um lugar, finalmente', 'Última chance de acertar']
+        justifications: [
+            '1000 receitas com INFO NUTRICIONAL completa',
+            'Organizadas por idade, tempo e refeição',
+            'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+            'Guia SOS para agir rápido em reações',
+            'Acesso vitalício'
+        ]
     },
     ctaButton: { text: 'DAR UMA ÚLTIMA CHANCE' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
@@ -127,13 +137,11 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você SABE que precisa de um sistema. Parar de improvisar está custando caro.',
     socialProof: 'Junte-se às mães que trocaram a incerteza por um sistema de alimentação com ROI comprovado.',
-    validationText: "Você analisa dados, busca eficiência e sabe que um sistema otimizado é a chave para resolver problemas complexos. A aleatoriedade te incomoda.",
     errors: [
       { title: 'Improvisar sem sistema', description: 'Custo estimado: R$ 800/mês em produtos errados' },
       { title: 'Receitas sem dados nutricionais', description: 'Custo: Incerteza sobre o balanço nutricional' },
       { title: 'Pagar por informação sistematizada', description: 'Custo: R$ 3.600/ano (nutri) vs R$ 97 (acesso vitalício)' },
     ],
-    testimonial: { text: 'Planilhas, apps... tentei de tudo. Nada se compara a ter 1000 receitas já catalogadas por tempo, kcal e refeição. O ROI foi imediato, só no tempo que economizei.', author: 'Fernanda, PR', detail: '(pai também usa o sistema)' },
     solutionTitle: 'O PRODUTO: O CARDÁPIO SEM LEITE',
     solutionSections: [
         { title: 'ESPECIFICAÇÕES TÉCNICAS', items: [], details: ['Calorias (kcal)', 'Proteínas (g)', 'Carboidratos (g)', 'Gorduras (g)', 'Tempo de preparo', 'Ingredientes quantificados'] },
@@ -144,7 +152,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '97',
         anchorPrice: '197',
-        justifications: ['1000 receitas = R$ 0,10 cada', 'Nutricionista: R$ 3.600/ano', 'Este sistema: R$ 97 vitalício']
+        justifications: [
+            '1000 receitas com INFO NUTRICIONAL completa',
+            'Organizadas por idade, tempo e refeição',
+            'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+            'Guia SOS para agir rápido em reações',
+            'Acesso vitalício'
+        ]
     },
     ctaButton: { text: 'ADQUIRIR SISTEMA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
@@ -309,7 +323,7 @@ export default function PersonaResultPage() {
                 transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
               >
                 <div
-                  className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl"
+                  className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 text-center shadow-xl max-w-md mx-auto"
                   style={{ boxShadow: '0 8px 24px hsla(var(--primary), 0.15)' }}
                 >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
@@ -325,7 +339,7 @@ export default function PersonaResultPage() {
                   </div>
 
                   <div
-                    className="text-center text-primary-dark font-black leading-none"
+                    className="text-primary-dark font-black leading-none"
                     style={{
                       textShadow: '0 2px 4px hsla(var(--primary), 0.1)',
                       letterSpacing: '-1px',
@@ -390,5 +404,3 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
-
-    
