@@ -36,6 +36,7 @@ export default function Home() {
             alt="Mãe com filho"
             width={700}
             height={400}
+            priority
             className="rounded-lg shadow-lg mx-auto"
           />
         </div>

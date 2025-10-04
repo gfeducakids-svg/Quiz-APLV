@@ -60,17 +60,19 @@ export default function ResultsLoading() {
           onMouseLeave={plugin.current.reset}
         >
           <CarouselContent>
-            {loadingCarouselImages.map((image) => (
+            {loadingCarouselImages.map((image, index) => (
               <CarouselItem key={image.id}>
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center p-6 bg-background">
-                      <div className="w-full h-64 relative rounded-lg overflow-hidden">
+                      <div className="w-full aspect-square relative rounded-lg overflow-hidden">
                         <Image
                           src={image.imageUrl}
                           alt={image.description}
-                          fill
-                          priority
+                          width={600}
+                          height={600}
+                          priority={index === 0}
+                          loading={index === 0 ? 'eager' : 'lazy'}
                           className="object-contain"
                           data-ai-hint={image.imageHint}
                         />
