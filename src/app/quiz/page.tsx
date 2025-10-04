@@ -3,7 +3,6 @@
 import { useState, useTransition, useEffect } from 'react';
 import { quizQuestions } from './data';
 import { submitQuiz } from './actions';
-import { Button } from '@/components/ui/button';
 import { Loader2, CheckCircle2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
