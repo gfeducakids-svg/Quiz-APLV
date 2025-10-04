@@ -231,12 +231,6 @@ export default function QuizPage() {
             </motion.div>
           </AnimatePresence>
         </div>
-        {isPending && (
-          <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 p-4">
-            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
-            <p className="text-lg font-semibold mt-4">Analisando suas respostas...</p>
-          </div>
-        )}
       </div>
     </div>
   );
