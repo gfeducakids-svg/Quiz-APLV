@@ -2,7 +2,7 @@
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, Gift, X, Zap, ArrowRight, Wallet } from 'lucide-react';
+import { Check, Shield, Gift, X, Zap, ArrowRight, Wallet, Star } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -12,6 +12,7 @@ interface ResultPageProps {
     theme: string;
     badgeText: string;
     title: React.ReactNode;
+    socialProof: string;
     errors: { title: string; description: string }[];
     solutionTitle: string;
     solutionSections: { title: string; items: string[], details?: string[] }[];
@@ -34,6 +35,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-em-panico-inicial': {
     badgeText: 'MÃE EM PÂNICO INICIAL',
     title: "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE.",
+    socialProof: "8.243 mães saíram do pânico que você está sentindo",
     errors: [
       { title: 'Confiar em rótulos "sem lactose" que ainda contêm leite.', description: '73% têm traços de leite escondidos' },
       { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho enjoa, você se desespera' },
@@ -60,6 +62,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-guerreira-esgotada': {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
     title: 'Você já lutou demais sozinha. Cada dia que passa, a culpa só cresce...',
+    socialProof: 'Mais de 5.000 "mães guerreiras" agora têm paz na cozinha.',
     errors: [
       { title: 'Falta de variedade estratégica', description: 'Sempre as mesmas receitas porque não conhece outras' },
       { title: 'Não ter receitas rápidas catalogadas', description: 'Improvisa quando está sem tempo' },
@@ -87,6 +90,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-desacreditada-ao-extremo': {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
     title: `Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?`,
+    socialProof: '9 em cada 10 mães que tentaram de tudo finalmente acertaram com este sistema.',
     errors: [
       { title: 'Ter receitas espalhadas (caderno, WhatsApp, Google)', description: 'Perde tempo procurando' },
       { title: 'Receitas sem info nutricional', description: 'Não sabe se está balanceado' },
@@ -113,6 +117,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você SABE que precisa de um sistema. Parar de improvisar está custando caro.',
+    socialProof: 'O sistema usado por nutricionistas para economizar tempo e dinheiro.',
     errors: [
       { title: 'Improvisar sem sistema', description: 'Custo estimado: R$ 800/mês em produtos errados' },
       { title: 'Receitas sem dados nutricionais', description: 'Custo: Incerteza sobre o balanço nutricional' },
@@ -148,12 +153,6 @@ const personaThemes: Record<string, string> = {
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 }}};
 const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 }}};
 
-const StarRating = () => (
-  <div className="flex justify-center gap-1 text-star">
-    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5" fill="currentColor" />)}
-  </div>
-);
-
 export default function PersonaResultPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -188,7 +187,6 @@ export default function PersonaResultPage() {
     >
       <div ref={
         (el) => {
-          // workaround for a bug in framer-motion that sets opacity to 0
           if (!el) return;
           if (el.style.opacity === '0') {
             el.style.opacity = '1';
@@ -209,6 +207,12 @@ export default function PersonaResultPage() {
           <h1 className="text-3xl md:text-[36px] font-bold text-primary-dark uppercase tracking-tight !leading-tight font-headline">
             {finalTitle}
           </h1>
+            <motion.p 
+              variants={itemVariants} 
+              className="text-xl font-medium text-foreground-secondary italic mt-6"
+            >
+              &ldquo;{pageData.socialProof}&rdquo;
+            </motion.p>
         </motion.header>
         <div className="h-px bg-border"></div>
         
@@ -281,12 +285,18 @@ export default function PersonaResultPage() {
                   </div>
               </motion.section>
 
-              <motion.section variants={itemVariants} className="text-center">
-                <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5">
-                    <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
-                        <Wallet className="h-5 w-5" />
-                        INVESTIMENTO
-                    </h3>
+              <motion.div variants={itemVariants} className="space-y-8"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+              >
+                <div className="text-center">
+                    <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5">
+                        <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
+                            <Wallet className="h-5 w-5" />
+                            INVESTIMENTO
+                        </h3>
+                    </div>
                 </div>
 
                 <div className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl" style={{boxShadow: '0 8px 24px hsla(var(--primary), 0.15)'}}>
@@ -307,15 +317,15 @@ export default function PersonaResultPage() {
                         <p className="font-bold text-foreground mb-3 text-base">Por que vale a pena?</p>
                         <ul className="space-y-2">
                             {pageData.investment.justifications.map((item, index) => (
-                                <li key={index} className="flex items-center gap-3 text-sm font-medium text-foreground/90">
-                                    <ArrowRight className="h-5 w-5 text-primary flex-shrink-0" />
-                                    <span>{item.replace(/(\d+)/g, '<strong class="text-primary-dark font-bold">$1</strong>')}</span>
+                                <li key={index} className="flex items-start gap-3 text-sm font-medium text-foreground/90">
+                                    <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                                    <span dangerouslySetInnerHTML={{ __html: item.replace(/(\d{1,3}(?:\.\d{3})*,\d{2}|\d[\d,.]*)/g, '<strong class="text-primary-dark font-bold">$1</strong>') }} />
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
-              </motion.section>
+              </motion.div>
 
               <motion.section variants={itemVariants} className="text-center">
                   <button
@@ -332,6 +342,18 @@ export default function PersonaResultPage() {
                       {pageData.ctaButton.text}
                   </button>
                   <p className="mt-3 text-sm text-foreground-secondary">{pageData.ctaSubtitle}</p>
+              </motion.section>
+
+              <motion.section variants={itemVariants} className="text-center bg-background-light p-8 rounded-2xl border-2 border-primary-light shadow-md">
+                  <div className="max-w-lg mx-auto">
+                    <div className="inline-flex items-center gap-1 text-star mb-4">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5" fill="currentColor" />)}
+                    </div>
+                    <p className="italic text-foreground-secondary text-lg">
+                        "Tinha 3 receitas. Passava mal de ansiedade. Com as 1000 receitas do Cardápio, já fiz 47 receitas diferentes. Meu filho come FELIZ."
+                    </p>
+                    <p className="font-bold text-primary-dark mt-4">— Ana Paula, SP <span className="font-normal text-foreground-secondary">(filho 16 meses)</span></p>
+                  </div>
               </motion.section>
 
               <motion.section variants={itemVariants} className="text-center bg-background p-8 rounded-2xl border-2 border-primary shadow-md">
