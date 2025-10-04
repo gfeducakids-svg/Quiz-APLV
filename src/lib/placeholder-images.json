@@ -19,5 +19,25 @@
       "imageUrl": "https://picsum.photos/seed/t3/600/400",
       "imageHint": "testimonial food"
     }
+  ],
+  "loadingCarouselImages": [
+    {
+      "id": "loading-1",
+      "description": "Imagem 1 do carrossel de carregamento.",
+      "imageUrl": "https://i.imgur.com/PtA6PhP.png",
+      "imageHint": "product screenshot"
+    },
+    {
+      "id": "loading-2",
+      "description": "Imagem 2 do carrossel de carregamento.",
+      "imageUrl": "https://i.imgur.com/mNwm5uk.png",
+      "imageHint": "product screenshot"
+    },
+    {
+      "id": "loading-3",
+      "description": "Imagem 3 do carrossel de carregamento.",
+      "imageUrl": "https://i.imgur.com/CN8VhOY.png",
+      "imageHint": "product screenshot"
+    }
   ]
 }

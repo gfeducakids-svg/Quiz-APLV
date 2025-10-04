@@ -9,3 +9,4 @@ export type ImagePlaceholder = {
 
 export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;
 export const testimonials: ImagePlaceholder[] = data.testimonials;
+export const loadingCarouselImages: ImagePlaceholder[] = data.loadingCarouselImages;
