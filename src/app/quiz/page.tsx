@@ -132,7 +132,7 @@ export default function QuizPage() {
       <div className="container mx-auto max-w-2xl py-8 md:py-12 relative z-10">
         <div className="space-y-6">
           <div className="w-full px-4 mb-8">
-            <p className="text-center text-sm font-medium text-gray-600 mb-2">
+            <p className="text-center text-base font-bold text-gray-700 mb-2">
               Pergunta {currentQuestionIndex + 1} de {quizQuestions.length}
             </p>
             <div className="flex gap-1.5">
