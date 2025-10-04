@@ -45,7 +45,7 @@ export default function ResultsLoading() {
 
       <div className="w-full max-w-xl">
         <h3 className="text-center text-2xl font-headline font-bold text-primary mb-6">
-          Enquanto isso, veja o que te espera:
+          Veja quem já conseguiu. Você será a próxima!
         </h3>
         <Carousel
           plugins={[plugin.current]}
