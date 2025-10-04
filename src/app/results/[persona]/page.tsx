@@ -2,10 +2,10 @@
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, Gift, X, Zap, ArrowRight, Wallet, Star } from 'lucide-react';
+import { Check, Shield, Gift, X, Zap, ArrowRight, Wallet } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Star } from 'lucide-react';
 
 interface ResultPageProps {
     persona: string;
@@ -70,7 +70,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     solutionTitle: 'O CARDÁPIO SEM LEITE - 1000 RECEITAS',
     solutionSections: [
-        { title: '📂 ORGANIZAÇÃO INTELIGENTE', items: ['Café da manhã (120 opções)', 'Lanches escolares (200 opções)', 'Almoços (250 opções)', 'Jantares (180 opções)', 'Sobremesas (100 opções)', 'Festas (150 opções)']},
+        { title: '📂 ORGANIZAÇÃO INTELIGENTE', items: ['Café da manhã (200 opções)', 'Lanches escolares (200 opções)', 'Almoços (200 opções)', 'Jantares (200 opções)', 'Sobremesas (200 opções)', 'Festas (200 opções)']},
         { title: '⏱️ FILTRO POR TEMPO', items: ['Rápidas: 5-15min (340 receitas)', 'Médias: 15-30min (450 receitas)', 'Elaboradas: 30-60min (210 receitas)'] },
         { title: '📊 INFORMAÇÃO NUTRICIONAL', items: [], details: ['Kcal por porção', 'Proteínas, carboidratos, gorduras', 'Para você planejar refeições balanceadas'] },
         { title: '🆘 GUIA SOS REAÇÃO', items: ['Protocolo completo para você agir rápido se necessário'] },
@@ -138,8 +138,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ctaButton: { text: 'ADQUIRIR SISTEMA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA DE PERFORMANCE',
-    guaranteeText: "",
-    guaranteeImpact: "7 dias. ROI negativo? Devolução total."
+    guaranteeText: "7 dias. ROI negativo? Devolução total.",
+    guaranteeImpact: "Se o sistema não se pagar em 7 dias, seu dinheiro volta. Simples assim."
   },
 };
 
@@ -284,46 +284,66 @@ export default function PersonaResultPage() {
                     </div>
                   </div>
               </motion.section>
-
-              <motion.div variants={itemVariants} className="space-y-8"
+              
+              <motion.div
+                variants={itemVariants}
+                className="space-y-8"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+                transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
               >
                 <div className="text-center">
-                    <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5">
-                        <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
-                            <Wallet className="h-5 w-5" />
-                            INVESTIMENTO
-                        </h3>
-                    </div>
+                  <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5 bg-background">
+                    <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
+                      <Wallet className="h-5 w-5" />
+                      INVESTIMENTO
+                    </h3>
+                  </div>
                 </div>
 
-                <div className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl" style={{boxShadow: '0 8px 24px hsla(var(--primary), 0.15)'}}>
-                    <div className="flex justify-center items-center gap-2 mb-3">
-                        <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">DE</span>
-                        <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
-                            R$ {pageData.investment.anchorPrice}
-                        </span>
-                        <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">POR APENAS</span>
-                    </div>
+                <div
+                  className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl"
+                  style={{ boxShadow: '0 8px 24px hsla(var(--primary), 0.15)' }}
+                >
+                  <div className="flex justify-center items-center gap-2 mb-3">
+                    <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">
+                      DE
+                    </span>
+                    <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
+                      R$ {pageData.investment.anchorPrice}
+                    </span>
+                    <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">
+                      POR APENAS
+                    </span>
+                  </div>
 
-                    <div className="text-primary-dark font-black leading-none" style={{textShadow: '0 2px 4px hsla(var(--primary), 0.1)', letterSpacing: '-1px'}}>
-                        <span className="text-4xl align-super mr-1">R$</span>
-                        <span className="text-7xl">{pageData.investment.price}</span>
-                    </div>
+                  <div
+                    className="text-primary-dark font-black leading-none"
+                    style={{
+                      textShadow: '0 2px 4px hsla(var(--primary), 0.1)',
+                      letterSpacing: '-1px',
+                    }}
+                  >
+                    <span className="text-4xl align-super mr-1">R$</span>
+                    <span className="text-7xl">{pageData.investment.price}</span>
+                  </div>
 
-                    <div className="mt-6 text-left bg-white/50 p-4 rounded-lg">
-                        <p className="font-bold text-foreground mb-3 text-base">Por que vale a pena?</p>
-                        <ul className="space-y-2">
-                            {pageData.investment.justifications.map((item, index) => (
-                                <li key={index} className="flex items-start gap-3 text-sm font-medium text-foreground/90">
-                                    <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                                    <span dangerouslySetInnerHTML={{ __html: item.replace(/(\d{1,3}(?:\.\d{3})*,\d{2}|\d[\d,.]*)/g, '<strong class="text-primary-dark font-bold">$1</strong>') }} />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                  <div className="mt-6 text-left bg-white/50 p-4 rounded-lg">
+                    <p className="font-bold text-foreground mb-3 text-base">
+                      Por que vale a pena?
+                    </p>
+                    <ul className="space-y-2">
+                      {pageData.investment.justifications.map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-3 text-sm font-medium text-foreground/90"
+                        >
+                          <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span dangerouslySetInnerHTML={{ __html: item.replace(/(\d{1,3}(?:\.\d{3})*,\d{2}|\d[\d,.]*)/g, '<strong class="text-primary-dark font-bold">$1</strong>') }} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
 
@@ -344,21 +364,9 @@ export default function PersonaResultPage() {
                   <p className="mt-3 text-sm text-foreground-secondary">{pageData.ctaSubtitle}</p>
               </motion.section>
 
-              <motion.section variants={itemVariants} className="text-center bg-background-light p-8 rounded-2xl border-2 border-primary-light shadow-md">
-                  <div className="max-w-lg mx-auto">
-                    <div className="inline-flex items-center gap-1 text-star mb-4">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5" fill="currentColor" />)}
-                    </div>
-                    <p className="italic text-foreground-secondary text-lg">
-                        "Tinha 3 receitas. Passava mal de ansiedade. Com as 1000 receitas do Cardápio, já fiz 47 receitas diferentes. Meu filho come FELIZ."
-                    </p>
-                    <p className="font-bold text-primary-dark mt-4">— Ana Paula, SP <span className="font-normal text-foreground-secondary">(filho 16 meses)</span></p>
-                  </div>
-              </motion.section>
-
               <motion.section variants={itemVariants} className="text-center bg-background p-8 rounded-2xl border-2 border-primary shadow-md">
                   <Shield className="h-12 w-12 text-primary mx-auto mb-2"/>
-                  <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-2">{pageData.guaranteeTitle}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-4">{pageData.guaranteeTitle}</h3>
                   <div className="text-foreground-secondary leading-relaxed space-y-3">{pageData.guaranteeText}</div>
                   <div className="mt-4 p-4 bg-primary-light rounded-lg font-bold text-primary-dark">
                       {pageData.guaranteeImpact}
