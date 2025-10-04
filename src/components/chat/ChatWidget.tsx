@@ -21,11 +21,13 @@ export function ChatWidget() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState<'connecting' | 'connected' | 'ready'>('connecting');
+  const [peopleCount, setPeopleCount] = useState(1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
       setConnectionStatus('connecting');
+      setPeopleCount(Math.floor(Math.random() * 15) + 1);
       const timer1 = setTimeout(() => {
         setConnectionStatus('connected');
         const timer2 = setTimeout(() => {
@@ -67,17 +69,26 @@ export function ChatWidget() {
         }));
         
       const response = await chat({ history: historyForApi });
-      const botMessage: Message = { role: 'model', content: response.message };
-      setMessages((prev) => [...prev, botMessage]);
+      
+      const responseLength = response.message.length;
+      const delay = responseLength > 100 ? 3000 : 2000;
+      
+      setTimeout(() => {
+          const botMessage: Message = { role: 'model', content: response.message };
+          setMessages((prev) => [...prev, botMessage]);
+          setIsLoading(false);
+      }, delay);
+
     } catch (error) {
       console.error('Error calling chat flow:', error);
       const errorMessage: Message = {
         role: 'model',
         content: 'Desculpe, estou com um problema para me conectar. Tente novamente em alguns instantes.',
       };
-      setMessages((prev) => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        setMessages((prev) => [...prev, errorMessage]);
+        setIsLoading(false);
+      }, 2000);
     }
   };
 
@@ -107,7 +118,7 @@ export function ChatWidget() {
               </Avatar>
               <div>
                 <CardTitle className="text-lg">Carol</CardTitle>
-                <p className="text-xs text-primary-foreground/80">Online</p>
+                 <p className="text-xs text-primary-foreground/80">Respondendo a {peopleCount} pessoas</p>
               </div>
             </div>
             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setIsOpen(false)}>
@@ -180,7 +191,7 @@ export function ChatWidget() {
                 className="flex-1"
                 disabled={isLoading || connectionStatus !== 'ready'}
               />
-              <Button type="submit" size="icon" disabled={isLoading || connectionStatus !== 'ready'}>
+              <Button type="submit" size="icon" disabled={isLoading || connectionStatus !== 'ready' || !input.trim()}>
                 <Send className="h-5 w-5" />
               </Button>
             </form>
