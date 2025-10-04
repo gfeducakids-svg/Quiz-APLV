@@ -32,8 +32,6 @@ export async function chat(input: ChatInput): Promise<ChatOutput> {
 
 const prompt = ai.definePrompt({
   name: 'chatPrompt',
-  input: { schema: ChatInputSchema },
-  output: { schema: ChatOutputSchema },
   system: `
 Você é Carol, uma atendente virtual da "O Cardápio Sem Leite da Mãe Prevenida". Seu objetivo é ajudar os visitantes tirando dúvidas sobre o produto e convencê-los a comprar.
 
@@ -99,20 +97,16 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    const chatHistory = input.history.map((turn) => ({
+    const history = input.history.map((turn) => ({
       role: turn.role,
       content: turn.content,
     }));
 
-    const llmResponse = await ai.generate({
-      prompt: {
-        role: 'user',
-        content: chatHistory.slice(-1)[0].content, // Pass only the last user message
-      },
-      history: chatHistory.slice(0, -1), // Pass the rest of the history
+    const llmResponse = await prompt({
+      history,
     });
 
-    const text = llmResponse.text();
+    const text = llmResponse.output!.message;
     return { message: text };
   }
 );
