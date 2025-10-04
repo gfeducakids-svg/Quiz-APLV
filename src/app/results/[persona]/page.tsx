@@ -1,3 +1,4 @@
+
 'use client';
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -12,7 +13,6 @@ interface ResultPageProps {
     theme: string;
     badgeText: string;
     title: React.ReactNode;
-    socialProof: string;
     errors: { title: string; description: string }[];
     solutionTitle: string;
     solutionSections: { title: string; items: string[], details?: string[] }[];
@@ -35,7 +35,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-em-panico-inicial': {
     badgeText: 'MÃE EM PÂNICO INICIAL',
     title: "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE.",
-    socialProof: "8.243 mães saíram do pânico que você está sentindo",
     errors: [
       { title: 'Confiar em rótulos "sem lactose" que ainda contêm leite.', description: '73% têm traços de leite escondidos' },
       { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho enjoa, você se desespera' },
@@ -62,7 +61,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-guerreira-esgotada': {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
     title: 'Você já lutou demais sozinha. Cada dia que passa, a culpa só cresce...',
-    socialProof: 'Mais de 5.000 "mães guerreiras" agora têm paz na cozinha.',
     errors: [
       { title: 'Falta de variedade estratégica', description: 'Sempre as mesmas receitas porque não conhece outras' },
       { title: 'Não ter receitas rápidas catalogadas', description: 'Improvisa quando está sem tempo' },
@@ -90,7 +88,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-desacreditada-ao-extremo': {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
     title: `Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?`,
-    socialProof: '9 em cada 10 mães que tentaram de tudo finalmente acertaram com este sistema.',
     errors: [
       { title: 'Ter receitas espalhadas (caderno, WhatsApp, Google)', description: 'Perde tempo procurando' },
       { title: 'Receitas sem info nutricional', description: 'Não sabe se está balanceado' },
@@ -106,7 +103,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '97',
         anchorPrice: '197',
-        justifications: ['R$ 97 vs R$ 3.000+ que você já gastou', 'Tudo em um lugar, finalmente', 'Última chance de acertar']
+        justifications: ['R$ 97 vs <strong>R$ 3.000+</strong> que você já gastou', 'Tudo em um lugar, finalmente', 'Última chance de acertar']
     },
     ctaButton: { text: 'DAR UMA ÚLTIMA CHANCE' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
@@ -117,7 +114,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você SABE que precisa de um sistema. Parar de improvisar está custando caro.',
-    socialProof: 'O sistema usado por nutricionistas para economizar tempo e dinheiro.',
     errors: [
       { title: 'Improvisar sem sistema', description: 'Custo estimado: R$ 800/mês em produtos errados' },
       { title: 'Receitas sem dados nutricionais', description: 'Custo: Incerteza sobre o balanço nutricional' },
@@ -172,7 +168,15 @@ export default function PersonaResultPage() {
   }, [themeClass]);
 
   if (!pageData) {
-    return <div className="text-center py-10">Resultado não encontrado. Por favor, refaça o quiz.</div>;
+    return (
+       <div className="flex flex-col items-center justify-center min-h-screen bg-background text-center px-4">
+        <h1 className="text-3xl font-bold text-destructive mb-4">Resultado não encontrado</h1>
+        <p className="text-lg text-foreground-secondary mb-8">Ocorreu um erro ao calcular seu perfil. Por favor, tente refazer o quiz.</p>
+        <a href="/quiz" className="bg-primary text-primary-foreground py-2 px-6 rounded-lg font-semibold">
+          Refazer Quiz
+        </a>
+      </div>
+    );
   }
   
   const q7 = searchParams.get('q7') || '0';
@@ -199,20 +203,14 @@ export default function PersonaResultPage() {
         >
           <motion.div
               variants={itemVariants}
-              className="inline-block bg-primary text-primary-foreground text-sm font-bold py-3 px-6 rounded-lg shadow-md mb-4"
+              className="inline-block bg-primary text-primary-foreground text-sm font-bold py-3 px-6 rounded-lg shadow-md mb-6"
               style={{ boxShadow: '0 4px 6px hsla(var(--primary), 0.1)' }}
           >
             🎯 SEU DIAGNÓSTICO: {pageData.badgeText}
           </motion.div>
-          <h1 className="text-3xl md:text-[36px] font-bold text-primary-dark uppercase tracking-tight !leading-tight font-headline">
+          <h1 className="text-3xl md:text-[40px] font-bold text-primary-dark uppercase tracking-tight !leading-tight font-headline max-w-3xl mx-auto">
             {finalTitle}
           </h1>
-            <motion.p 
-              variants={itemVariants} 
-              className="text-xl font-medium text-foreground-secondary italic mt-6"
-            >
-              &ldquo;{pageData.socialProof}&rdquo;
-            </motion.p>
         </motion.header>
         <div className="h-px bg-border"></div>
         
@@ -294,7 +292,7 @@ export default function PersonaResultPage() {
               >
                 <div className="text-center">
                   <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5 bg-background">
-                    <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
+                    <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center justify-center gap-2">
                       <Wallet className="h-5 w-5" />
                       INVESTIMENTO
                     </h3>
@@ -305,7 +303,7 @@ export default function PersonaResultPage() {
                   className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl"
                   style={{ boxShadow: '0 8px 24px hsla(var(--primary), 0.15)' }}
                 >
-                  <div className="flex justify-center items-center gap-2 mb-3">
+                  <div className="flex justify-center items-baseline gap-2 mb-3">
                     <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">
                       DE
                     </span>
@@ -318,15 +316,20 @@ export default function PersonaResultPage() {
                   </div>
 
                   <div
-                    className="text-primary-dark font-black leading-none"
+                    className="text-center text-primary-dark font-black leading-none"
                     style={{
                       textShadow: '0 2px 4px hsla(var(--primary), 0.1)',
                       letterSpacing: '-1px',
                     }}
                   >
-                    <span className="text-4xl align-super mr-1">R$</span>
-                    <span className="text-7xl">{pageData.investment.price}</span>
+                    <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
+                    <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                   </div>
+                  
+                  <p className="text-center text-lg font-medium text-foreground-secondary mt-4 mb-6">
+                    Apenas <strong className="text-primary-dark">R$ 3,23</strong> por dia
+                  </p>
+
 
                   <div className="mt-6 text-left bg-white/50 p-4 rounded-lg">
                     <p className="font-bold text-foreground mb-3 text-base">
@@ -368,7 +371,7 @@ export default function PersonaResultPage() {
                   <Shield className="h-12 w-12 text-primary mx-auto mb-2"/>
                   <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-4">{pageData.guaranteeTitle}</h3>
                   <div className="text-foreground-secondary leading-relaxed space-y-3">{pageData.guaranteeText}</div>
-                  <div className="mt-4 p-4 bg-primary-light rounded-lg font-bold text-primary-dark">
+                  <div className="mt-6 p-4 bg-primary-light rounded-lg font-bold text-primary-dark">
                       {pageData.guaranteeImpact}
                   </div>
               </motion.section>
@@ -378,3 +381,5 @@ export default function PersonaResultPage() {
     </motion.div>
   );
 }
+
+    
