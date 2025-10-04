@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation';
 import type { Persona } from '@/lib/types';
 import { scoringMatrix } from './scoring';
+import { quizQuestions } from './data';
 
 function getPersona(answers: number[]): Persona {
   const scores: Record<Persona, number> = {
@@ -22,36 +23,29 @@ function getPersona(answers: number[]): Persona {
     }
   });
 
-  let topPersona: Persona = 'Mãe Racional Estratégica';
+  let topPersona: Persona = 'Mãe em Pânico Inicial';
   let maxScore = -1;
-  let tiedPersonas: Persona[] = [];
 
   for (const persona in scores) {
-    const score = scores[persona as Persona];
-    if (score > maxScore) {
-      maxScore = score;
+    if (scores[persona as Persona] > maxScore) {
+      maxScore = scores[persona as Persona];
       topPersona = persona as Persona;
-      tiedPersonas = [persona as Persona];
-    } else if (score === maxScore) {
-      tiedPersonas.push(persona as Persona);
     }
   }
 
-  // Handle ties based on priority
-  if (tiedPersonas.length > 1) {
-    const moneySpentAnswer = answers[6]; // index 6
-    if (moneySpentAnswer >= 3) {
-      if (tiedPersonas.includes('Mãe Desacreditada ao Extremo')) return 'Mãe Desacreditada ao Extremo';
+  // Tie-breaking logic
+  if (
+    answers[6] >= 2 && // Question 7 (index 6), answer 3 or 4
+    (topPersona === 'Mãe Guerreira Esgotada' ||
+      topPersona === 'Mãe Racional Estratégica')
+  ) {
+    if (
+      scores['Mãe Desacreditada ao Extremo'] >=
+      scores['Mãe Guerreira Esgotada']
+    ) {
+      return 'Mãe Desacreditada ao Extremo';
     }
-    
-    // Fallback to 'Mãe Guerreira Esgotada'
-    if (tiedPersonas.includes('Mãe Guerreira Esgotada')) {
-        return 'Mãe Guerreira Esgotada';
-    }
-    
-    return tiedPersonas[0];
   }
-
 
   return topPersona;
 }
@@ -59,25 +53,34 @@ function getPersona(answers: number[]): Persona {
 const normalizeString = (str: string) => {
   return str
     .toLowerCase()
-    .normalize('NFD') // Decompose accented characters
-    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
-    .replace(/ /g, '-'); // Replace spaces with hyphens
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '');
 };
 
-
 export async function submitQuiz(answers: number[]) {
-  if (answers.length !== 8) {
+  if (answers.length !== quizQuestions.length) {
     redirect('/quiz?error=incomplete');
     return;
   }
 
   const persona = getPersona(answers);
   const personaSlug = normalizeString(persona);
-  
+
   const answerValues = {
-    q7: answers[6]
-  }
-  const params = new URLSearchParams(Object.entries(answerValues).map(([key, value]) => [key, value.toString()]));
+    q7: answers[6],
+  };
+  const params = new URLSearchParams(
+    Object.entries(answerValues).map(([key, value]) => [key, value.toString()])
+  );
+
+  console.log('Perfil calculado:', persona);
+  console.log('Slug gerado:', personaSlug);
+  console.log('URL redirecionamento:', `/results/${personaSlug}?${params.toString()}`);
+
+  // This delay will make the loading.tsx inside /quiz appear
+  await new Promise(resolve => setTimeout(resolve, 5000));
 
   redirect(`/results/${personaSlug}?${params.toString()}`);
 }

@@ -4,17 +4,14 @@
 import { ResultPageContent } from '@/components/results/ResultPageContent'
 import { Suspense } from 'react';
 
-export default async function PersonaResultPage({ 
+export default function PersonaResultPage({ 
   params,
   searchParams,
 }: { 
   params: { persona: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // ESTA LINHA FAZ O LOADING APARECER POR 5 SEGUNDOS
-  await new Promise(resolve => setTimeout(resolve, 5000));
-  
-  // Depois renderiza o resultado
+  // SEM await aqui - o delay está no quiz agora
   return (
     <Suspense>
       <ResultPageContent persona={params.persona} searchParams={searchParams} />
