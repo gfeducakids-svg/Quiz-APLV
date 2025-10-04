@@ -123,17 +123,17 @@ const chatFlow = ai.defineFlow(
       };
     }
     
-    // ✅ CORREÇÃO: Extrair o texto do array content
     const userPrompt = lastUserMessage.content[0].text;
 
     const llmResponse = await prompt({
-      prompt: userPrompt,  // ✅ Agora é uma string
+      prompt: userPrompt,
       history: chatHistory,
     });
 
     const text =
-      llmResponse.output?.message ??
+      llmResponse?.output?.message ??
       'Não consegui processar sua solicitação. Tente novamente.';
+      
     return { message: text };
   }
 );
