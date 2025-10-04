@@ -97,13 +97,21 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    const history = input.history.map((turn) => ({
+    const chatHistory = input.history.map((turn) => ({
       role: turn.role,
       content: turn.content,
     }));
 
+    const lastUserMessage = chatHistory.pop();
+    
+    if (!lastUserMessage || lastUserMessage.role !== 'user') {
+        // This case should ideally not happen in a normal conversation flow.
+        return { message: "Desculpe, não entendi sua mensagem. Pode repetir?" };
+    }
+
     const llmResponse = await prompt({
-      history,
+      prompt: lastUserMessage.content,
+      history: chatHistory,
     });
 
     const text = llmResponse.output!.message;
