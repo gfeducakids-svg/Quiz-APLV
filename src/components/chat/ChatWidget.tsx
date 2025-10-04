@@ -102,7 +102,7 @@ export function ChatWidget() {
           <CardHeader className="flex flex-row items-center justify-between bg-primary text-primary-foreground">
             <div className="flex items-center space-x-3">
               <Avatar>
-                <AvatarImage src="https://i.imgur.com/3f2H9hL.png" alt="Carol" />
+                <AvatarImage src="https://i.imgur.com/1xnOhcc.png" alt="Carol" />
                 <AvatarFallback>C</AvatarFallback>
               </Avatar>
               <div>
@@ -138,7 +138,7 @@ export function ChatWidget() {
                     >
                         {message.role === 'model' && (
                         <Avatar className="h-8 w-8">
-                            <AvatarImage src="https://i.imgur.com/3f2H9hL.png" alt="Carol" />
+                            <AvatarImage src="https://i.imgur.com/1xnOhcc.png" alt="Carol" />
                             <AvatarFallback>C</AvatarFallback>
                         </Avatar>
                         )}
@@ -157,7 +157,7 @@ export function ChatWidget() {
                     {isLoading && (
                     <div className="flex items-end gap-2 justify-start">
                         <Avatar className="h-8 w-8">
-                        <AvatarImage src="https://i.imgur.com/3f2H9hL.png" alt="Carol" />
+                        <AvatarImage src="https://i.imgur.com/1xnOhcc.png" alt="Carol" />
                         <AvatarFallback>C</AvatarFallback>
                         </Avatar>
                         <div className="rounded-lg px-4 py-2 bg-muted flex items-center space-x-1">
