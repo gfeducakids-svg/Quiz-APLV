@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, AlertTriangle, Shield, ArrowRight } from 'lucide-react';
@@ -88,11 +89,10 @@ export default function Home() {
           <Button
             asChild
             variant="default"
-            className="w-full md:w-auto h-auto text-lg font-bold shadow-lg transform hover:scale-105 transition-transform text-white"
+            className="w-full md:w-auto h-auto text-base md:text-lg font-bold shadow-lg transform hover:scale-105 transition-transform text-white px-6 md:px-10 py-4 md:py-5"
             style={{
               background: 'linear-gradient(to right, #7FB685, #68A876)',
               borderRadius: '12px',
-              padding: '18px 40px',
               boxShadow: '0 6px 20px rgba(127, 182, 133, 0.4)',
             }}
           >
