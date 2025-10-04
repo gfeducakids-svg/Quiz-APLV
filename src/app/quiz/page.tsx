@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { quizQuestions } from './data';
 import { submitQuiz } from './actions';
 import { Progress } from '@/components/ui/progress';
@@ -9,12 +9,80 @@ import { Loader2, CheckCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import Image from 'next/image';
+
+function TestimonialCarousel() {
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true },
+    [Autoplay({ delay: 2000, stopOnInteraction: false })]
+  );
+
+  const images = [
+    'https://i.imgur.com/PtA6PhP.png',
+    'https://i.imgur.com/mNwm5uk.png',
+    'https://i.imgur.com/CN8VhOY.png'
+  ];
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {images.map((src, index) => (
+            <div key={index} className="flex-[0_0_100%] min-w-0">
+              <div className="relative aspect-video mx-2">
+                <Image
+                  src={src}
+                  alt={`Depoimento ${index + 1}`}
+                  fill
+                  priority
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Indicadores (dots) - visual only */}
+      <div className="flex justify-center gap-2 mt-4">
+        {images.map((_, index) => (
+          <div
+            key={index}
+            className="h-2 w-2 rounded-full bg-primary/30"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [isPending, startTransition] = useTransition();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
+
+  const loadingMessages = [
+    "Analisando suas respostas...",
+    "Identificando seu perfil...",
+    "Preparando suas recomendações personalizadas...",
+    "Selecionando as melhores receitas para você...",
+    "Quase pronto! Finalizando seu diagnóstico..."
+  ];
+
+  useEffect(() => {
+    if (isPending) {
+      const interval = setInterval(() => {
+        setLoadingMessageIndex(prev => (prev + 1) % loadingMessages.length);
+      }, 1500);
+      
+      return () => clearInterval(interval);
+    }
+  }, [isPending, loadingMessages.length]);
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
@@ -107,11 +175,30 @@ export default function QuizPage() {
         </AnimatePresence>
       </div>
       {isPending && (
-        <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 space-y-2">
-          <Loader2 className="h-12 w-12 animate-spin text-primary" />
-          <p className="text-lg font-semibold">Analisando suas respostas...</p>
-          <p className="text-sm text-muted-foreground">Identificando seu perfil...</p>
-          <p className="text-sm text-muted-foreground">Preparando suas recomendações personalizadas...</p>
+        <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 p-4">
+          {/* Spinner e mensagens */}
+          <div className="space-y-4 text-center mb-8">
+            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
+            <motion.p 
+              key={loadingMessageIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="text-lg font-semibold"
+            >
+              {loadingMessages[loadingMessageIndex]}
+            </motion.p>
+          </div>
+
+          {/* Texto acima do carrossel */}
+          <div className="mb-6">
+            <p className="text-xl font-semibold text-primary text-center">
+              Veja quem já conseguiu. Você será a próxima!
+            </p>
+          </div>
+
+          {/* Carrossel */}
+          <TestimonialCarousel />
         </div>
       )}
     </div>
