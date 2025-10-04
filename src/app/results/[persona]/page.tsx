@@ -323,7 +323,7 @@ export default function PersonaResultPage() {
                 transition={{ delay: 0.2, duration: 0.6, ease: 'easeOut' }}
               >
                 <div
-                  className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 text-center shadow-xl max-w-md mx-auto"
+                  className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 shadow-xl max-w-md mx-auto"
                   style={{ boxShadow: '0 8px 24px hsla(var(--primary), 0.15)' }}
                 >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
@@ -339,7 +339,7 @@ export default function PersonaResultPage() {
                   </div>
 
                   <div
-                    className="text-primary-dark font-black leading-none"
+                    className="text-primary-dark font-black leading-none text-center"
                     style={{
                       textShadow: '0 2px 4px hsla(var(--primary), 0.1)',
                       letterSpacing: '-1px',
@@ -350,7 +350,7 @@ export default function PersonaResultPage() {
                   </div>
                   
                   <p className="text-center text-lg font-medium text-foreground-secondary mt-4 mb-6">
-                    Apenas <strong className="text-primary-dark">R$ 3,23</strong> por dia
+                    <strong className="text-primary-dark">R$ 3,23</strong> por dia
                   </p>
 
 
