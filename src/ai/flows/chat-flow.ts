@@ -97,17 +97,17 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    const chatHistory = input.history.map((turn) => ({
-      role: turn.role,
-      content: turn.content,
-    }));
+    // Handle cases with no history
+    if (!input.history || input.history.length === 0) {
+      return { message: 'Olá! Sou a Carol. Como posso ajudar?' };
+    }
 
+    const chatHistory = [...input.history]; // Create a mutable copy
     const lastUserMessage = chatHistory.pop();
-    
-    if (!lastUserMessage || lastUserMessage.role !== 'user' || !lastUserMessage.content) {
-        // This case should ideally not happen in a normal conversation flow,
-        // but this check prevents a crash if the history is malformed.
-        return { message: "Desculpe, não entendi sua mensagem. Pode repetir?" };
+
+    // Validate the last message
+    if (!lastUserMessage || lastUserMessage.role !== 'user' || !lastUserMessage.content || lastUserMessage.content.length === 0) {
+        return { message: "Desculpe, não entendi sua última mensagem. Pode repetir, por favor?" };
     }
 
     const llmResponse = await prompt({
