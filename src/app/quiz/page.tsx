@@ -3,89 +3,27 @@
 import { useState, useTransition, useEffect } from 'react';
 import { quizQuestions } from './data';
 import { submitQuiz } from './actions';
-import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
-import { Loader2, CheckCircle } from 'lucide-react';
+import { Loader2, CheckCircle2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import Image from 'next/image';
+import * as LucideIcons from 'lucide-react';
 
-function TestimonialCarousel() {
-  const [emblaRef] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: 2000, stopOnInteraction: false })]
-  );
-
-  const images = [
-    'https://i.imgur.com/PtA6PhP.png',
-    'https://i.imgur.com/mNwm5uk.png',
-    'https://i.imgur.com/CN8VhOY.png'
-  ];
-
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {images.map((src, index) => (
-            <div key={index} className="flex-[0_0_100%] min-w-0">
-              <div className="relative aspect-video mx-2">
-                <Image
-                  src={src}
-                  alt={`Depoimento ${index + 1}`}
-                  fill
-                  priority
-                  className="w-full h-full object-contain rounded-lg"
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      {/* Indicadores (dots) - visual only */}
-      <div className="flex justify-center gap-2 mt-4">
-        {images.map((_, index) => (
-          <div
-            key={index}
-            className="h-2 w-2 rounded-full bg-primary/30"
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
+const cardVariants = {
+  initial: { opacity: 0, x: 100 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -100 },
+};
 
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [isPending, startTransition] = useTransition();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [loadingMessageIndex, setLoadingMessageIndex] = useState(0);
-
-  const loadingMessages = [
-    "Analisando suas respostas...",
-    "Identificando seu perfil...",
-    "Preparando suas recomendações personalizadas...",
-    "Selecionando as melhores receitas para você...",
-    "Quase pronto! Finalizando seu diagnóstico..."
-  ];
-
-  useEffect(() => {
-    if (isPending) {
-      const interval = setInterval(() => {
-        setLoadingMessageIndex(prev => (prev + 1) % loadingMessages.length);
-      }, 1500);
-      
-      return () => clearInterval(interval);
-    }
-  }, [isPending, loadingMessages.length]);
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+  const progress = ((currentQuestionIndex) / quizQuestions.length) * 100;
 
   const handleAnswer = (optionIndex: number) => {
     setSelectedOption(optionIndex);
@@ -104,103 +42,107 @@ export default function QuizPage() {
     }, 500);
   };
 
-  const cardVariants = {
-    initial: { opacity: 0, x: 50 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -50 },
+  const getIcon = (iconName: string) => {
+    const Icon = (LucideIcons as any)[iconName];
+    return Icon ? <Icon className="w-6 h-6 text-primary" /> : null;
   };
 
   return (
-    <div className="container mx-auto max-w-2xl py-8 md:py-12">
-      <div className="space-y-4">
-        <div className="px-4">
-          <p className="text-center text-sm font-medium text-primary">
-            Pergunta {currentQuestionIndex + 1} de {quizQuestions.length}
-          </p>
-          <Progress value={progress} className="mt-2 h-2" />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-background via-white to-primary/5 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/subtle-zebra-3d.png')] opacity-20"></div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentQuestionIndex}
-            variants={cardVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.3 }}
-          >
-            <Card
-              className="border-0 md:border shadow-none md:shadow-sm bg-transparent md:bg-card"
-            >
-              <CardHeader className="text-center">
-                <CardTitle className="text-2xl md:text-3xl font-headline leading-tight">
-                  {currentQuestion.question}
-                </CardTitle>
-                {currentQuestion.subtitle && (
-                  <CardDescription className="text-base pt-2">{currentQuestion.subtitle}</CardDescription>
-                )}
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col space-y-3">
-                  {currentQuestion.options.map((option, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      size="lg"
-                      disabled={isPending || selectedOption !== null}
-                      className={cn(
-                        'text-base h-auto py-4 whitespace-normal justify-start text-left transition-all duration-300 relative',
-                        'hover:bg-primary/10 hover:border-primary',
-                        'focus:bg-primary/10 focus:border-primary focus:ring-2 focus:ring-ring',
-                        selectedOption === index && 'bg-primary text-primary-foreground border-primary hover:bg-primary hover:text-primary-foreground'
-                      )}
-                      onClick={() => handleAnswer(index)}
-                    >
-                      <span className="mr-4 text-2xl">{option.icon}</span>
-                      <span className="flex-1">{option.text}</span>
-                      {selectedOption === index && (
-                          <motion.div 
-                              initial={{ scale: 0, rotate: -90 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              className="absolute right-4 bg-white rounded-full p-0.5">
-                              <CheckCircle className="h-5 w-5 text-primary" />
-                          </motion.div>
-                      )}
-                    </Button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      {isPending && (
-        <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 p-4">
-          {/* Spinner e mensagens */}
-          <div className="space-y-4 text-center mb-8">
-            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
-            <motion.p 
-              key={loadingMessageIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-lg font-semibold"
-            >
-              {loadingMessages[loadingMessageIndex]}
-            </motion.p>
-          </div>
-
-          {/* Texto acima do carrossel */}
-          <div className="mb-6">
-            <p className="text-xl font-semibold text-primary text-center">
-              Veja quem já conseguiu. Você será a próxima!
+      <div className="container mx-auto max-w-2xl py-8 md:py-12 relative z-10">
+        <div className="space-y-6">
+          <div className="px-4">
+            <p className="text-center text-sm font-semibold text-secondary mb-2">
+              Pergunta {currentQuestionIndex + 1} de {quizQuestions.length}
             </p>
+            <div className="relative h-3 bg-primary/10 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              />
+            </div>
           </div>
 
-          {/* Carrossel */}
-          <TestimonialCarousel />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentQuestionIndex}
+              variants={cardVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <Card
+                className="border-0 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl"
+              >
+                <CardHeader className="text-center pt-8 pb-6">
+                  <CardTitle className="font-headline text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-dark via-primary to-secondary bg-clip-text text-transparent !leading-tight">
+                    {currentQuestion.question}
+                  </CardTitle>
+                  {currentQuestion.subtitle && (
+                    <CardDescription className="text-base pt-2 text-foreground-secondary">{currentQuestion.subtitle}</CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="flex flex-col space-y-4">
+                    {currentQuestion.options.map((option, index) => (
+                      <motion.button
+                        key={index}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        disabled={isPending || selectedOption !== null}
+                        onClick={() => handleAnswer(index)}
+                        className={cn(
+                          'group relative w-full p-5 rounded-xl border-2 transition-all duration-200 text-left flex items-center gap-4',
+                          'bg-white hover:bg-gradient-to-br hover:from-white hover:to-primary/5',
+                          'border-gray-200 hover:border-primary hover:shadow-lg',
+                          'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
+                          selectedOption === index && 'border-primary bg-gradient-to-br from-primary/10 to-primary/5 shadow-md'
+                        )}
+                      >
+                        <div className={cn(
+                          'flex items-center justify-center w-12 h-12 rounded-lg transition-colors flex-shrink-0',
+                          'bg-gray-100 group-hover:bg-primary/10',
+                          selectedOption === index && 'bg-primary/20'
+                        )}>
+                          {getIcon(option.icon)}
+                        </div>
+                        
+                        <div className="flex-1">
+                          <p className="font-semibold text-base text-gray-800">
+                            {option.text}
+                          </p>
+                        </div>
+                        
+                        {selectedOption === index && (
+                          <motion.div
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                            className="absolute top-3 right-3"
+                          >
+                            <CheckCircle2 className="w-6 h-6 text-primary fill-primary/20" />
+                          </motion.div>
+                        )}
+                      </motion.button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      )}
+        {isPending && (
+          <div className="fixed inset-0 bg-background/90 backdrop-blur-sm flex flex-col items-center justify-center z-50 p-4">
+            <Loader2 className="h-12 w-12 animate-spin text-primary mx-auto" />
+            <p className="text-lg font-semibold mt-4">Analisando suas respostas...</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -4,10 +4,8 @@
 
 @layer base {
   :root {
-    --background-light: 210 20% 98%; /* #F9FAFB */
-    --background: 0 0% 100%; /* #FFFFFF */
+    --background: 30 100% 97%; /* #FFF8F0 - Off-White/Cream */
     --foreground: 224 23% 16%; /* #1F2937 */
-    --foreground-secondary: 220 9% 45%; /* #6B7280 */
 
     --card: 0 0% 100%;
     --card-foreground: 224 23% 16%;
@@ -15,63 +13,56 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 23% 16%;
 
-    --primary: 158 72% 43%; /* #10B981 */
-    --primary-light: 158 84% 90%; /* #D1FAE5 */
-    --primary-dark: 158 92% 25%; /* #047857 */
+    --primary: 128 26% 61%; /* #7FB685 - Sage Green */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 13 81% 67%; /* kept from old theme for components */
-    --secondary-foreground: 36 100% 98%;
+    --secondary: 17 88% 73%; /* #F4A582 - Peach/Soft Coral */
+    --secondary-foreground: 224 23% 16%;
 
     --muted: 220 13% 91%;
     --muted-foreground: 220 9% 45%;
 
-    --accent: 220 14% 96%;
+    --accent: 30 100% 97%;
     --accent-foreground: 224 23% 16%;
 
-    --destructive: 3.9 86% 61%; /* #EF4444 */
-    --destructive-light: 3.9 93% 94%; /* #FEF2F2 */
-    --destructive-dark: 3.9 72% 51%; /* #DC2626 */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
 
-    --border: 220 13% 91%; /* #E5E7EB */
+    --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 158 72% 43%;
+    --ring: 128 26% 61%;
 
-    --star: 39 92% 56%; /* #F59E0B */
-    --radius: 0.75rem; /* 12px */
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark mode is not defined in the new design, but we keep the structure */
     --background: 224 23% 16%;
     --foreground: 210 20% 98%;
-  }
 
-  /* Per-Persona Themes */
-  .theme-iniciante {
-    --primary: 158 72% 43%; /* #10B981 */
-    --primary-light: 158 84% 90%; /* #D1FAE5 */
-    --primary-dark: 158 92% 25%; /* #047857 */
-    --ring: 158 72% 43%;
-  }
-  .theme-estrategista {
-    --primary: 36 100% 50%; /* #FF9800 */
-    --primary-light: 36 100% 85%; /* #FFE0B2 */
-    --primary-dark: 30 100% 45%; /* #E65100 */
-    --ring: 36 100% 50%;
-  }
-  .theme-veterana {
-    --primary: 4 90% 58%; /* #F44336 */
-    --primary-light: 4 100% 91%; /* #FFCDD2 */
-    --primary-dark: 4 68% 44%; /* #C62828 */
-    --ring: 4 90% 58%;
-  }
-  .theme-racional {
-    --primary: 207 90% 54%; /* #2196F3 */
-    --primary-light: 207 93% 86%; /* #BBDEFB */
-    --primary-dark: 211 79% 29%; /* #0D47A1 */
-    --ring: 207 90% 54%;
+    --card: 224 23% 16%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 23% 16%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 128 26% 61%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 17 88% 73%;
+    --secondary-foreground: 224 23% 16%;
+
+    --muted: 220 13% 29%;
+    --muted-foreground: 220 9% 55%;
+
+    --accent: 220 13% 29%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 220 13% 29%;
+    --input: 220 13% 29%;
+    --ring: 128 26% 61%;
   }
 }
 

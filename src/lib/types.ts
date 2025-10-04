@@ -10,7 +10,7 @@ export interface QuizQuestion {
   subtitle?: string;
   options: {
     text: string;
-    icon: string;
+    icon: string; // Now a string to hold the Lucide icon name
   }[];
 }
 
