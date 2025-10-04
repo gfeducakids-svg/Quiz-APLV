@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useTransition } from 'react';
 import { quizQuestions } from './data';
 import { submitQuiz } from './actions';
 import { Loader2, CheckCircle2 } from 'lucide-react';
@@ -76,10 +76,10 @@ export default function QuizPage() {
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             >
               <Card
-                className="border-0 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl"
+                className="border-0 shadow-xl bg-white backdrop-blur-md rounded-2xl"
               >
                 <CardHeader className="text-center pt-8 pb-6">
-                  <CardTitle className="font-headline text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary-dark via-primary to-secondary bg-clip-text text-transparent !leading-tight">
+                  <CardTitle className="font-headline text-3xl md:text-4xl font-bold text-gray-800 !leading-tight">
                     {currentQuestion.question}
                   </CardTitle>
                   {currentQuestion.subtitle && (
