@@ -97,43 +97,59 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
+    // DEBUG: Log para ver o que está chegando
+    console.log('🔍 INPUT RECEBIDO:', JSON.stringify(input, null, 2));
+    
     // Handle cases with no history or empty history
     if (!input.history || input.history.length === 0) {
       return { message: 'Olá! Sou a Carol. Como posso ajudar?' };
     }
-
-    const chatHistory = [...input.history]; // Create a mutable copy
+    
+    console.log('📊 HISTORY LENGTH:', input.history.length);
+    console.log('📝 HISTORY COMPLETO:', JSON.stringify(input.history, null, 2));
+    
+    const chatHistory = [...input.history];
+    console.log('📋 CHAT HISTORY APÓS CÓPIA:', chatHistory.length);
+    
     const lastUserMessage = chatHistory.pop();
-
-    // Securely validate the last message to prevent crashes
+    console.log('👤 LAST USER MESSAGE:', JSON.stringify(lastUserMessage, null, 2));
+    
+    // VALIDAÇÃO CRÍTICA: Se lastUserMessage é undefined, algo está errado
+    if (!lastUserMessage) {
+      console.error('❌ ERRO CRÍTICO: lastUserMessage é undefined!');
+      console.log('History original tinha:', input.history.length, 'mensagens');
+      console.log('Conteúdo:', input.history);
+      return {
+        message: 'Erro interno: não foi possível processar sua mensagem. Por favor, recarregue a página.'
+      };
+    }
+    
+    // Validate message structure
     if (
-      !lastUserMessage ||
       lastUserMessage.role !== 'user' ||
       !lastUserMessage.content ||
       !Array.isArray(lastUserMessage.content) ||
       lastUserMessage.content.length === 0 ||
       typeof lastUserMessage.content[0]?.text !== 'string'
     ) {
-      console.error(
-        'Chat flow error: Invalid or missing last user message.',
-        { history: input.history }
-      );
+      console.error('❌ Estrutura da mensagem inválida:', lastUserMessage);
       return {
         message: 'Desculpe, não entendi sua última mensagem. Pode repetir, por favor?',
       };
     }
     
     const userPrompt = lastUserMessage.content[0].text;
-
+    console.log('💬 USER PROMPT EXTRAÍDO:', userPrompt);
+    
     const llmResponse = await prompt({
       prompt: userPrompt,
       history: chatHistory,
     });
-
+    
     const text =
-      llmResponse?.output?.message ??
+      llmResponse.output?.message ??
       'Não consegui processar sua solicitação. Tente novamente.';
-      
+    
     return { message: text };
   }
 );
