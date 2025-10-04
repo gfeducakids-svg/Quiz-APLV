@@ -97,7 +97,7 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    // Handle cases with no history
+    // Handle cases with no history or empty history
     if (!input.history || input.history.length === 0) {
       return { message: 'Olá! Sou a Carol. Como posso ajudar?' };
     }
@@ -105,8 +105,9 @@ const chatFlow = ai.defineFlow(
     const chatHistory = [...input.history]; // Create a mutable copy
     const lastUserMessage = chatHistory.pop();
 
-    // Validate the last message
-    if (!lastUserMessage || lastUserMessage.role !== 'user' || !lastUserMessage.content || lastUserMessage.content.length === 0) {
+    // Securely validate the last message
+    if (!lastUserMessage || lastUserMessage.role !== 'user' || !lastUserMessage.content || lastUserMessage.content.length === 0 || !lastUserMessage.content[0].text) {
+        console.error('Chat flow error: Invalid or missing last user message.', { history: input.history });
         return { message: "Desculpe, não entendi sua última mensagem. Pode repetir, por favor?" };
     }
 
@@ -114,8 +115,9 @@ const chatFlow = ai.defineFlow(
       prompt: lastUserMessage.content,
       history: chatHistory,
     });
-
-    const text = llmResponse.output!.message;
+    
+    // Ensure output is not null before accessing properties
+    const text = llmResponse.output?.message ?? "Não consegui processar sua solicitação. Tente novamente.";
     return { message: text };
   }
 );
