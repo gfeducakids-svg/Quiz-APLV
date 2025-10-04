@@ -53,7 +53,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         price: '97',
         anchorPrice: '197',
         justifications: [
-            '1000 receitas com INFO NUTRICIONAL completa',
+            '1000 receitas COM informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
             'Inclui receitas de FESTA (seu filho nunca fica de fora)',
             'Guia SOS para agir rápido em reações',
@@ -87,7 +87,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         price: '97',
         anchorPrice: '197',
         justifications: [
-            '1000 receitas com INFO NUTRICIONAL completa',
+            '1000 receitas COM informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
             'Inclui receitas de FESTA (seu filho nunca fica de fora)',
             'Guia SOS para agir rápido em reações',
@@ -120,7 +120,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         price: '97',
         anchorPrice: '197',
         justifications: [
-            '1000 receitas com INFO NUTRICIONAL completa',
+            '1000 receitas COM informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
             'Inclui receitas de FESTA (seu filho nunca fica de fora)',
             'Guia SOS para agir rápido em reações',
@@ -153,7 +153,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         price: '97',
         anchorPrice: '197',
         justifications: [
-            '1000 receitas com INFO NUTRICIONAL completa',
+            '1000 receitas COM informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
             'Inclui receitas de FESTA (seu filho nunca fica de fora)',
             'Guia SOS para agir rápido em reações',
