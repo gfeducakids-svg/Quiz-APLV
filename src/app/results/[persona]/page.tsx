@@ -2,7 +2,7 @@
 import { useParams, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, Gift, X, Star, Zap } from 'lucide-react';
+import { Check, Shield, Gift, X, Zap, ArrowRight, Wallet } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -16,8 +16,11 @@ interface ResultPageProps {
     solutionTitle: string;
     solutionSections: { title: string; items: string[], details?: string[] }[];
     countdownMinutes: number;
-    investmentText: string;
-    investmentReason: React.ReactNode;
+    investment: {
+      price: string;
+      anchorPrice: string;
+      justifications: string[];
+    };
     ctaButton: {
         text: string;
     };
@@ -33,8 +36,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: "Você está no olho do furacão... e isso pode marcar seu filho PRA SEMPRE.",
     errors: [
       { title: 'Confiar em rótulos "sem lactose" que ainda contêm leite.', description: '73% têm traços de leite escondidos' },
-      { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho vira experimento' },
-      { title: 'Acreditar que "só um pouquinho" não vai fazer mal.', description: 'Seu filho enjoa, você se desespera' },
+      { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho enjoa, você se desespera' },
+      { title: 'Acreditar que "só um pouquinho" não vai fazer mal.', description: 'Inflama o intestino e atrasa a cura' },
     ],
     solutionTitle: 'O CARDÁPIO SEM LEITE DA MÃE PREVENIDA',
     solutionSections: [
@@ -43,12 +46,15 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         { title: '✅ GUIA SOS REAÇÃO', items: ['O que fazer se acontecer reação', 'Quando ir ao médico', 'Como identificar gatilhos'] }
     ],
     countdownMinutes: 14,
-    investmentText: 'R$ 97',
-    investmentReason: (<> <p className="font-bold text-lg mb-2">Por que vale a pena?</p> <ul className='text-left space-y-1'><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />R$ 97 uma vez vs R$ 800/mês produtos errados</li><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />1000 receitas = R$ 0,10 por receita</li><li className='flex items-center'><Zap className='inline-block mr-2 h-4 w-4 text-primary' />Economia de 6 meses de sofrimento</li></ul></>),
+    investment: {
+        price: '97',
+        anchorPrice: '197',
+        justifications: ['1000 receitas = R$ 0,10 cada', 'Paz de espírito não tem preço', 'Menos que 1 semana errando']
+    },
     ctaButton: { text: 'QUERO AS 1000 RECEITAS AGORA' },
     ctaSubtitle: 'Acesso imediato • Pagamento seguro • Garantia total',
     guaranteeTitle: 'GARANTIA INCONDICIONAL DE 7 DIAS',
-    guaranteeText: (<><p className="mb-4">Nós sabemos o MEDO que você sente antes de investir em algo novo para o seu filho. Por isso: Teste o Cardápio Sem Leite por 7 dias inteiros.</p><ul className="space-y-2 text-left mb-4"><li>Não eliminou suas dúvidas?</li><li>Não se sentiu mais segura?</li><li>Não encontrou receitas que funcionaram?</li><li>Simplesmente mudou de ideia?</li></ul><p className="font-bold">Devolvemos 100% do seu dinheiro. SEM perguntas. SEM burocracia. SEM julgamentos.</p></>),
+    guaranteeText: (<><p className="mb-4">Nós sabemos o MEDO que você sente antes de investir em algo novo para o seu filho. Por isso: Teste o Cardápio Sem Leite por 7 dias inteiros.</p><ul className="space-y-2 text-left mb-4 list-none pl-0"><li>Não eliminou suas dúvidas?</li><li>Não se sentiu mais segura?</li><li>Não encontrou receitas que funcionaram?</li><li>Simplesmente mudou de ideia?</li></ul><p className="font-bold">Devolvemos 100% do seu dinheiro. SEM perguntas. SEM burocracia. SEM julgamentos.</p></>),
     guaranteeImpact: "Você literalmente NÃO TEM NADA A PERDER. Só tem a GANHAR paz de espírito."
   },
   'mae-guerreira-esgotada': {
@@ -67,19 +73,20 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         { title: '🆘 GUIA SOS REAÇÃO', items: ['Protocolo completo para você agir rápido se necessário'] },
     ],
     countdownMinutes: 11,
-    investmentText: 'R$ 97',
-    investmentReason: <p className='font-bold'>ROI: Você economiza R$ 300-500/mês não comprando produtos errados ou jogando comida fora.</p>,
+    investment: {
+        price: '97',
+        anchorPrice: '197',
+        justifications: ['1000 receitas = R$ 0,10 cada', 'Economiza R$ 300-500/mês', 'Retorno em menos de 1 semana']
+    },
     ctaButton: { text: 'QUERO VARIEDADE INFINITA AGORA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA SEM ENROLAÇÃO - 7 DIAS',
-    guaranteeText: (<><p className="mb-4">Nós entregamos resultados. E sabemos disso. Por isso oferecemos garantia INCONDICIONAL:</p><ul className="space-y-2 text-left mb-4"><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não achou as receitas práticas o suficiente?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não resolveu seu problema de variedade?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não economizou tempo como esperava?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Qualquer motivo?</li></ul><p className="font-bold">→ 100% do dinheiro de volta. Sem questionário.</p></>),
+    guaranteeText: (<><p className="mb-4">Nós entregamos resultados. E sabemos disso. Por isso oferecemos garantia INCONDICIONAL:</p><ul className="space-y-2 text-left mb-4 list-none pl-0"><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não achou as receitas práticas o suficiente?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não resolveu seu problema de variedade?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Não economizou tempo como esperava?</li><li><X className="inline-block text-destructive mr-2 h-5 w-5"/>Qualquer motivo?</li></ul><p className="font-bold">→ 100% do dinheiro de volta. Sem questionário.</p></>),
     guaranteeImpact: "Simples assim. Você testa, decide, pronto. Zero risco. Só benefícios."
   },
   'mae-desacreditada-ao-extremo': {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
-    title: (q7:string) => {
-        return `Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?`;
-    },
+    title: `Eu sei... você já tentou TUDO. Mas e se DESTA VEZ for diferente?`,
     errors: [
       { title: 'Ter receitas espalhadas (caderno, WhatsApp, Google)', description: 'Perde tempo procurando' },
       { title: 'Receitas sem info nutricional', description: 'Não sabe se está balanceado' },
@@ -92,16 +99,15 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         { title: '✅ ACESSO VITALÍCIO', items: ['Seu para sempre. Acesse de qualquer lugar, a qualquer hora'] },
     ],
     countdownMinutes: 9,
-    investmentText: 'R$ 97',
-    investmentReason: (q7:string) => {
-      const moneySpentMap: { [key: string]: string } = { '0': "R$ 500", '1': "R$ 1.500", '2': "R$ 3.000", '3': "mais de R$ 3.000", '4': "rios de dinheiro" };
-      const spent = moneySpentMap[q7] || "muito";
-      return <p className="font-bold">R$ 97 (vs {spent} que você já gastou). Com garantia. Você literally NÃO TEM NADA A PERDER.</p>
+    investment: {
+        price: '97',
+        anchorPrice: '197',
+        justifications: ['R$ 97 vs R$ 3.000+ que você já gastou', 'Tudo em um lugar, finalmente', 'Última chance de acertar']
     },
     ctaButton: { text: 'DAR UMA ÚLTIMA CHANCE' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA REFORÇADA - 7 DIAS',
-    guaranteeText: (<><p className="mb-4">Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou.</p><p className='font-bold mb-4'>Desta vez é DIFERENTE. E provamos:</p><p className='font-bold mb-4'>Garantia INCONDICIONAL de 7 dias completos.</p><ul className="space-y-2 text-left mb-4"><li>Não sentiu que FINALMENTE encontrou a solução completa?</li><li>Não viu diferença das outras coisas que tentou?</li><li>Ainda está cansada e sem respostas?</li><li>Simplesmente não se conectou com o material?</li></ul><p className='font-bold'>→ Devolução TOTAL. Sem perguntas. Sem constrangimento.</p></>),
+    guaranteeText: (<><p className="mb-4">Nós sabemos que você já foi decepcionada antes. Já confiou. Já investiu. Já se frustrou.</p><p className='font-bold mb-4'>Desta vez é DIFERENTE. E provamos:</p><p className='font-bold mb-4'>Garantia INCONDICIONAL de 7 dias completos.</p><ul className="space-y-2 text-left mb-4 list-none pl-0"><li>Não sentiu que FINALMENTE encontrou a solução completa?</li><li>Não viu diferença das outras coisas que tentou?</li><li>Ainda está cansada e sem respostas?</li><li>Simplesmente não se conectou com o material?</li></ul><p className='font-bold'>→ Devolução TOTAL. Sem perguntas. Sem constrangimento.</p></>),
     guaranteeImpact: "Dê uma última chance, com risco zero. Se não for a solução, seu dinheiro volta 100%."
   },
   'mae-racional-estrategica': {
@@ -119,15 +125,11 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         { title: 'MÓDULOS', items: ['Seção Festa: 150 receitas para eventos sociais', 'Protocolo SOS: Guia de ação emergencial'] },
     ],
     countdownMinutes: 11,
-    investmentText: '',
-    investmentReason: (<div className='max-w-lg mx-auto'><h3 className="text-2xl font-bold mb-4 text-primary-dark">ANÁLISE CUSTO-BENEFÍCIO</h3><Table>
-            <TableHeader><TableRow><TableHead className='font-bold'>OPÇÃO</TableHead><TableHead className='font-bold text-center'>CUSTO/ANO</TableHead><TableHead className='font-bold text-center'>RECEITAS</TableHead></TableRow></TableHeader>
-            <TableBody>
-                <TableRow><TableCell>Nutricionista</TableCell><TableCell className='text-center'>R$ 3.600</TableCell><TableCell className='text-center'>~30</TableCell></TableRow>
-                <TableRow><TableCell>Produtos Prontos</TableCell><TableCell className='text-center'>R$ 4.800</TableCell><TableCell className='text-center'>-</TableCell></TableRow>
-                <TableRow className="bg-primary-light"><TableCell className="font-bold text-primary-dark">ESTE SISTEMA</TableCell><TableCell className="font-bold text-primary-dark text-center">R$ 97</TableCell><TableCell className="font-bold text-primary-dark text-center">1000</TableCell></TableRow>
-            </TableBody>
-        </Table><p className='mt-4 font-semibold text-lg'>Decisão lógica: Este sistema.</p></div>),
+    investment: {
+        price: '97',
+        anchorPrice: '197',
+        justifications: ['1000 receitas = R$ 0,10 cada', 'Nutricionista: R$ 3.600/ano', 'Este sistema: R$ 97 vitalício']
+    },
     ctaButton: { text: 'ADQUIRIR SISTEMA' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA DE PERFORMANCE',
@@ -162,9 +164,11 @@ export default function PersonaResultPage() {
 
   useEffect(() => {
     document.body.className = '';
+    document.body.classList.add('bg-background-light');
     document.body.classList.add(themeClass);
     return () => {
       document.body.classList.remove(themeClass);
+      document.body.classList.remove('bg-background-light');
     };
   }, [themeClass]);
 
@@ -174,7 +178,6 @@ export default function PersonaResultPage() {
   
   const q7 = searchParams.get('q7') || '0';
   const finalTitle = typeof pageData.title === 'function' ? pageData.title(q7) : pageData.title;
-  const finalInvestmentReason = typeof pageData.investmentReason === 'function' ? pageData.investmentReason(q7) : pageData.investmentReason;
 
   return (
     <motion.div 
@@ -183,11 +186,13 @@ export default function PersonaResultPage() {
       animate="visible"
       variants={containerVariants}
     >
-      <div className="bg-background-light" ref={
+      <div ref={
         (el) => {
-          // workaround for a bug in framer-motion
+          // workaround for a bug in framer-motion that sets opacity to 0
           if (!el) return;
-          el.style.opacity = '1';
+          if (el.style.opacity === '0') {
+            el.style.opacity = '1';
+          }
         }
       }>
         <motion.header
@@ -197,10 +202,11 @@ export default function PersonaResultPage() {
           <motion.div
               variants={itemVariants}
               className="inline-block bg-primary text-primary-foreground text-sm font-bold py-3 px-6 rounded-lg shadow-md mb-4"
+              style={{ boxShadow: '0 4px 6px hsla(var(--primary), 0.1)' }}
           >
             🎯 SEU DIAGNÓSTICO: {pageData.badgeText}
           </motion.div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-primary-dark uppercase tracking-tight !leading-tight font-headline">
+          <h1 className="text-3xl md:text-[36px] font-bold text-primary-dark uppercase tracking-tight !leading-tight font-headline">
             {finalTitle}
           </h1>
         </motion.header>
@@ -219,12 +225,12 @@ export default function PersonaResultPage() {
                       className="bg-background border-2 border-red-100 rounded-xl shadow-sm hover:shadow-md transition-shadow p-6"
                   >
                       <div className="flex items-start">
-                        <X className="h-6 w-6 text-destructive mr-3 mt-1 flex-shrink-0"/>
+                        <X className="h-6 w-6 text-destructive mr-4 mt-1 flex-shrink-0"/>
                         <div>
                           <p className="text-lg font-bold text-foreground">
                               ERRO #{index + 1}: {error.title}
                           </p>
-                          <p className="text-base text-foreground-secondary mt-1">→ {error.description}</p>
+                          <p className="text-base text-foreground-secondary mt-1"><ArrowRight className="inline h-4 w-4 mr-1 text-destructive" /> {error.description}</p>
                         </div>
                       </div>
                   </motion.div>
@@ -244,7 +250,7 @@ export default function PersonaResultPage() {
                           "p-6 bg-background rounded-xl border-2 border-primary-light shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all",
                           index === 0 && "md:col-span-2 lg:col-span-1 border-l-4 border-l-primary"
                       )}>
-                          <h4 className="font-bold text-lg text-primary-dark mb-2 flex items-center">{section.title}</h4>
+                          <h4 className="font-bold text-lg text-primary-dark mb-3 flex items-center">{section.title}</h4>
                           {section.items.length > 0 && 
                               <ul className="space-y-2 text-foreground-secondary">
                                   {section.items.map((item, i) => <li key={i} className="flex items-start"><Check className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" /><span>{item}</span></li>)}
@@ -266,7 +272,7 @@ export default function PersonaResultPage() {
 
         <div className="bg-background py-10 px-6">
           <div className="max-w-2xl mx-auto space-y-8">
-              <motion.section variants={itemVariants} className="text-center bg-destructive-light border-2 border-red-200 rounded-xl p-6 shadow-lg">
+              <motion.section variants={itemVariants} className="text-center bg-destructive-light/60 border-2 border-destructive/30 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-destructive-dark">⏰ OFERTA POR TEMPO LIMITADO</h3>
                   <div className="mt-4">
                     <div className="text-2xl md:text-3xl font-bold text-destructive-dark">
@@ -275,13 +281,41 @@ export default function PersonaResultPage() {
                   </div>
               </motion.section>
 
-              {pageData.investmentText &&
-              <motion.section variants={itemVariants} className="text-center bg-gradient-to-b from-primary-light/30 to-background p-8 border-2 border-primary rounded-2xl shadow-lg">
-                  <h3 className="text-xl font-bold text-foreground mb-2">💰 INVESTIMENTO</h3>
-                  <p className="text-5xl md:text-7xl font-black text-primary-dark">{pageData.investmentText}</p>
-                  <div className="mt-4 text-foreground-secondary max-w-xl mx-auto">{finalInvestmentReason}</div>
-              </motion.section>}
-              {!pageData.investmentText && <motion.section variants={itemVariants}>{finalInvestmentReason}</motion.section>}
+              <motion.section variants={itemVariants} className="text-center">
+                <div className="inline-block border-2 border-primary rounded-lg py-2 px-4 mb-5">
+                    <h3 className="text-base font-bold uppercase text-primary-dark tracking-widest flex items-center gap-2">
+                        <Wallet className="h-5 w-5" />
+                        INVESTIMENTO
+                    </h3>
+                </div>
+
+                <div className="bg-gradient-to-b from-primary-light to-white border-2 border-primary rounded-2xl p-6 md:p-8 max-w-md mx-auto shadow-xl" style={{boxShadow: '0 8px 24px hsla(var(--primary), 0.15)'}}>
+                    <div className="flex justify-center items-center gap-2 mb-3">
+                        <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">DE</span>
+                        <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
+                            R$ {pageData.investment.anchorPrice}
+                        </span>
+                        <span className="text-sm font-medium uppercase text-foreground-secondary tracking-wide">POR APENAS</span>
+                    </div>
+
+                    <div className="text-primary-dark font-black leading-none" style={{textShadow: '0 2px 4px hsla(var(--primary), 0.1)', letterSpacing: '-1px'}}>
+                        <span className="text-4xl align-super mr-1">R$</span>
+                        <span className="text-7xl">{pageData.investment.price}</span>
+                    </div>
+
+                    <div className="mt-6 text-left bg-white/50 p-4 rounded-lg">
+                        <p className="font-bold text-foreground mb-3 text-base">Por que vale a pena?</p>
+                        <ul className="space-y-2">
+                            {pageData.investment.justifications.map((item, index) => (
+                                <li key={index} className="flex items-center gap-3 text-sm font-medium text-foreground/90">
+                                    <ArrowRight className="h-5 w-5 text-primary flex-shrink-0" />
+                                    <span>{item.replace(/(\d+)/g, '<strong class="text-primary-dark font-bold">$1</strong>')}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+              </motion.section>
 
               <motion.section variants={itemVariants} className="text-center">
                   <button
@@ -302,7 +336,7 @@ export default function PersonaResultPage() {
 
               <motion.section variants={itemVariants} className="text-center bg-background p-8 rounded-2xl border-2 border-primary shadow-md">
                   <Shield className="h-12 w-12 text-primary mx-auto mb-2"/>
-                  <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-1">{pageData.guaranteeTitle}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-dark mb-2">{pageData.guaranteeTitle}</h3>
                   <div className="text-foreground-secondary leading-relaxed space-y-3">{pageData.guaranteeText}</div>
                   <div className="mt-4 p-4 bg-primary-light rounded-lg font-bold text-primary-dark">
                       {pageData.guaranteeImpact}
