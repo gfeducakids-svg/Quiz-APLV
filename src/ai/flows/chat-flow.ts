@@ -122,9 +122,12 @@ const chatFlow = ai.defineFlow(
         message: 'Desculpe, não entendi sua última mensagem. Pode repetir, por favor?',
       };
     }
+    
+    // ✅ CORREÇÃO: Extrair o texto do array content
+    const userPrompt = lastUserMessage.content[0].text;
 
     const llmResponse = await prompt({
-      prompt: lastUserMessage.content,
+      prompt: userPrompt,  // ✅ Agora é uma string
       history: chatHistory,
     });
 
