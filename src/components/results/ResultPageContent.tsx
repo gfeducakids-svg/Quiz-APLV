@@ -1,4 +1,6 @@
+// src/components/results/ResultPageContent.tsx
 'use client';
+
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Shield, Gift, X, ArrowRight, CheckCircle } from 'lucide-react';
@@ -391,7 +393,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               </motion.section>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
   );
 }
