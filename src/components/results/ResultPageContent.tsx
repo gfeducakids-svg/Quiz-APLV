@@ -165,32 +165,54 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   },
 };
 
-
-const personaThemes: Record<string, { bg: string; text: string; border: string, gradient: string }> = {
-  'mae-em-panico-inicial': { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-500', gradient: 'from-blue-500 to-blue-700' },
-  'mae-guerreira-esgotada': { bg: 'bg-orange-50', text: 'text-orange-600', border: 'border-orange-500', gradient: 'from-orange-500 to-orange-700' },
-  'mae-desacreditada-ao-extremo': { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-500', gradient: 'from-purple-500 to-purple-700' },
-  'mae-racional-estrategica': { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-500', gradient: 'from-emerald-500 to-emerald-700'},
+const personaThemes: Record<string, { bg: string; text: string; border: string, gradient: string, buttonGradient: string }> = {
+  'mae-em-panico-inicial': { 
+    bg: 'bg-blue-50', 
+    text: 'text-blue-700', 
+    border: 'border-blue-500', 
+    gradient: 'bg-gradient-to-r from-blue-500 to-blue-700',
+    buttonGradient: 'bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900'
+  },
+  'mae-guerreira-esgotada': { 
+    bg: 'bg-orange-50', 
+    text: 'text-orange-700', 
+    border: 'border-orange-500', 
+    gradient: 'bg-gradient-to-r from-orange-500 to-orange-700',
+    buttonGradient: 'bg-gradient-to-r from-orange-600 to-orange-800 hover:from-orange-700 hover:to-orange-900'
+  },
+  'mae-desacreditada-ao-extremo': { 
+    bg: 'bg-purple-50', 
+    text: 'text-purple-700', 
+    border: 'border-purple-500', 
+    gradient: 'bg-gradient-to-r from-purple-500 to-purple-700',
+    buttonGradient: 'bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900'
+  },
+  'mae-racional-estrategica': { 
+    bg: 'bg-emerald-50', 
+    text: 'text-emerald-700', 
+    border: 'border-emerald-500', 
+    gradient: 'bg-gradient-to-r from-emerald-500 to-emerald-700',
+    buttonGradient: 'bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-700 hover:to-emerald-900'
+  },
 };
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 }}};
 const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 }}};
 
-export function ResultPageContent({ persona }: { persona: string, searchParams: { [key: string]: string | string[] | undefined } }) {
+export function ResultPageContent({ persona }: { persona: string, searchParams: any }) {
   const pageData = pagesData[persona as keyof typeof pagesData];
   const theme = personaThemes[persona] || personaThemes['mae-em-panico-inicial'];
   
   useEffect(() => {
-    // Adiciona classe ao body para estilização global se necessário
-    document.body.style.backgroundColor = 'var(--background)';
+    document.body.style.backgroundColor = '#f9fafb';
   }, []);
 
   if (!pageData) {
     return (
-       <div className="flex flex-col items-center justify-center min-h-screen bg-background text-center px-4">
-        <h1 className="text-3xl font-bold text-destructive mb-4">Resultado não encontrado</h1>
-        <p className="text-lg text-foreground-secondary mb-8">Ocorreu um erro ao calcular seu perfil. Por favor, tente refazer o quiz.</p>
-        <Link href="/quiz" className="bg-primary text-primary-foreground py-2 px-6 rounded-lg font-semibold">
+       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-center px-4">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Resultado não encontrado</h1>
+        <p className="text-lg text-gray-700 mb-8">Ocorreu um erro ao calcular seu perfil. Por favor, tente refazer o quiz.</p>
+        <Link href="/quiz" className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
           Refazer Quiz
         </Link>
       </div>
@@ -199,7 +221,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
   return (
     <motion.div 
-      className={cn('bg-gray-50 font-body', theme.bg)}
+      className={cn('min-h-screen', theme.bg)}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -214,7 +236,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           >
             🎯 SEU DIAGNÓSTICO: {pageData.badgeText}
           </motion.div>
-          <h1 className={cn("text-3xl md:text-4xl font-bold !leading-tight font-headline max-w-3xl mx-auto", theme.text)}>
+          <h1 className={cn("text-3xl md:text-4xl font-bold !leading-tight max-w-3xl mx-auto", theme.text)}>
             {pageData.title}
           </h1>
           <p className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -225,7 +247,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <motion.section variants={itemVariants} className="py-12 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                  <h2 className={cn("text-2xl md:text-3xl font-bold font-headline flex items-center justify-center gap-3", theme.text)}><X className="h-7 w-7"/> OS 3 ERROS QUE VOCÊ ESTÁ COMETENDO:</h2>
+                  <h2 className={cn("text-2xl md:text-3xl font-bold flex items-center justify-center gap-3", theme.text)}>
+                    <X className="h-7 w-7"/> OS 3 ERROS QUE VOCÊ ESTÁ COMETENDO:
+                  </h2>
               </div>
               <div className="space-y-6">
               {pageData.errors.map((error, index) => (
@@ -239,10 +263,12 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                             <X className="h-6 w-6 text-red-600 flex-shrink-0"/>
                         </div>
                         <div>
-                          <p className="text-lg font-bold text-gray-800">
+                          <p className="text-lg font-bold text-gray-900">
                               ERRO #{index + 1}: {error.title}
                           </p>
-                          <p className="text-base text-gray-600 mt-1"><ArrowRight className="inline h-4 w-4 mr-1 text-red-500" /> {error.description}</p>
+                          <p className="text-base text-gray-700 mt-1">
+                            <ArrowRight className="inline h-4 w-4 mr-1 text-red-500" /> {error.description}
+                          </p>
                         </div>
                       </div>
                   </motion.div>
@@ -254,24 +280,43 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <motion.section variants={itemVariants} className="py-12 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
-                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3"><Gift className="h-9 w-9"/>{pageData.solutionTitle}</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
+                    <Gift className="h-9 w-9"/>{pageData.solutionTitle}
+                  </h2>
               </div>
               <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-b-2xl border-x-2 border-b-2", theme.border)}>
                   {pageData.solutionSections.map((section, index) => (
-                      <motion.div key={index} variants={itemVariants} className={cn(
-                          "p-6 bg-white rounded-xl border-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all", theme.border,
-                      )}>
-                          <h4 className={cn("font-bold text-lg mb-3 flex items-center", theme.text)}>{section.title}</h4>
+                      <motion.div 
+                        key={index} 
+                        variants={itemVariants} 
+                        className={cn(
+                          "p-6 bg-white rounded-xl border-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all", 
+                          theme.border
+                        )}
+                      >
+                          <h4 className={cn("font-bold text-lg mb-3 flex items-center", theme.text)}>
+                            {section.title}
+                          </h4>
                           {section.items.length > 0 && 
-                              <ul className="space-y-2 text-gray-600">
-                                  {section.items.map((item, i) => <li key={i} className="flex items-start"><CheckCircle className={cn("h-5 w-5 mr-2 mt-0.5 flex-shrink-0", theme.text)} /><span>{item}</span></li>)}
+                              <ul className="space-y-2 text-gray-700">
+                                  {section.items.map((item, i) => (
+                                    <li key={i} className="flex items-start">
+                                      <CheckCircle className={cn("h-5 w-5 mr-2 mt-0.5 flex-shrink-0", theme.text)} />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
                               </ul>
                           }
                           {section.details && section.details.length > 0 && (
                               <div className={cn(section.items.length > 0 && "mt-4 border-t pt-4")}>
-                                  <h5 className="font-semibold text-gray-800">Cada receita inclui:</h5>
-                                  <ul className="mt-2 space-y-1 text-sm text-gray-600">
-                                      {section.details.map((detail, i) => <li key={i} className="flex items-center"><Check className="h-4 w-4 text-gray-500 mr-2 flex-shrink-0" />{detail}</li>)}
+                                  <h5 className="font-semibold text-gray-900">Cada receita inclui:</h5>
+                                  <ul className="mt-2 space-y-1 text-sm text-gray-700">
+                                      {section.details.map((detail, i) => (
+                                        <li key={i} className="flex items-center">
+                                          <Check className="h-4 w-4 text-gray-600 mr-2 flex-shrink-0" />
+                                          {detail}
+                                        </li>
+                                      ))}
                                   </ul>
                               </div>
                           )}
@@ -283,7 +328,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <div className="bg-gray-50 py-12 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
-              <motion.section variants={itemVariants} className="text-center bg-red-100/60 border-2 border-red-500/30 rounded-xl p-6 shadow-lg">
+              <motion.section variants={itemVariants} className="text-center bg-red-50 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700">⏰ OFERTA POR TEMPO LIMITADO</h3>
                   <div className="mt-4">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
@@ -292,7 +337,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               
               <motion.div
                 variants={itemVariants}
-                className="bg-white border-2 border-primary rounded-2xl p-6 md:p-8 shadow-xl max-w-md mx-auto"
+                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-xl max-w-md mx-auto", theme.border)}
               >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
                     <span className="text-sm font-medium uppercase text-gray-500 tracking-wide">DE</span>
@@ -302,37 +347,45 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <span className="text-sm font-medium uppercase text-gray-500 tracking-wide">POR APENAS</span>
                   </div>
 
-                  <div className="text-primary font-black leading-none text-center">
+                  <div className={cn("font-black leading-none text-center", theme.text)}>
                     <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
                     <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                   </div>
                   
                   <div className="mt-6 bg-gray-50 p-4 rounded-lg">
-                    <p className="font-bold text-gray-800 mb-3 text-base">O que você recebe:</p>
+                    <p className="font-bold text-gray-900 mb-3 text-base">O que você recebe:</p>
                     <ul className="space-y-2">
                       {pageData.investment.justifications.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3 text-sm font-medium text-gray-700/90">
-                          <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span dangerouslySetInnerHTML={{ __html: item.replace(/(\d{1,3}(?:\.\d{3})*,\d{2}|\d[\d,.]*)/g, '<strong class="text-primary font-bold">$1</strong>') }} />
+                        <li key={index} className="flex items-start gap-3 text-sm font-medium text-gray-800">
+                          <CheckCircle className={cn("h-5 w-5 flex-shrink-0 mt-0.5", theme.text)} />
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                 <motion.div variants={itemVariants} className="text-center mt-8">
-                    <Link href="#" className={cn('w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 animate-pulse', theme.gradient, 'hover:shadow-lg hover:-translate-y-1')}>
+                    <Link 
+                      href="#" 
+                      className={cn(
+                        'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
+                        theme.buttonGradient
+                      )}
+                    >
                       <Check className="inline-block h-7 w-7 mr-2"/>
                       {pageData.ctaButton.text}
                     </Link>
-                  <p className="mt-3 text-sm text-gray-500">{pageData.ctaSubtitle}</p>
+                  <p className="mt-3 text-sm text-gray-600">{pageData.ctaSubtitle}</p>
                 </motion.div>
               </motion.div>
 
-              <motion.section variants={itemVariants} className="text-center bg-white p-8 rounded-2xl border-2 border-primary shadow-md">
-                  <Shield className="h-12 w-12 text-primary mx-auto mb-2"/>
-                  <h3 className="text-xl md:text-2xl font-bold text-primary mb-4">{pageData.guaranteeTitle}</h3>
-                  <div className="text-gray-600 leading-relaxed space-y-3">{pageData.guaranteeText}</div>
-                  <div className="mt-6 p-4 bg-primary/10 rounded-lg font-bold text-primary">
+              <motion.section variants={itemVariants} className={cn("text-center bg-white p-8 rounded-2xl border-2 shadow-md", theme.border)}>
+                  <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
+                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4", theme.text)}>
+                    {pageData.guaranteeTitle}
+                  </h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guaranteeText}</div>
+                  <div className={cn("mt-6 p-4 rounded-lg font-bold", theme.bg, theme.text)}>
                       {pageData.guaranteeImpact}
                   </div>
               </motion.section>
