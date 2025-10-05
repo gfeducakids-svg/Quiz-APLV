@@ -1,12 +1,14 @@
 // src/components/results/ResultPageContent.tsx
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Shield, Gift, X, ArrowRight, CheckCircle } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { identifyPersonaErrors, type IdentifyPersonaErrorsOutput } from '@/ai/flows/identify-persona-errors';
+import { generateUrgentCTA, type GenerateUrgentCTAOutput } from '@/ai/flows/generate-urgent-cta';
 
 interface ResultPageProps {
     persona: string;
@@ -50,8 +52,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     countdownMinutes: 14,
     investment: {
-        price: '97',
-        anchorPrice: '197',
+        price: '35,90',
+        anchorPrice: '97',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -83,8 +85,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     countdownMinutes: 11,
     investment: {
-        price: '97',
-        anchorPrice: '197',
+        price: '35,90',
+        anchorPrice: '97',
         justifications: [
            '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -116,8 +118,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     countdownMinutes: 9,
     investment: {
-        price: '97',
-        anchorPrice: '197',
+        price: '35,90',
+        anchorPrice: '97',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -149,8 +151,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     countdownMinutes: 11,
     investment: {
-        price: '97',
-        anchorPrice: '197',
+        price: '35,90',
+        anchorPrice: '97',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -373,7 +375,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
                 <motion.div variants={itemVariants} className="text-center mt-8">
                     <Link 
-                      href="#" 
+                      href="https://pay.kiwify.com.br/v2XN6QB" 
                       className={cn(
                         'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
                         theme.buttonGradient
