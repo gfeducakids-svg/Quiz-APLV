@@ -258,7 +258,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   <motion.div 
                       key={index}
                       variants={itemVariants}
-                      className="bg-white border-2 border-red-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow p-6"
+                      className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
                   >
                       <div className="flex items-start">
                         <div className="bg-red-100 p-2 rounded-full mr-4">
@@ -292,13 +292,16 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                         key={index} 
                         variants={itemVariants} 
                         className={cn(
-                          "p-6 bg-white rounded-xl border-2 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all", 
+                          "p-6 bg-gradient-to-br from-white to-gray-50 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all", 
                           theme.border
                         )}
                       >
                           <h4 className={cn("font-bold text-lg mb-3 flex items-center", theme.text)}>
                             {section.title}
                           </h4>
+                          <div className={cn("w-12 h-12 rounded-full flex items-center justify-center mb-3", theme.bg)}>
+                              <Gift className={cn("w-6 h-6", theme.text)} />
+                          </div>
                           {section.items.length > 0 && 
                               <ul className="space-y-2 text-gray-700">
                                   {section.items.map((item, i) => (
@@ -339,7 +342,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               
               <motion.div
                 variants={itemVariants}
-                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-xl max-w-md mx-auto", theme.border)}
+                className={cn("bg-gradient-to-br from-white via-gray-50 to-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
                     <span className="text-sm font-medium uppercase text-gray-500 tracking-wide">DE</span>
@@ -349,9 +352,11 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <span className="text-sm font-medium uppercase text-gray-500 tracking-wide">POR APENAS</span>
                   </div>
 
-                  <div className={cn("font-black leading-none text-center", theme.text)}>
-                    <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
-                    <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
+                  <div className={cn("py-6 px-4 rounded-2xl", theme.bg)}>
+                      <div className={cn("font-black leading-none text-center", theme.text)}>
+                          <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
+                          <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
+                      </div>
                   </div>
                   
                   <div className="mt-6 bg-gray-50 p-4 rounded-lg">
@@ -390,7 +395,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   <div className={cn("mt-6 p-4 rounded-lg font-bold", theme.bg, theme.text)}>
                       {pageData.guaranteeImpact}
                   </div>
-              </motion.section>
+              </section>
           </div>
         </div>
       </motion.div>
