@@ -40,6 +40,18 @@ export default function RootLayout({
           async
           defer
         ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.pixelId = "68e2e1905f7cae90cc6bdcad";
+              var a = document.createElement("script");
+              a.setAttribute("async", "");
+              a.setAttribute("defer", "");
+              a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+              document.head.appendChild(a);
+            `,
+          }}
+        />
       </head>
       <body
         className={cn(
