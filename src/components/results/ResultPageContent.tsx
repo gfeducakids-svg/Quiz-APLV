@@ -331,13 +331,14 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <section className="py-8 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
+            <div className="rounded-2xl border-x-2 border-gray-200">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
                   <p className="text-xl md:text-2xl font-bold font-poppins">Cardápio sem Leite da Mãe Prevenida</p>
                   <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins mt-2">
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
-              <div className="bg-white rounded-b-2xl border-x-2 border-b-2 border-gray-200 shadow-xl">
+              <div className="bg-white rounded-b-2xl shadow-xl">
                 <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6")}>
                     {pageData.solutionSections.map((section, index) => (
                         <div 
@@ -433,6 +434,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </section>
 
@@ -449,7 +451,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </div>
               </section>
 
-              <section className="text-center p-8 rounded-2xl">
+              <section className={cn("text-center p-8 rounded-2xl")}>
                   <Heart className={cn("h-10 w-10 mx-auto mb-3", theme.text)} />
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-3 font-poppins", theme.text)}>
                     {pageData.missionStatement.title}
@@ -495,9 +497,3 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
-
-
-
-
-
-    
