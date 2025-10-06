@@ -235,7 +235,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     guarantee: {
       title: 'GARANTIA DE PERFORMANCE',
-      text: "7 dias. Se o sistema não otimizar seu tempo e orçamento, devolvemos 100% do seu investimento. Sem burocracia.",
+      text: "7 dias. Se o sistema não otimizar seu tempo e o retorno sobre investimento, devolvemos 100% do seu investimento. Sem burocracia.",
       impact: "Uma decisão lógica: ou funciona, ou é de graça."
     },
   },
@@ -298,7 +298,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   const dailyPrice = (parseFloat(pageData.investment.price.replace(',', '.')) / 30).toFixed(2).replace('.', ',');
 
   return (
-    <div className={cn('min-h-screen font-body', theme.bg)}>
+    <div className={cn('min-h-screen', theme.bg)}>
         <header
           className="text-center py-8 px-6 bg-white"
         >
@@ -427,7 +427,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               <div
                 className={cn("bg-white border-2 rounded-b-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
-
                   <div className="text-center">
                     <div className="flex justify-center items-baseline gap-2 mb-2">
                       <span className="text-sm uppercase text-gray-400 tracking-wide font-poppins">DE</span>
@@ -444,7 +443,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     </div>
                     
                     <p className="text-sm text-gray-600 mt-3">
-                      (R$ {dailyPrice} por dia em um período de 30 dias)
+                      <span className="font-bold text-emerald-600">R$ {dailyPrice}</span> por dia
                     </p>
                   </div>
                   
@@ -524,5 +523,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
 
 
