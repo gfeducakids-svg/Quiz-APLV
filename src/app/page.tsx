@@ -28,7 +28,7 @@ export default function Home() {
         </h1>
 
         <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
-          Mães como você eliminaram 90% das reações em 7 dias ao corrigir esses 3 pontos (que você ainda não viu).
+          Junte-se a +8000 mães que descobriram os 3 erros que estavam cometendo - e o sistema que resolveu tudo.
         </p>
 
         <div className="mt-6 max-w-2xl mx-auto">
