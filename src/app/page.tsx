@@ -28,7 +28,7 @@ export default function Home() {
         </h1>
 
         <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
-          Junte-se a +8000 mães que descobriram os 3 erros que estavam cometendo - e o sistema que resolveu tudo.
+          Junte-se a +8000 mães que descobriram os <span className="font-bold text-destructive">3 erros</span> que estavam cometendo - e o sistema que resolveu tudo.
         </p>
 
         <div className="mt-6 max-w-2xl mx-auto">
