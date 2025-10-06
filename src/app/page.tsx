@@ -91,9 +91,9 @@ export default function Home() {
             variant="default"
             className="w-full md:w-auto h-auto text-base md:text-lg font-bold shadow-lg transform hover:scale-105 transition-transform text-white px-6 md:px-10 py-4 md:py-5"
             style={{
-              background: 'linear-gradient(to right, #7FB685, #68A876)',
+              background: 'linear-gradient(to right, #2ECC71, #28B463)',
               borderRadius: '12px',
-              boxShadow: '0 6px 20px rgba(127, 182, 133, 0.4)',
+              boxShadow: '0 6px 20px rgba(46, 204, 113, 0.4)',
             }}
           >
             <Link href="/quiz">
@@ -107,8 +107,8 @@ export default function Home() {
         
         <div className="my-6 h-[1px] bg-border max-w-sm mx-auto"></div>
 
-        <div className="mt-8 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-[#F59E0B] max-w-xl mx-auto">
-          <AlertTriangle className="h-5 w-5 text-[#F59E0B] flex-shrink-0 transition-transform group-hover:scale-125" />
+        <div className="mt-8 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-destructive max-w-xl mx-auto">
+          <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0 transition-transform group-hover:scale-125" />
           <p className="text-accent-foreground text-left">
             Cada dia que você continua cometendo esses erros pode estar
             prejudicando a saúde e o desenvolvimento do seu filho.
