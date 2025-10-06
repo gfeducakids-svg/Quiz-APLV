@@ -440,7 +440,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           <div className="max-w-2xl mx-auto space-y-8">
 
               <section className="relative text-center bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-400 rounded-2xl p-8 shadow-xl">
-                  <div className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full transform rotate-12 shadow-lg">OFERTA RELÂMPAGO</div>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full shadow-lg">OFERTA RELÂMPAGO</div>
                   <Clock className="h-10 w-10 mx-auto mb-4 text-red-600" />
                   <h3 className="text-2xl md:text-3xl font-bold text-red-800 font-poppins">⚠️ DECISÃO IMPORTANTE</h3>
                    <p className="text-red-900 mt-3 max-w-md mx-auto">O preço de R$ 35,90 é exclusivo para quem age AGORA. Após o timer, volta para o valor integral de R$ 97,00.</p>
@@ -496,6 +496,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
 
 
 
