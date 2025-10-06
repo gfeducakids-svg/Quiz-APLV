@@ -296,17 +296,19 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                         className={cn(
                           "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
                           "bg-gradient-to-br",
-                          index === 0 && cn("from-blue-50 to-indigo-50", theme.border),
-                          index === 1 && cn("from-purple-50 to-pink-50", theme.border),
-                          index === 2 && cn("from-green-50 to-emerald-50", theme.border)
+                          index === 0 && "from-blue-50 to-indigo-50 border-blue-400",
+                          index === 1 && "from-purple-50 to-pink-50 border-purple-400",
+                          index === 2 && "from-green-50 to-emerald-50 border-green-400"
                         )}
                       >
-                          <h4 className={cn("font-bold text-lg mb-4 flex items-center gap-2", theme.text)}>
-                            {index === 0 && <BookOpen className={cn("w-6 h-6", theme.text)} />}
-                            {index === 1 && <Gift className={cn("w-6 h-6", theme.text)} />}
-                            {index === 2 && <LifeBuoy className={cn("w-6 h-6", theme.text)} />}
-                            {section.title}
-                          </h4>
+                          <div className="flex items-center gap-2 mb-3">
+                            {index === 0 && <BookOpen className="w-6 h-6 text-blue-600" />}
+                            {index === 1 && <Gift className="w-6 h-6 text-purple-600" />}
+                            {index === 2 && <LifeBuoy className="w-6 h-6 text-green-600" />}
+                            <h4 className={cn("font-bold text-lg", theme.text)}>
+                              {section.title}
+                            </h4>
+                          </div>
                           {section.items.length > 0 && 
                               <ul className="space-y-2 text-gray-700">
                                   {section.items.map((item, i) => (
