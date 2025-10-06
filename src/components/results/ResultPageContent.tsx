@@ -40,10 +40,10 @@ interface ResultPageProps {
 const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-em-panico-inicial': {
     badgeText: 'MÃE EM PÂNICO INICIAL',
-    title: "Você está assustada. É normal. Mas existe um caminho seguro e você vai encontrá-lo agora.",
-    subtitle: "Respira. 8.347 mães estavam onde você está. Hoje elas alimentam os filhos com segurança e paz.",
+    title: "O medo que você sente agora é real. Mas não precisa durar para sempre.",
+    subtitle: "Você vai reconhecer alguns erros abaixo. E descobrir que tem saída para todos eles.",
     errors: [
-      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra achando que é seguro. A reação vem mesmo assim - lactose e proteína do leite são diferentes.', consequence: 'Cada erro rouba sua confiança e aumenta o medo.' },
+      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra achando que é seguro. A reação vem mesmo assim - lactose e proteína do leito são diferentes.', consequence: 'Cada erro rouba sua confiança e aumenta o medo.' },
       { title: 'Repetir as mesmas 3 receitas', description: 'Frango, arroz, batata. Sempre. Você tem medo de testar algo novo. Ele enjoa e recusa.', consequence: 'A refeição vira batalha, não momento de carinho.' },
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
@@ -83,8 +83,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   },
   'mae-guerreira-esgotada': {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
-    title: "Você já fez demais com tão pouco. Merece ter as ferramentas certas.",
-    subtitle: "Chega de carregar o mundo nas costas. Veja como 8.347 mães como você encontraram alívio e variedade.",
+    title: "Você carrega essa luta sozinha há tempo demais.",
+    subtitle: "Os três erros abaixo não são culpa sua - são sintomas de quem nunca teve as ferramentas certas.",
     errors: [
       { title: 'O looping do "frango, arroz e batata"', description: 'A mesma combinação há meses. Você vê a carinha de desânimo dele e seu coração aperta.', consequence: 'Refeição vira campo de batalha, não nutrição.' },
       { title: 'Improviso na lancheira escolar', description: 'Correria todo dia para pensar em algo seguro. Ele leva sempre a mesma fruta.', consequence: 'Ele se sente diferente. Você se sente que não dá conta.' },
@@ -126,8 +126,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   },
   'mae-desacreditada-ao-extremo': {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
-    title: `Sei que você já tentou de tudo e se decepcionou. Esta vez é diferente. E eu vou provar.`,
-    subtitle: "Para as mães que já perderam a esperança, mas que no fundo, merecem uma última chance que funcione de verdade.",
+    title: "A frustração que você sente tem nome: falta de sistema.",
+    subtitle: "Abaixo estão os três padrões que mantêm você presa. Depois, a solução completa.",
     errors: [
       { title: 'Overdose de informação conflitante', description: 'Noites no Google, 15 grupos. Cada um diz uma coisa diferente. Mais confusa que antes.', consequence: 'Paralisia total. Você não confia em nada e não faz nada.' },
       { title: 'Coleção de "soluções" que falharam', description: 'E-book da influencer, dieta da nutri famosa... nada mudou. Prateleira cheia de promessas vazias.', consequence: 'Você acha que o problema é você, não os métodos.' },
@@ -169,8 +169,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   },
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
-    title: 'Você sabe que improvisar custa caro. Aqui está o sistema que sua lógica pedia.',
-    subtitle: "Dados, não achismos. Um sistema com retorno sobre investimento comprovado para otimizar o tempo e o orçamento da sua família.",
+    title: 'Você sabe que improviso tem custo. Aqui está por quê.',
+    subtitle: "Os três erros abaixo são caros em tempo, dinheiro e paz de espírito. Todos evitáveis com informação estruturada.",
     errors: [
       { title: 'Desperdício por falta de sistema', description: 'Ingredientes caros estragam. Produtos não ideais porque são os únicos que encontra.', consequence: 'R$ 300/mês em compras ineficientes.' },
       { title: 'Incerteza nutricional', description: 'Receitas seguras, mas você não sabe se a dieta está balanceada em vitaminas e minerais.', consequence: 'Risco de deficiências no desenvolvimento.' },
@@ -496,3 +496,4 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
