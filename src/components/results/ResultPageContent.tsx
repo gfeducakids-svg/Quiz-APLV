@@ -78,9 +78,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Criei este cardápio depois de ver meu filho reagir 6 vezes em uma semana. Sei o que é o desespero de não saber o que dar. Por isso este sistema custa menos que UMA consulta nutricional - para que toda mãe tenha acesso à segurança que eu não tive no início.</>)
     },
     faq: [
-      { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
-      { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
+      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA INCONDICIONAL',
@@ -127,9 +128,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: "Porque você já luta demais. Este preço é nosso jeito de estender a mão e estar ao seu lado nessa jornada, tornando a solução acessível, não um novo fardo financeiro."
     },
     faq: [
-      { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
-      { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
+      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA SEM ENROLAÇÃO',
@@ -176,9 +178,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Não é barato porque é ruim. É acessível porque eu ODEIO quando a solução só está disponível para quem pode pagar R$ 400 em uma consulta. Toda mãe merece ter tranquilidade, não apenas quem tem mais dinheiro.</>)
     },
     faq: [
-      { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
-      { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
+      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA REFORÇADA PARA VOCÊ',
@@ -225,9 +228,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: "O cálculo é simples: o custo mensal com produtos APLV industrializados varia de R$ 300 a R$ 500. Este sistema custa R$ 35,90, uma única vez. Ele se paga em menos de uma semana de economia no supermercado."
     },
     faq: [
-      { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
-      { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
+      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA DE PERFORMANCE',
@@ -520,6 +524,3 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
-
-    
-    
