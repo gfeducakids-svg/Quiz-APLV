@@ -78,10 +78,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Criei este cardápio depois de ver meu filho reagir 6 vezes em uma semana. Sei o que é o desespero de não saber o que dar. Por isso este sistema custa menos que UMA consulta nutricional - para que toda mãe tenha acesso à segurança que eu não tive no início.</>)
     },
     faq: [
-      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
-      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
-      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
+        { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+        { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA INCONDICIONAL',
@@ -128,10 +128,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: "Porque você já luta demais. Este preço é nosso jeito de estender a mão e estar ao seu lado nessa jornada, tornando a solução acessível, não um novo fardo financeiro."
     },
     faq: [
-      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
-      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
-      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
+        { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+        { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA SEM ENROLAÇÃO',
@@ -178,10 +178,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Não é barato porque é ruim. É acessível porque eu ODEIO quando a solução só está disponível para quem pode pagar R$ 400 em uma consulta. Toda mãe merece ter tranquilidade, não apenas quem tem mais dinheiro.</>)
     },
     faq: [
-      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
-      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
-      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
+        { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+        { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA REFORÇADA PARA VOCÊ',
@@ -192,7 +192,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você sabe que improvisar custa caro. Aqui está o sistema que sua lógica pedia.',
-    subtitle: "Dados, não achismos. Um sistema com ROI comprovado para otimizar o tempo e o orçamento da sua família.",
+    subtitle: "Dados, não achismos. Um sistema com retorno sobre investimento comprovado para otimizar o tempo e o orçamento da sua família.",
     errors: [
       { title: 'Desperdício por falta de sistema', description: 'Você compra ingredientes caros que acabam estragando ou usa produtos que não são ideais, mas são os únicos que encontra.', consequence: 'Custo estimado: R$ 300/mês em compras ineficientes e desperdício.' },
       { title: 'Incerteza nutricional', description: 'Você até consegue fazer receitas seguras, mas não tem certeza se a dieta está balanceada em vitaminas e minerais para a idade dele.', consequence: 'Risco: Deficiências nutricionais que podem impactar o desenvolvimento a longo prazo.' },
@@ -206,7 +206,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     solutionSections: [
         { title: 'BANCO DE DADOS COM 1000 RECEITAS', benefit: 'Eficiência e variedade', items: ['PDF otimizado com filtros inteligentes.', 'Busca por ingrediente, tempo de preparo e idade.', 'Funciona 100% offline no seu celular.'] },
         { title: 'DASHBOARD NUTRICIONAL', benefit: 'Decisões baseadas em dados', items: ['Informação nutricional completa para cada receita.', 'Calorias, proteínas, carboidratos e gorduras.', 'Garante uma dieta balanceada sem achismos.'] },
-        { title: 'MÓDULOS DE OTIMIZAÇÃO', benefit: 'ROI de tempo e dinheiro', items: ['Listas de compra semanais para evitar desperdício.', 'Protocolo SOS para gerenciar crises sem pânico.'] },
+        { title: 'MÓDULOS DE OTIMIZAÇÃO', benefit: 'Retorno sobre investimento de tempo e dinheiro', items: ['Listas de compra semanais para evitar desperdício.', 'Protocolo SOS para gerenciar crises sem pânico.'] },
     ],
     investment: {
         price: '35,90',
@@ -224,19 +224,19 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       justification: "Este valor especial de R$ 35,90 expira em:"
     },
     missionStatement: {
-        title: "Um ROI Imediato",
+        title: "Um retorno sobre investimento Imediato",
         text: "O cálculo é simples: o custo mensal com produtos APLV industrializados varia de R$ 300 a R$ 500. Este sistema custa R$ 35,90, uma única vez. Ele se paga em menos de uma semana de economia no supermercado."
     },
     faq: [
-      { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
-      { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-      { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
-      { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
+        { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
+        { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
       title: 'GARANTIA DE PERFORMANCE',
-      text: "Nossa garantia é baseada em performance. Se em 7 dias o sistema não otimizar seu tempo e seu orçamento de forma clara, devolvemos 100% do seu investimento. Sem burocracia.",
-      impact: "É uma decisão lógica: ou o sistema entrega o resultado prometido, ou ele sai de graça."
+      text: "7 dias. Se o sistema não otimizar seu tempo e orçamento, devolvemos 100% do seu investimento. Sem burocracia.",
+      impact: "Uma decisão lógica: ou funciona, ou é de graça."
     },
   },
 };
@@ -524,3 +524,4 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
