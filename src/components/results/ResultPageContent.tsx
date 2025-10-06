@@ -1,3 +1,4 @@
+
 // src/components/results/ResultPageContent.tsx
 'use client';
 
@@ -23,7 +24,7 @@ interface ResultPageProps {
     investment: {
       price: string;
       anchorPrice: string;
-      comparison: { title: string; items: string[] };
+      justifications: string[];
     };
     countdown: {
       minutes: number;
@@ -48,12 +49,12 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     subtitle: "Respira. 8.347 mães estavam onde você está. Hoje elas alimentam os filhos com segurança e paz.",
     socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
-      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra um produto "sem lactose" achando que é seguro, mas a reação vem. É que lactose e proteína do leite são coisas diferentes.', consequence: 'Consequência: A cada erro, a confiança para cozinhar diminui e o medo aumenta.' },
-      { title: 'Cozinhar sempre as mesmas 3 coisas', description: 'Você faz sempre frango, arroz e batata porque tem medo de testar algo novo e seu filho reagir mal.', consequence: 'Consequência: Ele enjoa, recusa a comida, e você se sente uma péssima mãe, presa num looping.' },
-      { title: 'Ceder "só um pouquinho"', description: 'Na festinha da família, você cede "só um pouquinho" do bolo. Três horas depois, ele está com cólica e você não dorme a noite toda.', consequence: 'Consequência: A culpa te consome e o processo de cura do intestino volta à estaca zero.' },
+      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra um produto "sem lactose" achando que é seguro, mas a reação vem. É que lactose e proteína do leite são coisas diferentes.', consequence: 'A cada erro, a confiança para cozinhar diminui e o medo aumenta.' },
+      { title: 'Cozinhar sempre as mesmas 3 coisas', description: 'Você faz sempre frango, arroz e batata porque tem medo de testar algo novo e seu filho reagir mal. Ele enjoa, recusa a comida, e você se sente uma péssima mãe, presa num looping.', consequence: 'A refeição vira uma batalha, não um momento de carinho.' },
+      { title: 'Ceder "só um pouquinho"', description: 'Na festinha da família, você cede "só um pouquinho" do bolo. Três horas depois, ele está com cólica e você não dorme a noite toda.', consequence: 'A culpa te consome e o processo de cura do intestino volta à estaca zero.' },
     ],
     transitionCopy: {
-        title: "NÃO É CULPA SUA. É FALTA DE INFORMAÇÃO.",
+        title: "NÃO É CULPA SUA. É FALTA DE UM SISTEMA.",
         text: (<>Respira fundo. Isso que você está sentindo? Outras 8.000 mães sentiram. E elas superaram. Não sozinhas, mas com o sistema certo. Você não precisa ter medo a cada refeição. Precisa ter um mapa seguro. E ele existe.</>)
     },
     solutionTitle: 'O Sistema Completo Para Sua Tranquilidade',
@@ -64,15 +65,14 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     investment: {
         price: '35,90',
-        anchorPrice: '97,00',
-        comparison: {
-          title: "Quanto custa sua paz hoje?",
-          items: [
-            "❌ Produtos 'sem leite': R$ 300-500/mês",
-            "❌ Consulta nutricional: R$ 400-600",
-            "✅ Sistema completo: R$ 35,90 (uma vez)"
-          ]
-        }
+        anchorPrice: '97',
+        justifications: [
+          '1000 receitas com informação nutricional completa',
+          'Organizadas por idade, tempo e refeição',
+          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+          'Guia SOS para agir rápido em reações',
+          'Acesso vitalício por um pagamento único'
+        ]
     },
     countdown: {
       minutes: 14,
@@ -80,17 +80,17 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     missionStatement: {
         title: "Por que este preço?",
-        text: "Criei este cardápio depois de ver meu filho reagir 6 vezes em uma semana. Sei o que é o desespero de não saber o que dar. Por isso este sistema custa menos que UMA consulta nutricional - para que toda mãe tenha acesso à segurança que eu não tive no início."
+        text: (<>Criei este cardápio depois de ver meu filho reagir 6 vezes em uma semana. Sei o que é o desespero de não saber o que dar. Por isso este sistema custa menos que UMA consulta nutricional - para que toda mãe tenha acesso à segurança que eu não tive no início.</>)
     },
     faq: [
       { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona mesmo no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
+      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
       title: 'SUA PAZ DE VOLTA, OU SEU DINHEIRO',
-      guaranteeText: (<>Nós sabemos o MEDO que você sente. Por isso, nossa garantia é simples: teste o cardápio por 7 dias. Se não se sentir mais segura, aliviada e confiante, é só pedir seu dinheiro de volta com um único email.</>),
-      guaranteeImpact: "Seu único risco é continuar sentindo o medo que sente hoje."
+      text: (<>Nós sabemos o MEDO que você sente. Por isso, nossa garantia é simples: teste o cardápio por 7 dias. Se não se sentir mais segura, aliviada e confiante, é só pedir seu dinheiro de volta com um único email.</>),
+      impact: "Seu único risco é continuar sentindo o medo que sente hoje."
     },
     finalCTA: {
       text: 'Quero Alimentar Meu Filho SEM MEDO'
@@ -102,31 +102,30 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     subtitle: "Chega de carregar o mundo nas costas. Veja como 8.347 mães como você encontraram alívio e variedade.",
     socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
-      { title: 'O looping do "frango, arroz e batata"', description: 'Você serve a mesma combinação há meses. Você vê a carinha de desânimo dele na mesa e seu coração aperta de culpa.', consequence: 'Consequência: A refeição vira um campo de batalha, não um momento de nutrição e carinho.' },
-      { title: 'Improviso na lancheira escolar', description: 'Todo dia é uma correria para pensar em algo seguro. Muitas vezes, ele leva a mesma fruta de sempre por falta de opção.', consequence: 'Consequência: Ele se sente diferente dos amigos e você se sente uma mãe que não dá conta.' },
-      { title: 'O "pesadelo" das festinhas', description: 'Na última festa, seu filho chorou porque não podia comer o bolo dos Vingadores. Você inventou uma desculpa e saiu mais cedo.', consequence: 'Consequência: Momentos que deveriam ser de alegria viram fontes de estresse e exclusão.' },
+      { title: 'O looping do "frango, arroz e batata"', description: 'Você serve a mesma combinação há meses. Você vê a carinha de desânimo dele na mesa e seu coração aperta de culpa.', consequence: 'A refeição vira um campo de batalha, não um momento de nutrição e carinho.' },
+      { title: 'Improviso na lancheira escolar', description: 'Todo dia é uma correria para pensar em algo seguro. Muitas vezes, ele leva a mesma fruta de sempre por falta de opção.', consequence: 'Ele se sente diferente dos amigos e você se sente uma mãe que não dá conta.' },
+      { title: 'O "pesadelo" das festinhas', description: 'Na última festa, seu filho chorou porque não podia comer o bolo dos Vingadores. Você inventou uma desculpa e saiu mais cedo.', consequence: 'Momentos que deveriam ser de alegria viram fontes de estresse e exclusão.' },
     ],
     transitionCopy: {
         title: "VOCÊ NÃO DEVERIA ESTAR SOZINHA NISSO.",
-        text: "Você merecia ter tido um sistema desde o dia 1. Não é sua culpa não ter encontrado antes - essas informações estão espalhadas de propósito para vender produtos caros. A luta do improviso pode (e vai) acabar hoje."
+        text: (<>Você merecia ter tido um sistema desde o dia 1. Não é sua culpa não ter encontrado antes - essas informações estão espalhadas de propósito para vender produtos caros. A luta do improviso pode (e vai) acabar hoje.</>)
     },
     solutionTitle: 'Seu Arsenal Para Ter Paz e Variedade',
     solutionSections: [
-      { title: 'VARIEDADE INFINITA', benefit: 'Fim da monotonia alimentar', items: ['+200 cafés da manhã', '+300 lanches escolares', '+400 almoços e jantares', 'Filtros por tempo de preparo.'] },
-      { title: 'RECEITAS DE FESTA', benefit: 'Seu filho incluído em TODOS os momentos', items: ['Bolos de aniversário, docinhos e salgados seguros.', 'Instruções para evitar contaminação cruzada.'] },
-      { title: 'ECONOMIA DE TEMPO', benefit: 'Mais tempo para você e sua família', items: ['+340 receitas prontas em menos de 15 minutos.', 'Lista de compras semanal inteligente.'] },
+        { title: 'VARIEDADE INFINITA', benefit: 'Fim da monotonia alimentar', items: ['+200 cafés da manhã', '+300 lanches escolares', '+400 almoços e jantares', 'Filtros por tempo de preparo.'] },
+        { title: 'RECEITAS DE FESTA', benefit: 'Seu filho incluído em TODOS os momentos', items: ['Bolos de aniversário, docinhos e salgados seguros.', 'Instruções para evitar contaminação cruzada.'] },
+        { title: 'ECONOMIA DE TEMPO', benefit: 'Mais tempo para você e sua família', items: ['+340 receitas prontas em menos de 15 minutos.', 'Lista de compras semanal inteligente.'] },
     ],
     investment: {
         price: '35,90',
-        anchorPrice: '97,00',
-        comparison: {
-          title: "Quanto custa sua paz hoje?",
-          items: [
-            "❌ Produtos 'sem leite': R$ 300-500/mês",
-            "❌ Consulta nutricional: R$ 400-600",
-            "✅ Sistema completo: R$ 35,90 (uma vez)"
-          ]
-        }
+        anchorPrice: '97',
+        justifications: [
+          '1000 receitas com informação nutricional completa',
+          'Organizadas por idade, tempo e refeição',
+          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+          'Guia SOS para agir rápido em reações',
+          'Acesso vitalício por um pagamento único'
+        ]
     },
     countdown: {
       minutes: 11,
@@ -138,13 +137,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     faq: [
       { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona mesmo no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
+      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
       title: 'GARANTIA SEM ENROLAÇÃO',
-      guaranteeText: (<>Teste por 7 dias. Não achou as receitas práticas? Não resolveu seu problema de variedade e cansaço? Devolvemos 100% do seu dinheiro. Simples assim.</>),
-      guaranteeImpact: "Seu único risco é continuar na exaustão que você está hoje."
+      text: (<>Teste por 7 dias. Não achou as receitas práticas? Não resolveu seu problema de variedade e cansaço? Devolvemos 100% do seu dinheiro. Simples assim.</>),
+      impact: "Seu único risco é continuar na exaustão que você está hoje."
     },
     finalCTA: {
       text: 'Quero Paz e Variedade na Cozinha'
@@ -156,13 +155,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     subtitle: "Para as mães que já perderam a esperança, mas que no fundo, merecem uma última chance que funcione de verdade.",
     socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
-      { title: 'A "overdose" de informação conflitante', description: 'Você passou noites no Google, entrou em 15 grupos, e cada lugar diz uma coisa. Está mais confusa do que quando começou.', consequence: 'Consequência: Paralisia por análise. Você não confia em mais nenhuma informação e acaba não fazendo nada.' },
-      { title: 'Coleção de "soluções" que não funcionaram', description: 'Comprou o e-book da influencer, a dieta da nutri famosa... e nada mudou de verdade. Sua prateleira está cheia de promessas vazias.', consequence: 'Consequência: Você acredita que o problema é com você ou seu filho, e não com os métodos incompletos.' },
-      { title: 'Ceticismo com qualquer nova promessa', description: 'Você vê "1000 receitas" e pensa "ah, lá vem mais um...". Você já viu de tudo e se recusa a criar qualquer expectativa.', consequence: 'Consequência: Você se fecha para uma solução que pode realmente funcionar, por medo de mais uma frustração.' },
+      { title: 'A "overdose" de informação conflitante', description: 'Você passou noites no Google, entrou em 15 grupos, e cada lugar diz uma coisa. Está mais confusa do que quando começou.', consequence: 'Paralisia por análise. Você não confia em mais nenhuma informação e acaba não fazendo nada.' },
+      { title: 'Coleção de "soluções" que não funcionaram', description: 'Comprou o e-book da influencer, a dieta da nutri famosa... e nada mudou de verdade. Sua prateleira está cheia de promessas vazias.', consequence: 'Você acredita que o problema é com você ou seu filho, e não com os métodos incompletos.' },
+      { title: 'Ceticismo com qualquer nova promessa', description: 'Você vê "1000 receitas" e pensa "ah, lá vem mais um...". Você já viu de tudo e se recusa a criar qualquer expectativa.', consequence: 'Você se fecha para uma solução que pode realmente funcionar, por medo de mais uma frustração.' },
     ],
     transitionCopy: {
         title: "A DIFERENÇA DESTA VEZ É O MÉTODO.",
-        text: "A questão não é ter 'mais receitas', é ter o SISTEMA certo. É ter informação validada e centralizada. Você não está apostando no escuro. Está seguindo um caminho que 8.347 mães já trilharam com sucesso. Desta vez, você não está sozinha."
+        text: (<>A questão não é ter 'mais receitas', é ter o SISTEMA certo. É ter informação validada e centralizada. Você não está apostando no escuro. Está seguindo um caminho que 8.347 mães já trilharam com sucesso. Desta vez, você não está sozinha.</>)
     },
     solutionTitle: 'O Sistema Validado que Você Nunca Teve',
     solutionSections: [
@@ -172,15 +171,14 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     investment: {
         price: '35,90',
-        anchorPrice: '97,00',
-        comparison: {
-          title: "Quanto custa sua paz hoje?",
-          items: [
-            "❌ Produtos 'sem leite': R$ 300-500/mês",
-            "❌ Consulta nutricional: R$ 400-600",
-            "✅ Sistema completo: R$ 35,90 (uma vez)"
-          ]
-        }
+        anchorPrice: '97',
+        justifications: [
+          '1000 receitas com informação nutricional completa',
+          'Organizadas por idade, tempo e refeição',
+          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+          'Guia SOS para agir rápido em reações',
+          'Acesso vitalício por um pagamento único'
+        ]
     },
     countdown: {
       minutes: 9,
@@ -188,17 +186,17 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     missionStatement: {
         title: "Por que este preço?",
-        text: "Não é barato porque é ruim. É acessível porque eu ODEIO quando a solução só está disponível para quem pode pagar R$ 400 em uma consulta. Toda mãe merece ter tranquilidade, não apenas quem tem mais dinheiro."
+        text: (<>Não é barato porque é ruim. É acessível porque eu ODEIO quando a solução só está disponível para quem pode pagar R$ 400 em uma consulta. Toda mãe merece ter tranquilidade, não apenas quem tem mais dinheiro.</>)
     },
     faq: [
       { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona mesmo no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
+      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
       title: 'GARANTIA DE RISCO ZERO (DE VERDADE)',
-      guaranteeText: (<>Eu sei que você não acredita mais em garantias. A nossa é diferente. Se em 7 dias você achar que isso é "só mais um e-book", eu devolvo seu dinheiro E te faço um PIX de R$ 50 pelo seu tempo perdido.</>),
-      guaranteeImpact: "É isso mesmo. O risco é 100% meu. Você literalmente não tem como sair perdendo."
+      text: (<>Eu sei que você não acredita mais em garantias. A nossa é diferente. Se em 7 dias você achar que isso é "só mais um e-book", eu devolvo seu dinheiro E te faço um PIX de R$ 50 pelo seu tempo perdido.</>),
+      impact: "É isso mesmo. O risco é 100% meu. Você literalmente não tem como sair perdendo."
     },
     finalCTA: {
       text: 'Quero Minha Última Tentativa (COM RISCO ZERO)'
@@ -226,15 +224,14 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     investment: {
         price: '35,90',
-        anchorPrice: '97,00',
-        comparison: {
-          title: "Análise de Custo-Benefício:",
-          items: [
-            "❌ Produtos 'sem leite': R$ 300-500/mês",
-            "❌ Consulta nutricional: R$ 400-600",
-            "✅ Sistema completo: R$ 35,90 (uma vez)"
-          ]
-        }
+        anchorPrice: '97',
+        justifications: [
+          '1000 receitas com informação nutricional completa',
+          'Organizadas por idade, tempo e refeição',
+          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
+          'Guia SOS para agir rápido em reações',
+          'Acesso vitalício por um pagamento único'
+        ]
     },
     countdown: {
       minutes: 11,
@@ -246,13 +243,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     faq: [
       { question: "Como recebo o acesso?", answer: "Imediatamente por email após o pagamento. É um arquivo PDF que funciona em qualquer celular, tablet ou computador." },
-      { question: "Funciona mesmo no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
+      { question: "Funciona no celular?", answer: "Sim. O PDF foi desenhado para ser 100% legível e fácil de navegar na tela do celular, mesmo offline." },
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
       title: 'GARANTIA DE PERFORMANCE',
-      guaranteeText: "Nossa garantia é baseada em performance. Se em 7 dias o sistema não otimizar seu tempo e seu orçamento de forma clara, devolvemos 100% do seu investimento. Sem burocracia.",
-      guaranteeImpact: "É uma decisão lógica: ou o sistema entrega o resultado prometido, ou ele sai de graça."
+      text: "Nossa garantia é baseada em performance. Se em 7 dias o sistema não otimizar seu tempo e seu orçamento de forma clara, devolvemos 100% do seu investimento. Sem burocracia.",
+      impact: "É uma decisão lógica: ou o sistema entrega o resultado prometido, ou ele sai de graça."
     },
     finalCTA: {
       text: 'Quero Implementar o Sistema Agora'
@@ -317,7 +314,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   const dailyPrice = (parseFloat(pageData.investment.price.replace(',', '.')) / 30).toFixed(2).replace('.', ',');
 
   return (
-    <div className={cn('min-h-screen', theme.bg)}>
+    <div className={cn('min-h-screen font-body', theme.bg)}>
         <header
           className="text-center py-8 px-6 bg-white"
         >
@@ -450,41 +447,53 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           <div className="max-w-2xl mx-auto space-y-8">
               
               <div
-                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''), theme.bg)}
+                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
-                  <div className="text-center mb-6">
-                    <h3 className={cn("text-xl font-bold font-poppins", theme.text)}>{pageData.investment.comparison.title}</h3>
-                    <div className="mt-3 bg-gray-100 p-4 rounded-lg text-left text-sm space-y-2">
-                       {pageData.investment.comparison.items.map((item, i) => (
-                         <p key={i} className="font-medium text-gray-700">{item}</p>
-                       ))}
-                    </div>
+                  <div className="bg-gray-50 p-6 rounded-lg mb-6">
+                    <p className="font-bold text-gray-900 mb-3 text-base font-poppins">O que você recebe:</p>
+                    <ul className="space-y-2">
+                      {pageData.investment.justifications.map((item, index) => (
+                        <li key={index} className="flex items-start gap-3 text-sm text-gray-700">
+                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className={cn("py-4 px-4 rounded-2xl", theme.bg)}>
-                      <div className={cn("font-black leading-none text-center font-poppins", theme.text)}>
-                          <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
-                          <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
-                      </div>
-                       <p className="text-center text-sm text-gray-600">Pagamento único, acesso vitalício</p>
-                      <p className={cn("text-center font-bold mt-2", theme.text)}>
-                        (Apenas R$ {dailyPrice} por dia no primeiro mês)
-                      </p>
+                  <div className="text-center">
+                    <div className="flex justify-center items-baseline gap-2 mb-1">
+                      <span className="text-sm uppercase text-gray-400 tracking-wide font-poppins">DE</span>
+                      <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
+                        R$ {pageData.investment.anchorPrice}
+                      </span>
+                    </div>
+                    
+                    <p className="text-sm uppercase text-gray-500 tracking-wide mb-1 font-poppins">POR APENAS</p>
+                    
+                    <div className={cn("font-black leading-none font-poppins", theme.text)}>
+                      <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
+                      <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
+                    </div>
+                    
+                    <p className="text-sm text-gray-600 mt-2">
+                      (R$ {dailyPrice} por dia em um período de 30 dias)
+                    </p>
                   </div>
                   
-                <div className="text-center mt-6">
-                    <Link 
-                      href="https://pay.kiwify.com.br/v2XN6QB" 
-                      className={cn(
-                        'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 font-poppins',
-                        theme.buttonGradient
-                      )}
-                    >
-                      <Check className="inline-block h-7 w-7 mr-2"/>
-                      SIM, QUERO O SISTEMA COMPLETO!
-                    </Link>
-                  <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
-                </div>
+                  <div className="text-center mt-6">
+                      <Link 
+                        href="https://pay.kiwify.com.br/v2XN6QB" 
+                        className={cn(
+                          'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 font-poppins',
+                          theme.buttonGradient
+                        )}
+                      >
+                        <Check className="inline-block h-7 w-7 mr-2"/>
+                        SIM, QUERO O SISTEMA COMPLETO!
+                      </Link>
+                    <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
+                  </div>
               </div>
 
                <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
