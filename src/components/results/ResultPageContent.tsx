@@ -135,8 +135,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     guarantee: {
       title: 'GARANTIA SEM ENROLAÇÃO',
-      text: (<>Teste por 7 dias. Não achou as receitas práticas? Não resolveu seu problema de variedade e cansaço? Devolvemos 100% do seu dinheiro. Simples assim.</>),
-      impact: "Seu único risco é continuar na exaustão que você está hoje."
+      text: (<>Teste por 7 dias. Não achou as receitas práticas? Não resolveu seu problema de variedade? Devolvemos 100% do seu dinheiro. Simples assim.</>),
+      impact: "Seu único risco é continuar como está."
     },
   },
   'mae-desacreditada-ao-extremo': {
@@ -235,7 +235,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     guarantee: {
       title: 'GARANTIA DE PERFORMANCE',
-      text: "7 dias. Se o sistema não otimizar seu tempo e o retorno sobre investimento, devolvemos 100% do seu investimento. Sem burocracia.",
+      text: "7 dias. Se o sistema não otimizar seu tempo e orçamento, devolvemos 100% do seu investimento. Sem burocracia.",
       impact: "Uma decisão lógica: ou funciona, ou é de graça."
     },
   },
@@ -477,7 +477,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </div>
               </section>
 
-              <section className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-100 to-emerald-100 border-2 border-green-200">
+              <section className="text-center p-8 rounded-2xl">
                   <Heart className={cn("h-10 w-10 mx-auto mb-3", theme.text)} />
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-3 font-poppins", theme.text)}>
                     {pageData.missionStatement.title}
@@ -526,3 +526,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
 
 
+
+
+    
