@@ -295,12 +295,22 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                             {index === 0 && <BookOpen className="w-6 h-6 text-blue-600" />}
                             {index === 1 && <Gift className="w-6 h-6 text-purple-600" />}
                             {index === 2 && <LifeBuoy className="w-6 h-6 text-green-600" />}
-                            <h4 className={cn("font-bold text-lg", theme.text)}>
+                            <h4 className={cn(
+                              "font-bold text-lg",
+                              index === 0 && "text-blue-900",
+                              index === 1 && "text-purple-900",
+                              index === 2 && "text-green-900"
+                            )}>
                               {section.title}
                             </h4>
                           </div>
                           {section.items.length > 0 && 
-                              <ul className="space-y-2 text-gray-700">
+                              <ul className={cn(
+                                "space-y-2",
+                                index === 0 && "text-blue-800",
+                                index === 1 && "text-purple-800",
+                                index === 2 && "text-green-800"
+                              )}>
                                   {section.items.map((item, i) => (
                                     <li key={i} className="flex items-start">
                                       <CheckCircle className={cn(
