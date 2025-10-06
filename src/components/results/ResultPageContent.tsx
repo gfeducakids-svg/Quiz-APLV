@@ -3,7 +3,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy, Heart, ArrowDown, HelpCircle, Smartphone, Mail } from 'lucide-react';
+import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy, Heart, ArrowDown, HelpCircle, Smartphone, Mail, Clock } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -43,7 +43,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: "O medo que você sente agora é real. Mas não precisa durar para sempre.",
     subtitle: "Você vai reconhecer alguns erros abaixo. E descobrir que tem saída para todos eles.",
     errors: [
-      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra achando que é seguro. A reação vem mesmo assim - lactose e proteína do leito são diferentes.', consequence: 'Cada erro rouba sua confiança e aumenta o medo.' },
+      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra achando que é seguro. A reação vem mesmo assim - lactose e proteína do leite são diferentes.', consequence: 'Cada erro rouba sua confiança e aumenta o medo.' },
       { title: 'Repetir as mesmas 3 receitas', description: 'Frango, arroz, batata. Sempre. Você tem medo de testar algo novo. Ele enjoa e recusa.', consequence: 'A refeição vira batalha, não momento de carinho.' },
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
@@ -178,13 +178,13 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "O SISTEMA QUE ELIMINA O IMPROVISO",
-        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. Retorno imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
+        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. retorno sobre investimento imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
         { title: 'BANCO DE DADOS COM 1000 RECEITAS', benefit: 'Eficiência e variedade', items: ['PDF otimizado com filtros inteligentes.', 'Busca por ingrediente, tempo de preparo e idade.', 'Funciona 100% offline no seu celular.'] },
         { title: 'DASHBOARD NUTRICIONAL', benefit: 'Decisões baseadas em dados', items: ['Informação nutricional completa para cada receita.', 'Calorias, proteínas, carboidratos e gorduras.', 'Garante uma dieta balanceada sem achismos.'] },
-        { title: 'MÓDULOS DE OTIMIZAÇÃO', benefit: 'Retorno sobre investimento de tempo e dinheiro', items: ['Listas de compra semanais para evitar desperdício.', 'Protocolo SOS para gerenciar crises sem pânico.'] },
+        { title: 'MÓDULOS DE OTIMIZAÇÃO', benefit: 'retorno sobre investimento de tempo e dinheiro', items: ['Listas de compra semanais para evitar desperdício.', 'Protocolo SOS para gerenciar crises sem pânico.'] },
     ],
     investment: {
         price: '35,90',
@@ -331,107 +331,105 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <section className="py-8 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
-            <div className="rounded-2xl border-x-2 border-gray-200">
+            <div className="rounded-2xl border-x-2 border-gray-200 bg-white shadow-xl">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
                   <p className="text-xl md:text-2xl font-bold font-poppins">Cardápio sem Leite da Mãe Prevenida</p>
                   <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins mt-2">
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
-              <div className="bg-white rounded-b-2xl shadow-xl">
-                <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6")}>
-                    {pageData.solutionSections.map((section, index) => (
-                        <div 
-                          key={index} 
-                          className={cn(
-                            "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
-                            "bg-gradient-to-br",
-                            index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
-                            index === 1 && "from-purple-100 to-pink-100 border-purple-400",
-                            index === 2 && "from-green-100 to-emerald-100 border-green-400"
-                          )}
-                        >
-                            <div className="flex items-center gap-3 mb-3">
-                              {index === 0 && <BookOpen className="w-8 h-8 text-blue-600" />}
-                              {index === 1 && <Gift className="w-8 h-8 text-purple-600" />}
-                              {index === 2 && <LifeBuoy className="w-8 h-8 text-green-600" />}
-                              <div>
-                                <h4 className={cn(
-                                  "font-bold text-lg font-poppins",
-                                  index === 0 && "text-blue-900",
-                                  index === 1 && "text-purple-900",
-                                  index === 2 && "text-green-900"
-                                )}>
-                                  {section.title}
-                                </h4>
-                                 <p className={cn(
-                                  "text-sm font-semibold",
-                                  index === 0 && "text-blue-700",
-                                  index === 1 && "text-purple-700",
-                                  index === 2 && "text-green-700"
-                                )}>
-                                  {section.benefit}
-                                </p>
-                              </div>
-                            </div>
-                            {section.items.length > 0 && 
-                                <ul className={cn(
-                                  "space-y-2",
-                                  index === 0 && "text-blue-800",
-                                  index === 1 && "text-purple-800",
-                                  index === 2 && "text-green-800"
-                                )}>
-                                    {section.items.map((item, i) => (
-                                      <li key={i} className="flex items-start">
-                                        <CheckCircle className={cn(
-                                            "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
-                                            index === 0 && "text-blue-600",
-                                            index === 1 && "text-purple-600", 
-                                            index === 2 && "text-green-600"
-                                          )} />
-                                        <span>{item}</span>
-                                      </li>
-                                    ))}
-                                </ul>
-                            }
-                        </div>
-                    ))}
-                </div>
-                <div className="my-6 h-[1px] bg-gray-200 max-w-lg mx-auto"></div>
-                <div className="p-4 md:p-6">
-                  <div className="text-center">
-                    <div className="flex justify-center items-baseline gap-2">
-                      <span className="text-sm uppercase text-gray-400 tracking-wide">DE</span>
-                      <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
-                        R$ {pageData.investment.anchorPrice}
-                      </span>
-                    </div>
-                    
-                    <p className="text-sm uppercase text-gray-500 tracking-wide my-1">POR APENAS</p>
-                    
-                    <div className={cn("leading-none text-emerald-600")}>
-                      <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
-                      <span className="font-black text-7xl md:text-8xl">{pageData.investment.price}</span>
-                    </div>
-                    
-                    <p className="text-sm text-gray-600 mt-3">
-                      <span className="font-bold text-emerald-600">R$ {dailyPrice}</span> por dia
-                    </p>
-                  </div>
-                  
-                  <div className="text-center mt-6">
-                      <Link 
-                        href="https://pay.kiwify.com.br/v2XN6QB" 
+              <div className="bg-gray-50 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {pageData.solutionSections.map((section, index) => (
+                      <div 
+                        key={index} 
                         className={cn(
-                          'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 font-poppins',
-                          theme.buttonGradient
+                          "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
+                          "bg-gradient-to-br",
+                          index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
+                          index === 1 && "from-purple-100 to-pink-100 border-purple-400",
+                          index === 2 && "from-green-100 to-emerald-100 border-green-400"
                         )}
                       >
-                        <Check className="inline-block h-7 w-7 mr-2"/>
-                        SIM, QUERO O SISTEMA COMPLETO!
-                      </Link>
-                    <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
+                          <div className="flex items-center gap-3 mb-3">
+                            {index === 0 && <BookOpen className="w-8 h-8 text-blue-600" />}
+                            {index === 1 && <Gift className="w-8 h-8 text-purple-600" />}
+                            {index === 2 && <LifeBuoy className="w-8 h-8 text-green-600" />}
+                            <div>
+                              <h4 className={cn(
+                                "font-bold text-lg font-poppins",
+                                index === 0 && "text-blue-900",
+                                index === 1 && "text-purple-900",
+                                index === 2 && "text-green-900"
+                              )}>
+                                {section.title}
+                              </h4>
+                                <p className={cn(
+                                "text-sm font-semibold",
+                                index === 0 && "text-blue-700",
+                                index === 1 && "text-purple-700",
+                                index === 2 && "text-green-700"
+                              )}>
+                                {section.benefit}
+                              </p>
+                            </div>
+                          </div>
+                          {section.items.length > 0 && 
+                              <ul className={cn(
+                                "space-y-2",
+                                index === 0 && "text-blue-800",
+                                index === 1 && "text-purple-800",
+                                index === 2 && "text-green-800"
+                              )}>
+                                  {section.items.map((item, i) => (
+                                    <li key={i} className="flex items-start">
+                                      <CheckCircle className={cn(
+                                          "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
+                                          index === 0 && "text-blue-600",
+                                          index === 1 && "text-purple-600", 
+                                          index === 2 && "text-green-600"
+                                        )} />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
+                              </ul>
+                          }
+                      </div>
+                  ))}
+              </div>
+              <div className="my-6 h-[1px] bg-gray-200 max-w-lg mx-auto"></div>
+              <div className="p-4 md:p-6">
+                <div className="text-center">
+                  <div className="flex justify-center items-baseline gap-2">
+                    <span className="text-sm uppercase text-gray-400 tracking-wide">DE</span>
+                    <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
+                      R$ {pageData.investment.anchorPrice}
+                    </span>
                   </div>
+                  
+                  <p className="text-sm uppercase text-gray-500 tracking-wide my-1">POR APENAS</p>
+                  
+                  <div className={cn("leading-none text-emerald-600")}>
+                    <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
+                    <span className="font-black text-7xl md:text-8xl">{pageData.investment.price}</span>
+                  </div>
+                  
+                  <p className="text-sm text-gray-600 mt-3">
+                    <span className="font-bold text-emerald-600">R$ {dailyPrice}</span> por dia
+                  </p>
+                </div>
+                
+                <div className="text-center mt-6">
+                    <Link 
+                      href="https://pay.kiwify.com.br/v2XN6QB" 
+                      className={cn(
+                        'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 font-poppins',
+                        theme.buttonGradient
+                      )}
+                    >
+                      <Check className="inline-block h-7 w-7 mr-2"/>
+                      SIM, QUERO O SISTEMA COMPLETO!
+                    </Link>
+                  <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
                 </div>
               </div>
             </div>
@@ -441,13 +439,15 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
 
-               <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
-                  <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ PREÇO PROMOCIONAL POR TEMPO LIMITADO</h3>
-                   <p className="text-red-800 mt-2">{pageData.countdown.justification}</p>
-                   <p className="text-red-800">Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00</p>
-                  <div className="mt-4">
+              <section className="relative text-center bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-400 rounded-2xl p-8 shadow-xl overflow-hidden">
+                  <div className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full transform rotate-12 shadow-lg">OFERTA RELÂMPAGO</div>
+                  <Clock className="h-10 w-10 mx-auto mb-4 text-red-600" />
+                  <h3 className="text-2xl md:text-3xl font-bold text-red-800 font-poppins">⚠️ DECISÃO IMPORTANTE</h3>
+                   <p className="text-red-900 mt-3 max-w-md mx-auto">O preço de R$ 35,90 é exclusivo para quem age AGORA. Após o timer, volta para o valor integral de R$ 97,00.</p>
+                  <div className="my-4">
                       <CountdownTimer initialMinutes={pageData.countdown.minutes} />
                   </div>
+                  <p className="text-xs text-gray-600">Após este período, o sistema ajusta automaticamente para o preço padrão.</p>
               </section>
 
               <section className={cn("text-center p-8 rounded-2xl")}>
@@ -496,4 +496,5 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
 
