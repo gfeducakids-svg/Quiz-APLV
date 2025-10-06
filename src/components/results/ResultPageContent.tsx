@@ -23,7 +23,6 @@ interface ResultPageProps {
     investment: {
       price: string;
       anchorPrice: string;
-      justifications: string[];
     };
     countdown: {
       minutes: number;
@@ -61,13 +60,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '35,90',
         anchorPrice: '97',
-        justifications: [
-          '1000 receitas com informação nutricional completa',
-          'Organizadas por idade, tempo e refeição',
-          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
-          'Guia SOS para agir rápido em reações',
-          'Acesso vitalício por um pagamento único'
-        ]
     },
     countdown: {
       minutes: 14,
@@ -111,13 +103,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '35,90',
         anchorPrice: '97',
-        justifications: [
-          '1000 receitas com informação nutricional completa',
-          'Organizadas por idade, tempo e refeição',
-          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
-          'Guia SOS para agir rápido em reações',
-          'Acesso vitalício por um pagamento único'
-        ]
     },
     countdown: {
       minutes: 11,
@@ -161,13 +146,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '35,90',
         anchorPrice: '97',
-        justifications: [
-          '1000 receitas com informação nutricional completa',
-          'Organizadas por idade, tempo e refeição',
-          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
-          'Guia SOS para agir rápido em reações',
-          'Acesso vitalício por um pagamento único'
-        ]
     },
     countdown: {
       minutes: 9,
@@ -211,13 +189,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     investment: {
         price: '35,90',
         anchorPrice: '97',
-        justifications: [
-          '1000 receitas com informação nutricional completa',
-          'Organizadas por idade, tempo e refeição',
-          'Inclui receitas de FESTA (seu filho nunca fica de fora)',
-          'Guia SOS para agir rápido em reações',
-          'Acesso vitalício por um pagamento único'
-        ]
     },
     countdown: {
       minutes: 11,
@@ -366,67 +337,67 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
-              <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6", theme.border)}>
-                  {pageData.solutionSections.map((section, index) => (
-                      <div 
-                        key={index} 
-                        className={cn(
-                          "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
-                          "bg-gradient-to-br",
-                          index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
-                          index === 1 && "from-purple-100 to-pink-100 border-purple-400",
-                          index === 2 && "from-green-100 to-emerald-100 border-green-400"
-                        )}
-                      >
-                          <div className="flex items-center gap-3 mb-3">
-                            {index === 0 && <BookOpen className="w-8 h-8 text-blue-600" />}
-                            {index === 1 && <Gift className="w-8 h-8 text-purple-600" />}
-                            {index === 2 && <LifeBuoy className="w-8 h-8 text-green-600" />}
-                            <div>
-                              <h4 className={cn(
-                                "font-bold text-lg font-poppins",
-                                index === 0 && "text-blue-900",
-                                index === 1 && "text-purple-900",
-                                index === 2 && "text-green-900"
-                              )}>
-                                {section.title}
-                              </h4>
-                               <p className={cn(
-                                "text-sm font-semibold",
-                                index === 0 && "text-blue-700",
-                                index === 1 && "text-purple-700",
-                                index === 2 && "text-green-700"
-                              )}>
-                                {section.benefit}
-                              </p>
+              <div className="bg-white rounded-b-2xl border-x-2 border-b-2 border-gray-200 shadow-xl">
+                <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6")}>
+                    {pageData.solutionSections.map((section, index) => (
+                        <div 
+                          key={index} 
+                          className={cn(
+                            "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
+                            "bg-gradient-to-br",
+                            index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
+                            index === 1 && "from-purple-100 to-pink-100 border-purple-400",
+                            index === 2 && "from-green-100 to-emerald-100 border-green-400"
+                          )}
+                        >
+                            <div className="flex items-center gap-3 mb-3">
+                              {index === 0 && <BookOpen className="w-8 h-8 text-blue-600" />}
+                              {index === 1 && <Gift className="w-8 h-8 text-purple-600" />}
+                              {index === 2 && <LifeBuoy className="w-8 h-8 text-green-600" />}
+                              <div>
+                                <h4 className={cn(
+                                  "font-bold text-lg font-poppins",
+                                  index === 0 && "text-blue-900",
+                                  index === 1 && "text-purple-900",
+                                  index === 2 && "text-green-900"
+                                )}>
+                                  {section.title}
+                                </h4>
+                                 <p className={cn(
+                                  "text-sm font-semibold",
+                                  index === 0 && "text-blue-700",
+                                  index === 1 && "text-purple-700",
+                                  index === 2 && "text-green-700"
+                                )}>
+                                  {section.benefit}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                          {section.items.length > 0 && 
-                              <ul className={cn(
-                                "space-y-2",
-                                index === 0 && "text-blue-800",
-                                index === 1 && "text-purple-800",
-                                index === 2 && "text-green-800"
-                              )}>
-                                  {section.items.map((item, i) => (
-                                    <li key={i} className="flex items-start">
-                                      <CheckCircle className={cn(
-                                          "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
-                                          index === 0 && "text-blue-600",
-                                          index === 1 && "text-purple-600", 
-                                          index === 2 && "text-green-600"
-                                        )} />
-                                      <span>{item}</span>
-                                    </li>
-                                  ))}
-                              </ul>
-                          }
-                      </div>
-                  ))}
-              </div>
-              <div
-                className={cn("bg-white border-2 rounded-b-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
-              >
+                            {section.items.length > 0 && 
+                                <ul className={cn(
+                                  "space-y-2",
+                                  index === 0 && "text-blue-800",
+                                  index === 1 && "text-purple-800",
+                                  index === 2 && "text-green-800"
+                                )}>
+                                    {section.items.map((item, i) => (
+                                      <li key={i} className="flex items-start">
+                                        <CheckCircle className={cn(
+                                            "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
+                                            index === 0 && "text-blue-600",
+                                            index === 1 && "text-purple-600", 
+                                            index === 2 && "text-green-600"
+                                          )} />
+                                        <span>{item}</span>
+                                      </li>
+                                    ))}
+                                </ul>
+                            }
+                        </div>
+                    ))}
+                </div>
+                <div className="my-6 h-[1px] bg-gray-200 max-w-lg mx-auto"></div>
+                <div className="p-6 md:p-8">
                   <div className="text-center">
                     <div className="flex justify-center items-baseline gap-2 mb-2">
                       <span className="text-sm uppercase text-gray-400 tracking-wide font-poppins">DE</span>
@@ -437,9 +408,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     
                     <p className="text-sm uppercase text-gray-500 tracking-wide mb-2 font-poppins">POR APENAS</p>
                     
-                    <div className={cn("font-black leading-none text-emerald-600")}>
+                    <div className={cn("leading-none text-emerald-600")}>
                       <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
-                      <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
+                      <span className="font-black text-7xl md:text-8xl">{pageData.investment.price}</span>
                     </div>
                     
                     <p className="text-sm text-gray-600 mt-3">
@@ -460,6 +431,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       </Link>
                     <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
                   </div>
+                </div>
               </div>
           </div>
         </section>
@@ -484,8 +456,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </h3>
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
-              
-               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
+
+              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
                     {pageData.guarantee.title}
@@ -495,7 +467,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       {pageData.guarantee.impact}
                   </div>
               </section>
-
+              
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
