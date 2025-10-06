@@ -423,17 +423,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               <div
                 className={cn("bg-white border-2 rounded-b-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
-                  <div className="bg-gray-50 p-6 rounded-lg mb-6">
-                    <p className="font-bold text-gray-900 mb-3 text-base font-poppins">O que você recebe:</p>
-                    <ul className="space-y-2">
-                      {pageData.investment.justifications.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3 text-sm text-gray-700">
-                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
                   <div className="text-center">
                     <div className="flex justify-center items-baseline gap-2 mb-1">
@@ -491,7 +480,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </h3>
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
-
+              
               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
@@ -531,4 +520,5 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   );
 }
 
+    
     
