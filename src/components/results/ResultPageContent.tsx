@@ -497,6 +497,17 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
               
+               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
+                  <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
+                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
+                    {pageData.guarantee.title}
+                  </h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guarantee.text}</div>
+                  <div className={cn("mt-6 p-4 rounded-lg font-bold text-lg", theme.bg, theme.text)}>
+                      {pageData.guarantee.impact}
+                  </div>
+              </section>
+
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
@@ -517,17 +528,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                 <p className="text-center mt-4 text-gray-600">
                   <strong>Ainda tem dúvidas?</strong> Nosso suporte responde em minutos. Chame no chat!
                 </p>
-              </section>
-
-              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
-                  <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
-                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
-                    {pageData.guarantee.title}
-                  </h3>
-                  <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guarantee.text}</div>
-                  <div className={cn("mt-6 p-4 rounded-lg font-bold text-lg", theme.bg, theme.text)}>
-                      {pageData.guarantee.impact}
-                  </div>
               </section>
 
           </div>
