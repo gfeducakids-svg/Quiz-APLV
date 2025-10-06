@@ -300,7 +300,12 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                               <ul className="space-y-2 text-gray-700">
                                   {section.items.map((item, i) => (
                                     <li key={i} className="flex items-start">
-                                      <CheckCircle className={cn("h-5 w-5 mr-2 mt-0.5 flex-shrink-0", theme.text)} />
+                                      <CheckCircle className={cn(
+                                        "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
+                                        index === 0 && "text-blue-600",
+                                        index === 1 && "text-purple-600", 
+                                        index === 2 && "text-green-600"
+                                      )} />
                                       <span>{item}</span>
                                     </li>
                                   ))}
