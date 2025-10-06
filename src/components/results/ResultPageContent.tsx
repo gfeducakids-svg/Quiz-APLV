@@ -54,7 +54,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         title: "NÃO É CULPA SUA. É FALTA DE UM SISTEMA.",
         text: (<>Respira fundo. Isso que você está sentindo? Outras 8.000 mães sentiram. E elas superaram. Não sozinhas, mas com o sistema certo. Você não precisa ter medo a cada refeição. Precisa ter um mapa seguro. E ele existe.</>)
     },
-    solutionTitle: 'O Sistema Completo Para Sua Tranquilidade',
+    solutionTitle: 'O que você recebe:',
     solutionSections: [
         { title: '1000 RECEITAS SEGURAS', benefit: 'Variedade sem medo de errar', items: ['Receitas para todas as idades e refeições.', 'Passo a passo simples, testado e validado.', 'Ingredientes fáceis de achar e substituir.'] },
         { title: 'CARDÁPIOS PRONTOS', benefit: 'Nunca mais pensar "o que fazer hoje?"', items: ['Cardápios semanais prontos para seguir.', 'Lista de compras automática para economizar tempo.', 'Equilíbrio nutricional garantido por especialistas.'] },
@@ -104,7 +104,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         title: "VOCÊ NÃO DEVERIA ESTAR SOZINHA NISSO.",
         text: (<>Você merecia ter tido um sistema desde o dia 1. Não é sua culpa não ter encontrado antes - essas informações estão espalhadas de propósito para vender produtos caros. A luta do improviso pode (e vai) acabar hoje.</>)
     },
-    solutionTitle: 'Seu Arsenal Para Ter Paz e Variedade',
+    solutionTitle: 'O que você recebe:',
     solutionSections: [
         { title: 'VARIEDADE INFINITA', benefit: 'Fim da monotonia alimentar', items: ['+200 cafés da manhã', '+300 lanches escolares', '+400 almoços e jantares', 'Filtros por tempo de preparo.'] },
         { title: 'RECEITAS DE FESTA', benefit: 'Seu filho incluído em TODOS os momentos', items: ['Bolos de aniversário, docinhos e salgados seguros.', 'Instruções para evitar contaminação cruzada.'] },
@@ -154,7 +154,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         title: "A DIFERENÇA DESTA VEZ É O MÉTODO.",
         text: (<>A questão não é ter 'mais receitas', é ter o SISTEMA certo. É ter informação validada e centralizada. Você não está apostando no escuro. Está seguindo um caminho que 8.347 mães já trilharam com sucesso. Desta vez, você não está sozinha.</>)
     },
-    solutionTitle: 'O Sistema Validado que Você Nunca Teve',
+    solutionTitle: 'O que você recebe:',
     solutionSections: [
         { title: 'UM ÚNICO LUGAR', benefit: 'Fim da confusão de informações', items: ['Tudo o que você precisa em um único PDF.', 'Sem informações conflitantes e duvidosas.', 'Acesso offline para consultar em qualquer lugar.'] },
         { title: 'VALIDAÇÃO NUTRICIONAL', benefit: 'Confiança no que você serve', items: ['Criado por nutricionistas especialistas em APLV.', 'Testado e aprovado por mais de 8.000 mães.', 'Balanceamento de macros e micros pensado para APLV.'] },
@@ -204,7 +204,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         title: "A SOLUÇÃO É UM SISTEMA, NÃO UM 'JEITINHO'.",
         text: "Esses custos e riscos são o resultado direto da falta de um sistema de informação estruturada. O método abaixo não é sobre 'dicas', é sobre um processo validado que elimina essas três falhas de forma mensurável."
     },
-    solutionTitle: 'O Sistema de Alimentação Sem Leite',
+    solutionTitle: 'O que você recebe:',
     solutionSections: [
         { title: 'BANCO DE DADOS COM 1000 RECEITAS', benefit: 'Eficiência e variedade', items: ['PDF otimizado com filtros inteligentes.', 'Busca por ingrediente, tempo de preparo e idade.', 'Funciona 100% offline no seu celular.'] },
         { title: 'DASHBOARD NUTRICIONAL', benefit: 'Decisões baseadas em dados', items: ['Informação nutricional completa para cada receita.', 'Calorias, proteínas, carboidratos e gorduras.', 'Garante uma dieta balanceada sem achismos.'] },
@@ -425,14 +425,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       </div>
                   ))}
               </div>
-          </div>
-        </section>
-
-        <div className="bg-gray-50 py-8 px-4">
-          <div className="max-w-2xl mx-auto space-y-8">
-              
-              <div
-                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
+                <div
+                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto mt-8 ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
                   <div className="bg-gray-50 p-6 rounded-lg mb-6">
                     <p className="font-bold text-gray-900 mb-3 text-base font-poppins">O que você recebe:</p>
@@ -480,6 +474,12 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
                   </div>
               </div>
+          </div>
+        </section>
+
+        <div className="bg-gray-50 py-8 px-4">
+          <div className="max-w-2xl mx-auto space-y-8">
+              
 
                <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ PREÇO PROMOCIONAL POR TEMPO LIMITADO</h3>
