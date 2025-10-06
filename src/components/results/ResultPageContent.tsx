@@ -1,8 +1,8 @@
+
 // src/components/results/ResultPageContent.tsx
 'use client';
 
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
@@ -226,7 +226,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   return (
     <div className={cn('min-h-screen', theme.bg)}>
         <header
-          className="text-center py-12 px-6 bg-white"
+          className="text-center py-8 px-6 bg-white"
         >
           <div
               className={cn("inline-block text-white text-sm font-bold py-2 px-5 rounded-full shadow-md mb-6 font-poppins", theme.gradient)}
@@ -241,7 +241,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           </p>
         </header>
         
-        <section className="py-12 px-4 bg-gray-50">
+        <section className="py-8 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
                   <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 text-red-700 font-poppins">
@@ -273,7 +273,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           </div>
         </section>
 
-        <section className="py-12 px-4 bg-white">
+        <section className="py-8 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
                   <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins">
@@ -344,7 +344,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           </div>
         </section>
 
-        <div className="bg-gray-50 py-12 px-4">
+        <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
               <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ OFERTA POR TEMPO LIMITADO</h3>
@@ -354,7 +354,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               </section>
               
               <div
-                className={cn("bg-gradient-to-br from-white via-gray-50 to-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
+                className={cn("bg-gradient-to-br from-white via-gray-50 to-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''), theme.bg)}
               >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
                     <span className="text-sm font-medium uppercase text-gray-500 tracking-wide">DE</span>
