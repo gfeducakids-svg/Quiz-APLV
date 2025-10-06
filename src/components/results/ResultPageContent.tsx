@@ -158,7 +158,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     faq: [
         { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
         { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira?", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
         { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
@@ -178,7 +178,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "O SISTEMA QUE ELIMINA O IMPROVISO",
-        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. retorno sobre investimento imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
+        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. Retorno imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
@@ -201,7 +201,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     faq: [
         { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
         { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira?", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
         { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
@@ -439,7 +439,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
 
-              <section className="relative text-center bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-400 rounded-2xl p-8 shadow-xl overflow-hidden">
+              <section className="relative text-center bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-400 rounded-2xl p-8 shadow-xl">
                   <div className="absolute -top-3 -right-3 bg-red-600 text-white text-xs font-bold py-1 px-3 rounded-full transform rotate-12 shadow-lg">OFERTA RELÂMPAGO</div>
                   <Clock className="h-10 w-10 mx-auto mb-4 text-red-600" />
                   <h3 className="text-2xl md:text-3xl font-bold text-red-800 font-poppins">⚠️ DECISÃO IMPORTANTE</h3>
@@ -496,5 +496,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
 
 
