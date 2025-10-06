@@ -1,14 +1,11 @@
 // src/components/results/ResultPageContent.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { identifyPersonaErrors, type IdentifyPersonaErrorsOutput } from '@/ai/flows/identify-persona-errors';
-import { generateUrgentCTA, type GenerateUrgentCTAOutput } from '@/ai/flows/generate-urgent-cta';
 
 interface ResultPageProps {
     persona: string;
@@ -200,9 +197,6 @@ const personaThemes: Record<string, { bg: string; text: string; border: string, 
   },
 };
 
-const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 }}};
-const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 }}};
-
 export function ResultPageContent({ persona }: { persona: string, searchParams: any }) {
   const pageData = pagesData[persona as keyof typeof pagesData];
   const theme = personaThemes[persona] || personaThemes['mae-em-panico-inicial'];
@@ -224,31 +218,26 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   }
 
   return (
-    <motion.div 
+    <div 
       className={cn('min-h-screen', theme.bg)}
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
     >
-        <motion.header
-          variants={itemVariants}
+        <header
           className="text-center py-12 px-6 bg-white"
         >
-          <motion.div
-              variants={itemVariants}
+          <div
               className={cn("inline-block text-white text-sm font-bold py-2 px-5 rounded-full shadow-md mb-6", theme.gradient)}
           >
             🎯 SEU DIAGNÓSTICO: {pageData.badgeText}
-          </motion.div>
+          </div>
           <h1 className={cn("text-3xl md:text-4xl font-bold !leading-tight max-w-3xl mx-auto", theme.text)}>
             {pageData.title}
           </h1>
           <p className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             "{pageData.socialProof}"
           </p>
-        </motion.header>
+        </header>
         
-        <motion.section variants={itemVariants} className="py-12 px-4 bg-gray-50">
+        <section className="py-12 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
                   <h2 className={cn("text-2xl md:text-3xl font-bold flex items-center justify-center gap-3", "text-red-700")}>
@@ -257,9 +246,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               </div>
               <div className="space-y-6">
               {pageData.errors.map((error, index) => (
-                  <motion.div 
+                  <div
                       key={index}
-                      variants={itemVariants}
                       className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
                   >
                       <div className="flex items-start">
@@ -275,13 +263,13 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                           </p>
                         </div>
                       </div>
-                  </motion.div>
+                  </div>
               ))}
               </div>
           </div>
-        </motion.section>
+        </section>
 
-        <motion.section variants={itemVariants} className="py-12 px-4 bg-white">
+        <section className="py-12 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
                   <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
@@ -290,9 +278,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               </div>
               <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-b-2xl border-x-2 border-b-2", theme.border)}>
                   {pageData.solutionSections.map((section, index) => (
-                      <motion.div 
+                      <div 
                         key={index} 
-                        variants={itemVariants} 
                         className={cn(
                           "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
                           "bg-gradient-to-br",
@@ -332,23 +319,22 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                                   </ul>
                               </div>
                           )}
-                      </motion.div>
+                      </div>
                   ))}
               </div>
           </div>
-        </motion.section>
+        </section>
 
         <div className="bg-gray-50 py-12 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
-              <motion.section variants={itemVariants} className="text-center bg-red-50 border-2 border-red-300 rounded-xl p-6 shadow-lg">
+              <section className="text-center bg-red-50 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700">⏰ OFERTA POR TEMPO LIMITADO</h3>
                   <div className="mt-4">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
                   </div>
-              </motion.section>
+              </section>
               
-              <motion.div
-                variants={itemVariants}
+              <div
                 className={cn("bg-gradient-to-br from-white via-gray-50 to-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
                   <div className="flex justify-center items-baseline gap-2 mb-3">
@@ -378,7 +364,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     </ul>
                   </div>
 
-                <motion.div variants={itemVariants} className="text-center mt-8">
+                <div className="text-center mt-8">
                     <Link 
                       href="https://pay.kiwify.com.br/v2XN6QB" 
                       className={cn(
@@ -390,10 +376,10 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       {pageData.ctaButton.text}
                     </Link>
                   <p className="mt-3 text-sm text-gray-600">{pageData.ctaSubtitle}</p>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
-              <motion.section variants={itemVariants} className={cn("text-center bg-white p-8 rounded-2xl border-2 shadow-md", theme.border)}>
+              <section className={cn("text-center bg-white p-8 rounded-2xl border-2 shadow-md", theme.border)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4", theme.text)}>
                     {pageData.guaranteeTitle}
@@ -405,6 +391,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               </section>
           </div>
         </div>
-      </motion.div>
+      </div>
   );
 }
