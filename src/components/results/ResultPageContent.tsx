@@ -37,9 +37,6 @@ interface ResultPageProps {
       text: React.ReactNode;
       impact: string;
     };
-    finalCTA: {
-        text: string;
-    };
 }
 
 const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
@@ -88,13 +85,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
-      title: 'SUA PAZ DE VOLTA, OU SEU DINHEIRO',
-      text: (<>Nós sabemos o MEDO que você sente. Por isso, nossa garantia é simples: teste o cardápio por 7 dias. Se não se sentir mais segura, aliviada e confiante, é só pedir seu dinheiro de volta com um único email.</>),
-      impact: "Seu único risco é continuar sentindo o medo que sente hoje."
+      title: 'GARANTIA INCONDICIONAL',
+      text: (<>Nós sabemos o MEDO que você sente. Por isso, teste o cardápio por 7 dias. Se não se sentir mais segura, devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.</>),
+      impact: "Você literalmente NÃO TEM NADA A PERDER."
     },
-    finalCTA: {
-      text: 'Quero Alimentar Meu Filho SEM MEDO'
-    }
   },
   'mae-guerreira-esgotada': {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
@@ -145,9 +139,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       text: (<>Teste por 7 dias. Não achou as receitas práticas? Não resolveu seu problema de variedade e cansaço? Devolvemos 100% do seu dinheiro. Simples assim.</>),
       impact: "Seu único risco é continuar na exaustão que você está hoje."
     },
-    finalCTA: {
-      text: 'Quero Paz e Variedade na Cozinha'
-    }
   },
   'mae-desacreditada-ao-extremo': {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
@@ -194,13 +185,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { question: "E se eu não gostar?", answer: "Você tem 7 dias de garantia incondicional. É só enviar um email e devolvemos 100% do valor, sem perguntas ou burocracia." }
     ],
     guarantee: {
-      title: 'GARANTIA DE RISCO ZERO (DE VERDADE)',
+      title: 'GARANTIA REFORÇADA PARA VOCÊ',
       text: (<>Eu sei que você não acredita mais em garantias. A nossa é diferente. Se em 7 dias você achar que isso é "só mais um e-book", eu devolvo seu dinheiro E te faço um PIX de R$ 50 pelo seu tempo perdido.</>),
       impact: "É isso mesmo. O risco é 100% meu. Você literalmente não tem como sair perdendo."
     },
-    finalCTA: {
-      text: 'Quero Minha Última Tentativa (COM RISCO ZERO)'
-    }
   },
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
@@ -251,9 +239,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       text: "Nossa garantia é baseada em performance. Se em 7 dias o sistema não otimizar seu tempo e seu orçamento de forma clara, devolvemos 100% do seu investimento. Sem burocracia.",
       impact: "É uma decisão lógica: ou o sistema entrega o resultado prometido, ou ele sai de graça."
     },
-    finalCTA: {
-      text: 'Quero Implementar o Sistema Agora'
-    }
   },
 };
 
@@ -511,18 +496,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </h3>
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
-
-              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
-                  <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
-                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
-                    {pageData.guarantee.title}
-                  </h3>
-                  <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guarantee.text}</div>
-                  <div className={cn("mt-6 p-4 rounded-lg font-bold text-lg", theme.bg, theme.text)}>
-                      {pageData.guarantee.impact}
-                  </div>
-              </section>
-
+              
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
@@ -545,18 +519,17 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                 </p>
               </section>
 
-              <section className="text-center py-6">
-                 <Link 
-                    href="https://pay.kiwify.com.br/v2XN6QB" 
-                    className={cn(
-                      'w-full max-w-lg mx-auto block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 font-poppins',
-                      theme.buttonGradient
-                    )}
-                  >
-                    {pageData.finalCTA.text}
-                  </Link>
-                   <p className="mt-3 text-sm text-gray-600 flex items-center justify-center gap-2"><Shield className="h-4 w-4 text-gray-500" /> Pagamento Seguro • Acesso Imediato • 7 Dias de Garantia</p>
+              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
+                  <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
+                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
+                    {pageData.guarantee.title}
+                  </h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guarantee.text}</div>
+                  <div className={cn("mt-6 p-4 rounded-lg font-bold text-lg", theme.bg, theme.text)}>
+                      {pageData.guarantee.impact}
+                  </div>
               </section>
+
           </div>
         </div>
       </div>
