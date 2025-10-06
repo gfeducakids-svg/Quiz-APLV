@@ -3,7 +3,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy } from 'lucide-react';
+import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy, Heart, ArrowDown } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ interface ResultPageProps {
     title: React.ReactNode;
     socialProof: string;
     errors: { title: string; description: string }[];
+    transitionCopy: { title: string; text: React.ReactNode };
     solutionTitle: string;
     solutionSections: { title: string; items: string[], details?: string[] }[];
     countdownMinutes: number;
@@ -23,6 +24,7 @@ interface ResultPageProps {
       anchorPrice: string;
       justifications: string[];
     };
+    missionStatement: { title: string; text: React.ReactNode };
     ctaButton: {
         text: string;
     };
@@ -42,6 +44,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Repetir as mesmas 3 receitas por medo de errar e causar reações.', description: 'Seu filho enjoa, você se desespera' },
       { title: 'Acreditar que "só um pouquinho" não vai fazer mal.', description: 'Inflama o intestino e atrasa a cura' },
     ],
+    transitionCopy: {
+        title: "MAS CALMA... TEM SOLUÇÃO",
+        text: "Esses 3 erros podem ser evitados HOJE com o sistema certo nas suas mãos. Você não precisa mais ter medo de cada refeição."
+    },
     solutionTitle: 'O CARDÁPIO SEM LEITE DA MÃE PREVENIDA',
     solutionSections: [
         { title: '1000 RECEITAS TESTADAS', items: ['Organizadas por idade, refeição e tempo de preparo', 'Informação nutricional completa para cada receita', 'Passo a passo detalhado e ingredientes exatos'], details: ['Calorias (kcal)', 'Proteínas, carboidratos, gorduras'] },
@@ -60,6 +66,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
             'Acesso vitalício por um pagamento único'
         ]
     },
+    missionStatement: {
+        title: "Por Que R$ 35,90?",
+        text: "Porque você já está sobrecarregada. Nossa missão é tornar a alimentação segura ACESSÍVEL, não adicionar um peso financeiro à sua jornada."
+    },
     ctaButton: { text: 'QUERO AS 1000 RECEITAS AGORA' },
     ctaSubtitle: 'Acesso imediato • Pagamento seguro • Risco zero',
     guaranteeTitle: 'GARANTIA INCONDICIONAL',
@@ -75,6 +85,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Não ter receitas rápidas catalogadas', description: 'Improvisa quando está sem tempo, aumentando o risco de erro.' },
       { title: 'Festas e eventos são um pesadelo', description: 'Seu filho fica triste ou você se estressa por dias.' },
     ],
+    transitionCopy: {
+        title: "VOCÊ JÁ LUTOU DEMAIS",
+        text: "Esses erros acontecem porque você está sozinha improvisando. Com as ferramentas certas, a luta acaba hoje."
+    },
     solutionTitle: 'SEU ARSENAL: O CARDÁPIO SEM LEITE',
     solutionSections: [
         { title: 'ORGANIZAÇÃO INTELIGENTE', items: ['Café da manhã (200+)', 'Lanches escolares (300+)', 'Almoços e Jantares (400+)', 'Sobremesas e Festas (100+)'], details: ['Filtre por tempo de preparo', 'Filtre por dificuldade'] },
@@ -93,6 +107,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
             'Acesso vitalício por um pagamento único'
         ]
     },
+    missionStatement: {
+        title: "Por Que R$ 35,90?",
+        text: "Você já luta demais. Este preço é nosso jeito de estar ao seu lado nessa jornada, tornando a solução acessível, não um privilégio."
+    },
     ctaButton: { text: 'QUERO TER PAZ E VARIEDADE' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA SEM ENROLAÇÃO',
@@ -100,7 +118,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     guaranteeImpact: "Seu único risco é continuar como está."
   },
   'mae-desacreditada-ao-extremo': {
-    badgeText: 'MÃE DESACREDITada AO EXTREMO',
+    badgeText: 'MÃE DESACREDITADA AO EXTREMO',
     title: `Eu sei que você já tentou de TUDO. Mas você ainda não tentou do jeito certo.`,
     socialProof: 'Para as mães que, como você, já tinham perdido a esperança e hoje vivem uma nova realidade.',
     errors: [
@@ -108,6 +126,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Receitas sem validação nutricional', description: 'Não sabe se a alimentação está balanceada para a idade.' },
       { title: 'Achar que "já viu tudo"', description: 'Das 1000 receitas, garantimos que 850+ você nunca viu.' },
     ],
+    transitionCopy: {
+        title: "DESTA VEZ É DIFERENTE",
+        text: "Você foi atrás de informação antes e se frustrou. Esses erros mostram exatamente o que faltava: um sistema COMPLETO e VALIDADO."
+    },
     solutionTitle: 'O QUE VOCÊ NUNCA TEVE: O SISTEMA COMPLETO',
     solutionSections: [
         { title: '1000 RECEITAS EM UM SÓ LUGAR', items: ['Organizadas por idade, refeição, tempo', 'Com info nutricional completa (kcal + macros)', 'Para toda fase da vida do seu filho'] },
@@ -126,12 +148,16 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
             'Acesso vitalício por um pagamento único'
         ]
     },
+    missionStatement: {
+        title: "Por Que R$ 35,90?",
+        text: "Não é barato porque é ruim. É acessível porque acreditamos que TODA mãe merece ter essa tranquilidade, e não vamos deixar o preço ser um impeditivo."
+    },
     ctaButton: { text: 'DAR UMA ÚLTIMA CHANCE (COM GARANTIA)' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
     guaranteeTitle: 'GARANTIA REFORÇADA PARA VOCÊ',
     guaranteeText: (<>Nós sabemos que você já foi decepcionada. Por isso, nossa garantia é diferente. Se em 7 dias você não sentir que FINALMENTE encontrou a solução completa, devolvemos seu dinheiro e te damos R$50 no PIX pelo seu tempo perdido.</>),
     guaranteeImpact: "É isso mesmo. Nosso risco, seu ganho. Confiamos no que temos."
-  },
+  },-
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você sabe que precisa de um sistema. Parar de improvisar é a decisão mais inteligente.',
@@ -141,6 +167,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Receitas sem dados nutricionais', description: 'Risco: Incerteza sobre o balanço nutricional do seu filho.' },
       { title: 'Pagar caro por informação desorganizada', description: 'Custo: Consultas avulsas (R$400) vs. sistema vitalício (R$97).' },
     ],
+    transitionCopy: {
+        title: "A SOLUÇÃO É SISTEMÁTICA",
+        text: "Esses erros são resultado de falta de informação estruturada. O sistema abaixo elimina todos eles de forma mensurável."
+    },
     solutionTitle: 'O PRODUTO: O CARDÁPIO SEM LEITE',
     solutionSections: [
         { title: 'ESPECIFICAÇÕES TÉCNICAS', items: ['1000+ receitas em formato JSON e PDF', 'API de busca por ingrediente, tempo e idade'], details: ['Calorias (kcal)', 'Proteínas (g)', 'Carboidratos (g)', 'Gorduras (g)'] },
@@ -158,6 +188,10 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
             'Guia SOS para agir rápido em reações',
             'Acesso vitalício por um pagamento único'
         ]
+    },
+    missionStatement: {
+        title: "Por Que R$ 35,90?",
+        text: "Preço justo, missão clara: democratizar alimentação segura e nutritiva para todas as famílias, com um ROI claro para a sua."
     },
     ctaButton: { text: 'ADQUIRIR O SISTEMA COMPLETO' },
     ctaSubtitle: 'Risco zero. Retorno comprovado.',
@@ -271,6 +305,14 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               ))}
               </div>
           </div>
+        </section>
+
+        <section className={cn("py-6 px-6 border-y", theme.bg, theme.border)}>
+            <div className="max-w-3xl mx-auto text-center">
+                <ArrowDown className={cn("h-8 w-8 mx-auto mb-3", theme.text)} />
+                <h3 className={cn("text-xl font-bold font-poppins mb-2", theme.text)}>{pageData.transitionCopy.title}</h3>
+                <p className="text-base text-gray-600">{pageData.transitionCopy.text}</p>
+            </div>
         </section>
 
         <section className="py-8 px-4 bg-white">
@@ -402,6 +444,16 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                 </div>
               </div>
 
+              <section className="text-center p-8 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200">
+                  <Heart className={cn("h-10 w-10 mx-auto mb-3", theme.text)} />
+                  <h3 className={cn("text-xl md:text-2xl font-bold mb-3 font-poppins", theme.text)}>
+                    {pageData.missionStatement.title.replace('[PREÇO]', pageData.investment.price)}
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed max-w-lg mx-auto">
+                    {pageData.missionStatement.text}
+                  </p>
+              </section>
+
               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
@@ -417,3 +469,4 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
