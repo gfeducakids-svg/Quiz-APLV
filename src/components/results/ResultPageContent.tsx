@@ -398,16 +398,16 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     ))}
                 </div>
                 <div className="my-6 h-[1px] bg-gray-200 max-w-lg mx-auto"></div>
-                <div className="p-6 md:p-8">
+                <div className="p-4 md:p-6">
                   <div className="text-center">
-                    <div className="flex justify-center items-baseline gap-2 mb-2">
-                      <span className="text-sm uppercase text-gray-400 tracking-wide font-poppins">DE</span>
+                    <div className="flex justify-center items-baseline gap-2">
+                      <span className="text-sm uppercase text-gray-400 tracking-wide">DE</span>
                       <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
                         R$ {pageData.investment.anchorPrice}
                       </span>
                     </div>
                     
-                    <p className="text-sm uppercase text-gray-500 tracking-wide mb-2 font-poppins">POR APENAS</p>
+                    <p className="text-sm uppercase text-gray-500 tracking-wide my-1">POR APENAS</p>
                     
                     <div className={cn("leading-none text-emerald-600")}>
                       <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
@@ -440,7 +440,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
-              
 
                <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ PREÇO PROMOCIONAL POR TEMPO LIMITADO</h3>
@@ -458,7 +457,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </h3>
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
-
+              
               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
@@ -469,7 +468,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       {pageData.guarantee.impact}
                   </div>
               </section>
-              
+
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
