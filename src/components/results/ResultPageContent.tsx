@@ -43,9 +43,9 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: "Você está assustada. É normal. Mas existe um caminho seguro e você vai encontrá-lo agora.",
     subtitle: "Respira. 8.347 mães estavam onde você está. Hoje elas alimentam os filhos com segurança e paz.",
     errors: [
-      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra um produto "sem lactose" achando que é seguro, mas a reação vem. É que lactose e proteína do leite são coisas diferentes.', consequence: 'A cada erro, a confiança para cozinhar diminui e o medo aumenta.' },
-      { title: 'Cozinhar sempre as mesmas 3 coisas', description: 'Você faz sempre frango, arroz e batata porque tem medo de testar algo novo e seu filho reagir mal. Ele enjoa, recusa a comida, e você se sente uma péssima mãe, presa num looping.', consequence: 'A refeição vira uma batalha, não um momento de carinho.' },
-      { title: 'Ceder "só um pouquinho"', description: 'Na festinha da família, você cede "só um pouquinho" do bolo. Três horas depois, ele está com cólica e você não dorme a noite toda.', consequence: 'A culpa te consome e o processo de cura do intestino volta à estaca zero.' },
+      { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra achando que é seguro. A reação vem mesmo assim - lactose e proteína do leite são diferentes.', consequence: 'Cada erro rouba sua confiança e aumenta o medo.' },
+      { title: 'Repetir as mesmas 3 receitas', description: 'Frango, arroz, batata. Sempre. Você tem medo de testar algo novo. Ele enjoa e recusa.', consequence: 'A refeição vira batalha, não momento de carinho.' },
+      { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
     transitionCopy: {
         title: "NÃO É CULPA SUA. É FALTA DE UM SISTEMA.",
@@ -86,9 +86,9 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: "Você já fez demais com tão pouco. Merece ter as ferramentas certas.",
     subtitle: "Chega de carregar o mundo nas costas. Veja como 8.347 mães como você encontraram alívio e variedade.",
     errors: [
-      { title: 'O looping do "frango, arroz e batata"', description: 'Você serve a mesma combinação há meses. Você vê a carinha de desânimo dele na mesa e seu coração aperta de culpa.', consequence: 'A refeição vira um campo de batalha, não um momento de nutrição e carinho.' },
-      { title: 'Improviso na lancheira escolar', description: 'Todo dia é uma correria para pensar em algo seguro. Muitas vezes, ele leva a mesma fruta de sempre por falta de opção.', consequence: 'Ele se sente diferente dos amigos e você se sente uma mãe que não dá conta.' },
-      { title: 'O "pesadelo" das festinhas', description: 'Na última festa, seu filho chorou porque não podia comer o bolo dos Vingadores. Você inventou uma desculpa e saiu mais cedo.', consequence: 'Momentos que deveriam ser de alegria viram fontes de estresse e exclusão.' },
+      { title: 'O looping do "frango, arroz e batata"', description: 'A mesma combinação há meses. Você vê a carinha de desânimo dele e seu coração aperta.', consequence: 'Refeição vira campo de batalha, não nutrição.' },
+      { title: 'Improviso na lancheira escolar', description: 'Correria todo dia para pensar em algo seguro. Ele leva sempre a mesma fruta.', consequence: 'Ele se sente diferente. Você se sente que não dá conta.' },
+      { title: 'O "pesadelo" das festinhas', description: 'Última festa: ele chorou porque não podia comer o bolo. Você saiu mais cedo.', consequence: 'Alegria vira estresse e exclusão.' },
     ],
     transitionCopy: {
         title: "VOCÊ NÃO DEVERIA ESTAR SOZINHA NISSO.",
@@ -129,9 +129,9 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: `Sei que você já tentou de tudo e se decepcionou. Esta vez é diferente. E eu vou provar.`,
     subtitle: "Para as mães que já perderam a esperança, mas que no fundo, merecem uma última chance que funcione de verdade.",
     errors: [
-      { title: 'A "overdose" de informação conflitante', description: 'Você passou noites no Google, entrou em 15 grupos, e cada lugar diz uma coisa. Está mais confusa do que quando começou.', consequence: 'Paralisia por análise. Você não confia em mais nenhuma informação e acaba não fazendo nada.' },
-      { title: 'Coleção de "soluções" que não funcionaram', description: 'Comprou o e-book da influencer, a dieta da nutri famosa... e nada mudou de verdade. Sua prateleira está cheia de promessas vazias.', consequence: 'Você acredita que o problema é com você ou seu filho, e não com os métodos incompletos.' },
-      { title: 'Ceticismo com qualquer nova promessa', description: 'Você vê "1000 receitas" e pensa "ah, lá vem mais um...". Você já viu de tudo e se recusa a criar qualquer expectativa.', consequence: 'Você se fecha para uma solução que pode realmente funcionar, por medo de mais uma frustração.' },
+      { title: 'Overdose de informação conflitante', description: 'Noites no Google, 15 grupos. Cada um diz uma coisa diferente. Mais confusa que antes.', consequence: 'Paralisia total. Você não confia em nada e não faz nada.' },
+      { title: 'Coleção de "soluções" que falharam', description: 'E-book da influencer, dieta da nutri famosa... nada mudou. Prateleira cheia de promessas vazias.', consequence: 'Você acha que o problema é você, não os métodos.' },
+      { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
     transitionCopy: {
         title: "A DIFERENÇA DESTA VEZ É O MÉTODO.",
@@ -172,9 +172,9 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: 'Você sabe que improvisar custa caro. Aqui está o sistema que sua lógica pedia.',
     subtitle: "Dados, não achismos. Um sistema com retorno sobre investimento comprovado para otimizar o tempo e o orçamento da sua família.",
     errors: [
-      { title: 'Desperdício por falta de sistema', description: 'Você compra ingredientes caros que acabam estragando ou usa produtos que não são ideais, mas são os únicos que encontra.', consequence: 'Custo estimado: R$ 300/mês em compras ineficientes e desperdício.' },
-      { title: 'Incerteza nutricional', description: 'Você até consegue fazer receitas seguras, mas não tem certeza se a dieta está balanceada em vitaminas e minerais para a idade dele.', consequence: 'Risco: Deficiências nutricionais que podem impactar o desenvolvimento a longo prazo.' },
-      { title: 'Custo de oportunidade do tempo', description: 'Você gasta, em média, 4-5 horas por semana pesquisando receitas e planejando o que cozinhar.', consequence: 'Custo: Seu tempo vale dinheiro. Essas são horas que você poderia estar com sua família ou trabalhando.' },
+      { title: 'Desperdício por falta de sistema', description: 'Ingredientes caros estragam. Produtos não ideais porque são os únicos que encontra.', consequence: 'R$ 300/mês em compras ineficientes.' },
+      { title: 'Incerteza nutricional', description: 'Receitas seguras, mas você não sabe se a dieta está balanceada em vitaminas e minerais.', consequence: 'Risco de deficiências no desenvolvimento.' },
+      { title: 'Tempo não otimizado', description: '4-5 horas por semana pesquisando receitas e planejando.', consequence: 'Horas que você poderia estar com sua família.' },
     ],
     transitionCopy: {
         title: "A SOLUÇÃO É UM SISTEMA, NÃO UM 'JEITINHO'.",
