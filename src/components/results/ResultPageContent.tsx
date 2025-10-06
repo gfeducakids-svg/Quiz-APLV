@@ -2,6 +2,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
@@ -211,7 +212,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   if (!pageData) {
     return (
        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-center px-4">
-        <h1 className="text-3xl font-bold text-red-600 mb-4">Resultado não encontrado</h1>
+        <h1 className="text-3xl font-bold text-red-600 mb-4 font-poppins">Resultado não encontrado</h1>
         <p className="text-lg text-gray-700 mb-8">Ocorreu um erro ao calcular seu perfil. Por favor, tente refazer o quiz.</p>
         <Link href="/quiz" className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
           Refazer Quiz
@@ -251,11 +252,11 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               {pageData.errors.map((error, index) => (
                   <div
                       key={index}
-                      className="bg-gradient-to-br from-red-50 to-orange-50 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
+                      className="bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
                   >
                       <div className="flex items-start">
-                        <div className="bg-red-100 p-2 rounded-full mr-4">
-                            <X className="h-6 w-6 text-red-600 flex-shrink-0"/>
+                        <div className="bg-red-200 p-2 rounded-full mr-4">
+                            <X className="h-6 w-6 text-red-700 flex-shrink-0"/>
                         </div>
                         <div>
                           <p className="text-lg font-bold text-gray-900 font-poppins">
@@ -286,9 +287,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                         className={cn(
                           "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
                           "bg-gradient-to-br",
-                          index === 0 && "from-blue-50 to-indigo-50 border-blue-400",
-                          index === 1 && "from-purple-50 to-pink-50 border-purple-400",
-                          index === 2 && "from-green-50 to-emerald-50 border-green-400"
+                          index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
+                          index === 1 && "from-purple-100 to-pink-100 border-purple-400",
+                          index === 2 && "from-green-100 to-emerald-100 border-green-400"
                         )}
                       >
                           <div className="flex items-center gap-2 mb-3">
@@ -345,7 +346,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <div className="bg-gray-50 py-12 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
-              <section className="text-center bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-300 rounded-xl p-6 shadow-lg">
+              <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ OFERTA POR TEMPO LIMITADO</h3>
                   <div className="mt-4">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
@@ -374,8 +375,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       </p>
                   </div>
                   
-                  <div className="mt-6 bg-gray-50 p-4 rounded-lg">
-                    <p className="font-bold text-gray-900 mb-3 text-base">O que você recebe:</p>
+                  <div className="mt-6 bg-gray-100 p-4 rounded-lg">
+                    <p className="font-bold text-gray-900 mb-3 text-base font-poppins">O que você recebe:</p>
                     <ul className="space-y-2">
                       {pageData.investment.justifications.map((item, index) => (
                         <li key={index} className="flex items-start gap-3 text-sm font-medium text-gray-800">
