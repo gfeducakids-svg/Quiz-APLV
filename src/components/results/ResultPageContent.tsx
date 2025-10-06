@@ -53,7 +53,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     countdownMinutes: 14,
     investment: {
         price: '35,90',
-        anchorPrice: '97',
+        anchorPrice: '97,00',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -86,7 +86,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     countdownMinutes: 11,
     investment: {
         price: '35,90',
-        anchorPrice: '97',
+        anchorPrice: '97,00',
         justifications: [
            '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -119,7 +119,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     countdownMinutes: 9,
     investment: {
         price: '35,90',
-        anchorPrice: '97',
+        anchorPrice: '97,00',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -152,7 +152,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     countdownMinutes: 11,
     investment: {
         price: '35,90',
-        anchorPrice: '97',
+        anchorPrice: '97,00',
         justifications: [
             '1000 receitas com informação nutricional completa',
             'Organizadas por idade, tempo e refeição',
@@ -208,8 +208,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   const theme = personaThemes[persona] || personaThemes['mae-em-panico-inicial'];
   
   useEffect(() => {
-    document.body.style.backgroundColor = '#f9fafb';
-  }, []);
+    document.body.style.backgroundColor = theme.bg;
+  }, [theme.bg]);
 
   if (!pageData) {
     return (
@@ -251,7 +251,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <motion.section variants={itemVariants} className="py-12 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                  <h2 className={cn("text-2xl md:text-3xl font-bold flex items-center justify-center gap-3", theme.text)}>
+                  <h2 className={cn("text-2xl md:text-3xl font-bold flex items-center justify-center gap-3", "text-red-700")}>
                     <X className="h-7 w-7"/> OS 3 ERROS QUE VOCÊ ESTÁ COMETENDO:
                   </h2>
               </div>
