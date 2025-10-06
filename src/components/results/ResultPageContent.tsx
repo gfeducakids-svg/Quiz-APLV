@@ -71,7 +71,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     countdown: {
       minutes: 14,
-      justification: "Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00."
+      justification: "Este valor especial de R$ 35,90 expira em:"
     },
     missionStatement: {
         title: "Por que este preço?",
@@ -120,7 +120,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     countdown: {
       minutes: 11,
-      justification: "Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00."
+      justification: "Este valor especial de R$ 35,90 expira em:"
     },
     missionStatement: {
         title: "Por que este preço?",
@@ -169,7 +169,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     countdown: {
       minutes: 9,
-      justification: "Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00."
+      justification: "Este valor especial de R$ 35,90 expira em:"
     },
     missionStatement: {
         title: "Por que este preço?",
@@ -218,7 +218,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     },
     countdown: {
       minutes: 11,
-      justification: "Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00."
+      justification: "Este valor especial de R$ 35,90 expira em:"
     },
     missionStatement: {
         title: "Um ROI Imediato",
@@ -425,21 +425,21 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               >
 
                   <div className="text-center">
-                    <div className="flex justify-center items-baseline gap-2 mb-1">
+                    <div className="flex justify-center items-baseline gap-2 mb-2">
                       <span className="text-sm uppercase text-gray-400 tracking-wide font-poppins">DE</span>
                       <span className="text-2xl font-bold text-gray-400 line-through decoration-red-500 decoration-2">
                         R$ {pageData.investment.anchorPrice}
                       </span>
                     </div>
                     
-                    <p className="text-sm uppercase text-gray-500 tracking-wide mb-1 font-poppins">POR APENAS</p>
+                    <p className="text-sm uppercase text-gray-500 tracking-wide mb-2 font-poppins">POR APENAS</p>
                     
-                    <div className={cn("font-black leading-none font-poppins", theme.text)}>
+                    <div className={cn("font-black leading-none font-poppins text-emerald-600")}>
                       <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
                       <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                     </div>
                     
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className="text-sm text-gray-600 mt-3">
                       (R$ {dailyPrice} por dia em um período de 30 dias)
                     </p>
                   </div>
@@ -468,6 +468,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                <section className="text-center bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl p-6 shadow-lg">
                   <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ PREÇO PROMOCIONAL POR TEMPO LIMITADO</h3>
                    <p className="text-red-800 mt-2">{pageData.countdown.justification}</p>
+                   <p className="text-red-800">Após o fim do timer, o investimento volta para o valor padrão de R$ 97,00</p>
                   <div className="mt-4">
                       <CountdownTimer initialMinutes={pageData.countdown.minutes} />
                   </div>
@@ -481,7 +482,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
               
-              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
+               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
                     {pageData.guarantee.title}
@@ -491,7 +492,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       {pageData.guarantee.impact}
                   </div>
               </section>
-              
+
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
