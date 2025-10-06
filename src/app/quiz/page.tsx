@@ -158,9 +158,9 @@ export default function QuizPage() {
     <div className="min-h-screen bg-gradient-to-br from-background via-white to-primary/5 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/subtle-zebra-3d.png')] opacity-20"></div>
 
-      <div className="container mx-auto max-w-2xl py-8 md:py-12 relative z-10">
+      <div className="container mx-auto max-w-2xl py-4 md:py-12 relative z-10">
         <div className="space-y-6">
-          <div className="w-full px-4 mb-8">
+          <div className="w-full px-4 mb-6">
             <p className="text-center text-base font-bold text-gray-700 mb-2">
               Pergunta {currentQuestionIndex + 1} de {quizQuestions.length}
             </p>
@@ -191,7 +191,7 @@ export default function QuizPage() {
               transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             >
               <Card className="border-0 shadow-xl bg-white backdrop-blur-md rounded-2xl">
-                <CardHeader className="text-center pt-8 pb-6">
+                <CardHeader className="text-center pt-6 pb-4">
                   <CardTitle className="font-headline text-3xl md:text-4xl font-bold text-gray-800 !leading-tight">
                     {currentQuestion.question}
                   </CardTitle>
