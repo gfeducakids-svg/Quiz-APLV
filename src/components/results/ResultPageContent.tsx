@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Shield, Gift, X, ArrowRight, CheckCircle } from 'lucide-react';
+import { Check, Shield, Gift, X, ArrowRight, CheckCircle, BookOpen, LifeBuoy } from 'lucide-react';
 import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -102,7 +102,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     guaranteeImpact: "Seu único risco é continuar como está."
   },
   'mae-desacreditada-ao-extremo': {
-    badgeText: 'MÃE DESACREDITADA AO EXTREMO',
+    badgeText: 'MÃE DESACREDITada AO EXTREMO',
     title: `Eu sei que você já tentou de TUDO. Mas você ainda não tentou do jeito certo.`,
     socialProof: 'Para as mães que, como você, já tinham perdido a esperança e hoje vivem uma nova realidade.',
     errors: [
@@ -294,16 +294,19 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                         key={index} 
                         variants={itemVariants} 
                         className={cn(
-                          "p-6 bg-gradient-to-br from-white to-gray-50 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all", 
-                          theme.border
+                          "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
+                          "bg-gradient-to-br",
+                          index === 0 && cn("from-blue-50 to-indigo-50", theme.border),
+                          index === 1 && cn("from-purple-50 to-pink-50", theme.border),
+                          index === 2 && cn("from-green-50 to-emerald-50", theme.border)
                         )}
                       >
-                          <h4 className={cn("font-bold text-lg mb-3 flex items-center", theme.text)}>
+                          <h4 className={cn("font-bold text-lg mb-4 flex items-center gap-2", theme.text)}>
+                            {index === 0 && <BookOpen className={cn("w-6 h-6", theme.text)} />}
+                            {index === 1 && <Gift className={cn("w-6 h-6", theme.text)} />}
+                            {index === 2 && <LifeBuoy className={cn("w-6 h-6", theme.text)} />}
                             {section.title}
                           </h4>
-                          <div className={cn("w-12 h-12 rounded-full flex items-center justify-center mb-3", theme.bg)}>
-                              <Gift className={cn("w-6 h-6", theme.text)} />
-                          </div>
                           {section.items.length > 0 && 
                               <ul className="space-y-2 text-gray-700">
                                   {section.items.map((item, i) => (
