@@ -64,6 +64,9 @@ export async function submitQuiz(answers: number[]) {
     redirect('/quiz?error=incomplete');
     return;
   }
+  
+  // Simulate processing delay so the user sees the loading screen
+  await new Promise(resolve => setTimeout(resolve, 3000));
 
   const persona = getPersona(answers);
   const personaSlug = normalizeString(persona);
