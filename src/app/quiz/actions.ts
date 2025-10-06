@@ -79,8 +79,5 @@ export async function submitQuiz(answers: number[]) {
   console.log('Slug gerado:', personaSlug);
   console.log('URL redirecionamento:', `/results/${personaSlug}?${params.toString()}`);
 
-  // This delay will make the loading.tsx inside /quiz appear
-  await new Promise(resolve => setTimeout(resolve, 5000));
-
   redirect(`/results/${personaSlug}?${params.toString()}`);
 }
