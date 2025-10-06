@@ -314,7 +314,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           <p className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             {pageData.subtitle}
           </p>
-          <p className="mt-6 text-sm font-semibold text-gray-500 uppercase tracking-wider">{pageData.socialProof}</p>
         </header>
         
         <section className="py-8 px-4 bg-gray-50">
