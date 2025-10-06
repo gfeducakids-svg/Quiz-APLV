@@ -157,7 +157,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     guaranteeTitle: 'GARANTIA REFORÇADA PARA VOCÊ',
     guaranteeText: (<>Nós sabemos que você já foi decepcionada. Por isso, nossa garantia é diferente. Se em 7 dias você não sentir que FINALMENTE encontrou a solução completa, devolvemos seu dinheiro e te damos R$50 no PIX pelo seu tempo perdido.</>),
     guaranteeImpact: "É isso mesmo. Nosso risco, seu ganho. Confiamos no que temos."
-  },-
+  },
   'mae-racional-estrategica': {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você sabe que precisa de um sistema. Parar de improvisar é a decisão mais inteligente.',
@@ -286,7 +286,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
               {pageData.errors.map((error, index) => (
                   <div
                       key={index}
-                      className="bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
+                      className="bg-gradient-to-br from-red-200 to-orange-200 border-2 border-red-300 rounded-xl shadow-md hover:shadow-xl transition-all p-6"
                   >
                       <div className="flex items-start">
                         <div className="bg-red-200 p-2 rounded-full mr-4">
@@ -469,4 +469,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
+
 
