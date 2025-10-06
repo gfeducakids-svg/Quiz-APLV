@@ -48,8 +48,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
     transitionCopy: {
-        title: "NÃO É CULPA SUA. É FALTA DE UM SISTEMA.",
-        text: (<>Respira fundo. Isso que você está sentindo? Outras 8.000 mães sentiram. E elas superaram. Não sozinhas, mas com o sistema certo. Você não precisa ter medo a cada refeição. Precisa ter um mapa seguro. E ele existe.</>)
+        title: "EXISTE UMA SAÍDA SEGURA",
+        text: (<>Imagina acordar amanhã sabendo EXATAMENTE o que fazer em cada refeição. Sem medo. Sem dúvida. Com 1000 opções testadas na sua mão. Isso não é sonho - é o que você vai ter nos próximos minutos.</>)
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
@@ -91,8 +91,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'O "pesadelo" das festinhas', description: 'Última festa: ele chorou porque não podia comer o bolo. Você saiu mais cedo.', consequence: 'Alegria vira estresse e exclusão.' },
     ],
     transitionCopy: {
-        title: "VOCÊ NÃO DEVERIA ESTAR SOZINHA NISSO.",
-        text: (<>Você merecia ter tido um sistema desde o dia 1. Não é sua culpa não ter encontrado antes - essas informações estão espalhadas de propósito para vender produtos caros. A luta do improviso pode (e vai) acabar hoje.</>)
+        title: "A VARIEDADE QUE VOCÊ PROCURAVA EXISTE",
+        text: (<>E se você nunca mais precisasse repetir a mesma receita? E se tivesse 1000 opções rápidas para os dias corridos? E se seu filho pudesse comer bolo na próxima festa? Tudo isso está organizado, testado e pronto para você usar hoje.</>)
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
@@ -134,8 +134,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
     transitionCopy: {
-        title: "A DIFERENÇA DESTA VEZ É O MÉTODO.",
-        text: (<>A questão não é ter 'mais receitas', é ter o SISTEMA certo. É ter informação validada e centralizada. Você não está apostando no escuro. Está seguindo um caminho que 8.347 mães já trilharam com sucesso. Desta vez, você não está sozinha.</>)
+        title: "DESTA VEZ, TEM PROVA",
+        text: (<>Não é mais uma promessa vazia. São 1000 receitas validadas por nutricionista, testadas por 8.347 mães, com informação nutricional completa. Tudo em um sistema, não migalhas espalhadas. E você pode começar agora mesmo.</>)
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
@@ -177,8 +177,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Tempo não otimizado', description: '4-5 horas por semana pesquisando receitas e planejando.', consequence: 'Horas que você poderia estar com sua família.' },
     ],
     transitionCopy: {
-        title: "A SOLUÇÃO É UM SISTEMA, NÃO UM 'JEITINHO'.",
-        text: "Esses custos e riscos são o resultado direto da falta de um sistema de informação estruturada. O método abaixo não é sobre 'dicas', é sobre um processo validado que elimina essas três falhas de forma mensurável."
+        title: "O SISTEMA QUE ELIMINA O IMPROVISO",
+        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. Retorno imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: [
