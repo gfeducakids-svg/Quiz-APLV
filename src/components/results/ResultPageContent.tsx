@@ -228,11 +228,11 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           className="text-center py-12 px-6 bg-white"
         >
           <div
-              className={cn("inline-block text-white text-sm font-bold py-2 px-5 rounded-full shadow-md mb-6", theme.gradient)}
+              className={cn("inline-block text-white text-sm font-bold py-2 px-5 rounded-full shadow-md mb-6 font-poppins", theme.gradient)}
           >
             🎯 SEU DIAGNÓSTICO: {pageData.badgeText}
           </div>
-          <h1 className={cn("text-3xl md:text-4xl font-bold !leading-tight max-w-3xl mx-auto", theme.text)}>
+          <h1 className={cn("text-3xl md:text-4xl font-bold !leading-tight max-w-3xl mx-auto font-poppins", theme.text)}>
             {pageData.title}
           </h1>
           <p className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -243,7 +243,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <section className="py-12 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                  <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 text-red-700">
+                  <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 text-red-700 font-poppins">
                     <X className="h-7 w-7"/> OS 3 ERROS QUE VOCÊ ESTÁ COMETENDO:
                   </h2>
               </div>
@@ -258,7 +258,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                             <X className="h-6 w-6 text-red-600 flex-shrink-0"/>
                         </div>
                         <div>
-                          <p className="text-lg font-bold text-gray-900">
+                          <p className="text-lg font-bold text-gray-900 font-poppins">
                               ERRO #{index + 1}: {error.title}
                           </p>
                           <p className="text-base text-gray-700 mt-1">
@@ -275,7 +275,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <section className="py-12 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
-                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3">
+                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins">
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
@@ -296,7 +296,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                             {index === 1 && <Gift className="w-6 h-6 text-purple-600" />}
                             {index === 2 && <LifeBuoy className="w-6 h-6 text-green-600" />}
                             <h4 className={cn(
-                              "font-bold text-lg",
+                              "font-bold text-lg font-poppins",
                               index === 0 && "text-blue-900",
                               index === 1 && "text-purple-900",
                               index === 2 && "text-green-900"
@@ -345,8 +345,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <div className="bg-gray-50 py-12 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
-              <section className="text-center bg-red-50 border-2 border-red-300 rounded-xl p-6 shadow-lg">
-                  <h3 className="text-xl md:text-2xl font-bold text-red-700">⏰ OFERTA POR TEMPO LIMITADO</h3>
+              <section className="text-center bg-gradient-to-br from-red-100 to-orange-100 border-2 border-red-300 rounded-xl p-6 shadow-lg">
+                  <h3 className="text-xl md:text-2xl font-bold text-red-700 font-poppins">⏰ OFERTA POR TEMPO LIMITADO</h3>
                   <div className="mt-4">
                       <CountdownTimer initialMinutes={pageData.countdownMinutes} />
                   </div>
@@ -364,7 +364,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </div>
 
                   <div className={cn("py-6 px-4 rounded-2xl", theme.bg)}>
-                      <div className={cn("font-black leading-none text-center", theme.text)}>
+                      <div className={cn("font-black leading-none text-center font-poppins", theme.text)}>
                           <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
                           <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                       </div>
@@ -390,7 +390,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <Link 
                       href="https://pay.kiwify.com.br/v2XN6QB" 
                       className={cn(
-                        'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300',
+                        'w-full block text-center text-xl md:text-2xl font-bold uppercase text-white py-5 px-8 rounded-xl shadow-2xl transition-all duration-300 font-poppins',
                         theme.buttonGradient
                       )}
                     >
@@ -401,9 +401,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                 </div>
               </div>
 
-              <section className={cn("text-center bg-white p-8 rounded-2xl border-2 shadow-md", theme.border)}>
+              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
-                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4", theme.text)}>
+                  <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
                     {pageData.guaranteeTitle}
                   </h3>
                   <div className="text-gray-700 leading-relaxed space-y-3">{pageData.guaranteeText}</div>
