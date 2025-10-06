@@ -186,8 +186,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     guarantee: {
       title: 'GARANTIA REFORÇADA PARA VOCÊ',
-      text: (<>Eu sei que você não acredita mais em garantias. A nossa é diferente. Se em 7 dias você achar que isso é "só mais um e-book", eu devolvo seu dinheiro E te faço um PIX de R$ 50 pelo seu tempo perdido.</>),
-      impact: "É isso mesmo. O risco é 100% meu. Você literalmente não tem como sair perdendo."
+      text: (<>Nós sabemos que você já foi decepcionada. Por isso, nossa garantia é diferente. Se em 7 dias você não sentir que FINALMENTE encontrou a solução completa, devolvemos seu dinheiro e te damos R$50 no PIX pelo seu tempo perdido.</>),
+      impact: "É isso mesmo. Nosso risco, seu ganho. Confiamos no que temos."
     },
   },
   'mae-racional-estrategica': {
@@ -367,7 +367,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
-              <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-b-2xl border-x-2 border-b-2", theme.border)}>
+              <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 border-x-2 border-b-2", theme.border)}>
                   {pageData.solutionSections.map((section, index) => (
                       <div 
                         key={index} 
@@ -426,7 +426,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   ))}
               </div>
                 <div
-                className={cn("bg-white border-2 rounded-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto mt-8 ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
+                className={cn("bg-white border-2 rounded-b-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
                   <div className="bg-gray-50 p-6 rounded-lg mb-6">
                     <p className="font-bold text-gray-900 mb-3 text-base font-poppins">O que você recebe:</p>
@@ -526,7 +526,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   ))}
                 </Accordion>
                 <p className="text-center mt-4 text-gray-600">
-                  <strong>Ainda tem dúvidas?</strong> Nosso suporte responde em minutos. Chame no chat!
+                  <strong>Ainda tem dúvidas?</strong> Nosso suporte responde IMEDIATAMENTE. Chama no chat!
                 </p>
               </section>
 
