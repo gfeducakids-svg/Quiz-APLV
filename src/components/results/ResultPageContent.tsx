@@ -203,6 +203,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   
   useEffect(() => {
     document.body.style.backgroundColor = theme.bg;
+    return () => {
+      document.body.style.backgroundColor = '';
+    }
   }, [theme.bg]);
 
   if (!pageData) {
@@ -217,10 +220,10 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
     );
   }
 
+  const dailyPrice = (parseFloat(pageData.investment.price.replace(',', '.')) / 30).toFixed(2).replace('.', ',');
+
   return (
-    <div 
-      className={cn('min-h-screen', theme.bg)}
-    >
+    <div className={cn('min-h-screen', theme.bg)}>
         <header
           className="text-center py-12 px-6 bg-white"
         >
@@ -240,7 +243,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <section className="py-12 px-4 bg-gray-50">
           <div className="max-w-3xl mx-auto">
               <div className="text-center mb-8">
-                  <h2 className={cn("text-2xl md:text-3xl font-bold flex items-center justify-center gap-3", "text-red-700")}>
+                  <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 text-red-700">
                     <X className="h-7 w-7"/> OS 3 ERROS QUE VOCÊ ESTÁ COMETENDO:
                   </h2>
               </div>
@@ -301,11 +304,11 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                                   {section.items.map((item, i) => (
                                     <li key={i} className="flex items-start">
                                       <CheckCircle className={cn(
-                                        "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
-                                        index === 0 && "text-blue-600",
-                                        index === 1 && "text-purple-600", 
-                                        index === 2 && "text-green-600"
-                                      )} />
+                                          "h-5 w-5 mr-2 mt-0.5 flex-shrink-0",
+                                          index === 0 && "text-blue-600",
+                                          index === 1 && "text-purple-600", 
+                                          index === 2 && "text-green-600"
+                                        )} />
                                       <span>{item}</span>
                                     </li>
                                   ))}
@@ -355,6 +358,10 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                           <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
                           <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                       </div>
+                      <p className={cn("text-center font-bold mt-2", theme.text)}>
+                        R$ {dailyPrice} por dia
+                        <span className="text-xs font-normal text-gray-600"> / em um período de 30 dias</span>
+                      </p>
                   </div>
                   
                   <div className="mt-6 bg-gray-50 p-4 rounded-lg">
