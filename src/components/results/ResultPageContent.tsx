@@ -16,7 +16,6 @@ interface ResultPageProps {
     badgeText: string;
     title: React.ReactNode;
     subtitle: string;
-    socialProof: string;
     errors: { title: string; description: string; consequence: string }[];
     transitionCopy: { title: string; text: React.ReactNode };
     solutionTitle: string;
@@ -44,7 +43,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE EM PÂNICO INICIAL',
     title: "Você está assustada. É normal. Mas existe um caminho seguro e você vai encontrá-lo agora.",
     subtitle: "Respira. 8.347 mães estavam onde você está. Hoje elas alimentam os filhos com segurança e paz.",
-    socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
       { title: 'Confiar em rótulos "sem lactose"', description: 'Você compra um produto "sem lactose" achando que é seguro, mas a reação vem. É que lactose e proteína do leite são coisas diferentes.', consequence: 'A cada erro, a confiança para cozinhar diminui e o medo aumenta.' },
       { title: 'Cozinhar sempre as mesmas 3 coisas', description: 'Você faz sempre frango, arroz e batata porque tem medo de testar algo novo e seu filho reagir mal. Ele enjoa, recusa a comida, e você se sente uma péssima mãe, presa num looping.', consequence: 'A refeição vira uma batalha, não um momento de carinho.' },
@@ -94,7 +92,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE GUERREIRA ESGOTADA',
     title: "Você já fez demais com tão pouco. Merece ter as ferramentas certas.",
     subtitle: "Chega de carregar o mundo nas costas. Veja como 8.347 mães como você encontraram alívio e variedade.",
-    socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
       { title: 'O looping do "frango, arroz e batata"', description: 'Você serve a mesma combinação há meses. Você vê a carinha de desânimo dele na mesa e seu coração aperta de culpa.', consequence: 'A refeição vira um campo de batalha, não um momento de nutrição e carinho.' },
       { title: 'Improviso na lancheira escolar', description: 'Todo dia é uma correria para pensar em algo seguro. Muitas vezes, ele leva a mesma fruta de sempre por falta de opção.', consequence: 'Ele se sente diferente dos amigos e você se sente uma mãe que não dá conta.' },
@@ -144,7 +141,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE DESACREDITADA AO EXTREMO',
     title: `Sei que você já tentou de tudo e se decepcionou. Esta vez é diferente. E eu vou provar.`,
     subtitle: "Para as mães que já perderam a esperança, mas que no fundo, merecem uma última chance que funcione de verdade.",
-    socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
       { title: 'A "overdose" de informação conflitante', description: 'Você passou noites no Google, entrou em 15 grupos, e cada lugar diz uma coisa. Está mais confusa do que quando começou.', consequence: 'Paralisia por análise. Você não confia em mais nenhuma informação e acaba não fazendo nada.' },
       { title: 'Coleção de "soluções" que não funcionaram', description: 'Comprou o e-book da influencer, a dieta da nutri famosa... e nada mudou de verdade. Sua prateleira está cheia de promessas vazias.', consequence: 'Você acredita que o problema é com você ou seu filho, e não com os métodos incompletos.' },
@@ -194,7 +190,6 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     badgeText: 'MÃE RACIONAL ESTRATÉGICA',
     title: 'Você sabe que improvisar custa caro. Aqui está o sistema que sua lógica pedia.',
     subtitle: "Dados, não achismos. Um sistema com ROI comprovado para otimizar o tempo e o orçamento da sua família.",
-    socialProof: 'Mais de 8.347 mães já transformaram a alimentação dos filhos com o Cardápio Sem Leite',
     errors: [
       { title: 'Desperdício por falta de sistema', description: 'Você compra ingredientes caros que acabam estragando ou usa produtos que não são ideais, mas são os únicos que encontra.', consequence: 'Custo estimado: R$ 300/mês em compras ineficientes e desperdício.' },
       { title: 'Incerteza nutricional', description: 'Você até consegue fazer receitas seguras, mas não tem certeza se a dieta está balanceada em vitaminas e minerais para a idade dele.', consequence: 'Risco: Deficiências nutricionais que podem impactar o desenvolvimento a longo prazo.' },
@@ -362,11 +357,12 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <section className="py-8 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
               <div className={cn("p-8 text-white rounded-t-2xl text-center", theme.gradient)}>
-                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins">
+                  <p className="text-xl md:text-2xl font-bold font-poppins">Cardápio sem Leite da Mãe Prevenida</p>
+                  <h2 className="text-3xl md:text-4xl font-bold flex items-center justify-center gap-3 font-poppins mt-2">
                     <Gift className="h-9 w-9"/>{pageData.solutionTitle}
                   </h2>
               </div>
-              <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 border-x-2 border-b-2", theme.border)}>
+              <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6", theme.border)}>
                   {pageData.solutionSections.map((section, index) => (
                       <div 
                         key={index} 
@@ -424,7 +420,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       </div>
                   ))}
               </div>
-                <div
+              <div
                 className={cn("bg-white border-2 rounded-b-2xl p-6 md:p-8 shadow-2xl max-w-md mx-auto ring-4 ring-offset-4", theme.border, "ring-" + theme.border.replace('border-', ''))}
               >
                   <div className="bg-gray-50 p-6 rounded-lg mb-6">
@@ -495,8 +491,8 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   </h3>
                   <div className="text-gray-700 leading-relaxed max-w-lg mx-auto space-y-3">{pageData.missionStatement.text}</div>
               </section>
-              
-               <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
+
+              <section className={cn("text-center p-8 rounded-2xl border-2 shadow-md", theme.border, theme.bg)}>
                   <Shield className={cn("h-12 w-12 mx-auto mb-2", theme.text)}/>
                   <h3 className={cn("text-xl md:text-2xl font-bold mb-4 font-poppins", theme.text)}>
                     {pageData.guarantee.title}
@@ -506,7 +502,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       {pageData.guarantee.impact}
                   </div>
               </section>
-
+              
               <section>
                 <h2 className="text-2xl font-bold text-center mb-6 font-poppins text-gray-800">Dúvidas Frequentes</h2>
                  <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
@@ -534,3 +530,5 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
+    
