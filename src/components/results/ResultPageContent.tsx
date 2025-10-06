@@ -438,7 +438,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                     
                     <p className="text-sm uppercase text-gray-500 tracking-wide mb-2 font-poppins">POR APENAS</p>
                     
-                    <div className={cn("font-black leading-none font-poppins text-emerald-600")}>
+                    <div className={cn("font-black leading-none text-emerald-600")}>
                       <span className="text-4xl md:text-5xl align-super mr-1">R$</span>
                       <span className="text-7xl md:text-8xl">{pageData.investment.price}</span>
                     </div>
@@ -524,4 +524,5 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
 
