@@ -189,7 +189,7 @@ export function ObrigadoPageContent() {
               Respondemos em minutos. ⚡
             </p>
           </div>
-        </motionsection>
+        </motion.section>
       </main>
     </div>
   );
