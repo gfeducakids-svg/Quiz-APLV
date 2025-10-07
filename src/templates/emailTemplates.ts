@@ -11,6 +11,7 @@ interface ConfirmationEmailProps {
 interface AbandonedCartEmailProps {
   name: string;
   productName: string;
+  checkoutUrl: string;
 }
 
 export function getConfirmationEmail({ name, orderRef, value, accessUrl, productName }: ConfirmationEmailProps): string {
@@ -131,7 +132,7 @@ export function getConfirmationEmail({ name, orderRef, value, accessUrl, product
   `;
 }
 
-export function getAbandonedCartEmail({ name, productName }: AbandonedCartEmailProps): string {
+export function getAbandonedCartEmail({ name, productName, checkoutUrl }: AbandonedCartEmailProps): string {
   return `
   <!DOCTYPE html>
   <html>
@@ -206,7 +207,7 @@ export function getAbandonedCartEmail({ name, productName }: AbandonedCartEmailP
                               <table width="100%" cellpadding="0" cellspacing="0" style="margin: 35px 0;">
                                   <tr>
                                       <td align="center">
-                                          <a href="https://pay.kiwify.com.br/v2XN6QB" style="display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 18px 45px; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);">
+                                          <a href="${checkoutUrl}" style="display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 18px 45px; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);">
                                               Finalizar Minha Compra Agora
                                           </a>
                                       </td>
