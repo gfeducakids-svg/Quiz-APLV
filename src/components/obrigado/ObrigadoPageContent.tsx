@@ -18,12 +18,18 @@ import { useWindowSize } from 'react-use';
 
 export function ObrigadoPageContent() {
   const { width, height } = useWindowSize();
-  const [showConfetti, setShowConfetti] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const productLink =
     'https://drive.google.com/drive/folders/1J8E8L5jShNTgX98Q_R6atm8t7Eeqpi5a?usp=sharing';
 
   useEffect(() => {
+    // Component has mounted, we are on the client
+    setIsClient(true);
+    
+    // Show confetti for 8 seconds
+    setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 8000);
     return () => clearTimeout(timer);
   }, []);
@@ -55,7 +61,7 @@ export function ObrigadoPageContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 text-gray-800 font-body relative overflow-hidden">
-      {showConfetti && (
+      {isClient && showConfetti && (
         <Confetti
           width={width}
           height={height}
