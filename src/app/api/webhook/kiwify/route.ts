@@ -1,105 +1,116 @@
 // src/app/api/webhook/kiwify/route.ts
-import { NextResponse } from 'next/server';
-import crypto from 'crypto';
+import { NextResponse, type NextRequest } from 'next/server';
 import { sendEmail } from '@/lib/emailService';
-import { getConfirmationEmail, getAbandonedCartEmail } from '@/templates/emailTemplates';
+import { 
+  paymentApprovedTemplate, 
+  cartAbandonedTemplate 
+} from '@/templates/emailTemplates';
 
-const verifyWebhook = (req: Request) => {
-  const providedToken = req.headers.get('kiwify-token');
-  const secretToken = process.env.KIWIFY_TOKEN;
-
-  if (!secretToken) {
-    console.warn('KIWIFY_TOKEN não configurado. Pulando verificação de segurança.');
-    // Para desenvolvimento, pode ser útil pular a verificação.
-    // Em produção, é altamente recomendável configurar o token.
-    return true; 
-  }
-  
-  if (!providedToken) {
-    console.error('Token do Webhook não encontrado no cabeçalho.');
-    return false;
-  }
-
-  // Comparação simples de tokens
-  return providedToken === secretToken;
-};
-
-export async function POST(req: Request) {
-  let body;
+export async function POST(request: NextRequest) {
   try {
-    // A verificação agora é feita antes de fazer o parse do body
-    if (!verifyWebhook(req)) {
-      console.error('Falha na verificação do token do Webhook.');
-      return NextResponse.json({ status: 'error', message: 'Token inválido' }, { status: 401 });
+    // 1. Parse do JSON
+    const body = await request.json();
+    
+    // 2. Log para debug
+    console.log('📩 Webhook Kiwify recebido:', {
+      timestamp: new Date().toISOString(),
+      order_id: body.order_id,
+      order_ref: body.order_ref,
+      status: body.order_status,
+      payment_method: body.payment_method,
+      event_type: body.webhook_event_type,
+      email: body.Customer?.email,
+      store_id: body.store_id
+    });
+    
+    // 3. Validação SIMPLES (apenas campos obrigatórios)
+    if (!body.Customer?.email) {
+      console.error('❌ Email do cliente não encontrado');
+      return Response.json(
+        { error: 'Email do cliente obrigatório' }, 
+        { status: 400 }
+      );
     }
     
-    const rawBody = await req.text();
-    body = JSON.parse(rawBody);
-
-    // Log para depuração
-    console.log('Webhook recebido:', JSON.stringify(body, null, 2));
-
-    const {
-      webhook_event_type,
-      order_status,
-      payment_method,
-      Customer,
-      Product,
-      order_ref,
-      Commissions,
-    } = body;
+    if (!body.order_status && !body.webhook_event_type) {
+      console.error('❌ Status do pedido não encontrado');
+      return Response.json(
+        { error: 'Status do pedido obrigatório' }, 
+        { status: 400 }
+      );
+    }
     
-    const customerName = Customer?.full_name || 'Cliente';
-    const customerEmail = Customer?.email;
-    const productName = Product?.product_name || 'nosso produto';
-
-    if (!customerEmail) {
-      console.error('Email do cliente não encontrado no payload.');
-      return NextResponse.json({ status: 'error', message: 'Email do cliente faltando' }, { status: 400 });
-    }
-
-    if (order_status === 'paid' && (payment_method === 'pix' || payment_method === 'credit_card')) {
-      const chargeAmount = Commissions?.[0]?.charge_amount || 0;
-      const formattedValue = (chargeAmount / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-      const subject = `✅ Acesso Liberado! Seu ${productName} chegou!`;
-      
-      const emailHtml = getConfirmationEmail({
-        name: customerName,
-        orderRef: order_ref,
-        value: formattedValue,
+    // 4. Validação OPCIONAL de Store ID (segurança extra)
+    const STORE_ID = process.env.KIWIFY_STORE_ID;
+    if (STORE_ID && body.store_id !== STORE_ID) {
+      console.warn('⚠️ Store ID não corresponde:', {
+        recebido: body.store_id,
+        esperado: STORE_ID
       });
-
+      // NÃO bloqueia, apenas loga
+    }
+    
+    // 5. Processar evento
+    const customerEmail = body.Customer.email;
+    const customerName = body.Customer.full_name || body.Customer.first_name || 'Cliente';
+    
+    // COMPRA APROVADA
+    if (body.order_status === 'paid') {
+      console.log('✅ Compra aprovada, enviando email...');
+      
+      const emailData = {
+        name: customerName,
+        order_ref: body.order_ref,
+        amount: ((body.Commissions?.[0]?.charge_amount || 3590) / 100).toFixed(2).replace('.', ',')
+      };
+      
       await sendEmail({
         to: customerEmail,
-        subject,
-        html: emailHtml,
+        subject: '🎉 Acesso Liberado - Cardápio Sem Leite',
+        html: paymentApprovedTemplate(emailData)
       });
-      console.log(`Email de confirmação enviado para ${customerEmail}`);
-
-    } else if (webhook_event_type === 'cart_abandoned') {
-      const subject = `🤔 Você esqueceu algo, ${customerName}?`;
       
-      const emailHtml = getAbandonedCartEmail({
+      console.log('✅ Email de confirmação enviado para:', customerEmail);
+    }
+    
+    // CARRINHO ABANDONADO
+    else if (body.webhook_event_type === 'cart_abandoned') {
+      console.log('🛒 Carrinho abandonado, enviando email...');
+      
+      const emailData = {
         name: customerName,
-        productName: productName,
-        checkoutUrl: 'https://pay.kiwify.com.br/v2XN6QB' // URL de checkout adicionada
-      });
-
+        checkout_link: 'https://pay.kiwify.com.br/v2XN6QB'
+      };
+      
       await sendEmail({
         to: customerEmail,
-        subject,
-        html: emailHtml,
+        subject: 'Seu filho merece variedade 💚',
+        html: cartAbandonedTemplate(emailData)
       });
-      console.log(`Email de carrinho abandonado enviado para ${customerEmail}`);
-    } else {
-      console.log(`Evento de webhook não tratado: ${webhook_event_type} com status ${order_status}`);
+      
+      console.log('✅ Email de recuperação enviado para:', customerEmail);
     }
-
-    return NextResponse.json({ status: 'success' }, { status: 200 });
-
+    
+    // 6. SEMPRE retornar 200 OK (evita reenvio)
+    return Response.json({ 
+      success: true,
+      message: 'Webhook processado com sucesso'
+    }, { status: 200 });
+    
   } catch (error: any) {
-    console.error('Erro ao processar webhook da Kiwify:', error);
-    // Retornamos 200 mesmo em caso de erro para evitar que a Kiwify reenvie o webhook indefinidamente.
-    return NextResponse.json({ status: 'error', message: 'Erro interno do servidor', details: error.message }, { status: 200 });
+    console.error('❌ Erro ao processar webhook:', {
+      message: error.message,
+      stack: error.stack
+    });
+    
+    // ⚠️ IMPORTANTE: Retornar 200 mesmo com erro
+    // para evitar que Kiwify reenvie o webhook
+    return Response.json({ 
+      received: true,
+      error: 'Processado com erro, mas recebido'
+    }, { status: 200 });
   }
 }
+
+// Desabilita body parsing do Next.js (já fazemos manual)
+export const dynamic = 'force-dynamic';

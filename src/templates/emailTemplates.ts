@@ -2,17 +2,16 @@
 
 interface ConfirmationEmailProps {
   name: string;
-  orderRef: string;
-  value: string;
+  order_ref: string;
+  amount: string;
 }
 
 interface AbandonedCartEmailProps {
   name: string;
-  productName: string;
-  checkoutUrl: string;
+  checkout_link: string;
 }
 
-export function getConfirmationEmail({ name, orderRef, value }: ConfirmationEmailProps): string {
+export function paymentApprovedTemplate({ name, order_ref, amount }: ConfirmationEmailProps): string {
   let template = `
   <!DOCTYPE html>
   <html>
@@ -114,8 +113,8 @@ export function getConfirmationEmail({ name, orderRef, value }: ConfirmationEmai
                                       </td>
                                   </tr>
                               </table>
-                  
-                              
+                
+                            
                               <!-- Garantia em destaque -->
                               <table width="100%" cellpadding="16" cellspacing="0" style="background-color: #f0fdf4; border: 2px solid #10b981; border-radius: 10px; margin-bottom: 20px;">
                                   <tr>
@@ -146,7 +145,7 @@ export function getConfirmationEmail({ name, orderRef, value }: ConfirmationEmai
                           <td style="background-color: #f9fafb; padding: 20px 25px; text-align: center; border-top: 1px solid #e5e7eb;">
                               <p style="color: #9ca3af; font-size: 12px; margin: 0; line-height: 1.5;">
                                   Cardápio Sem Leite da Mãe Prevenida<br>
-                                  <strong style="color: #6b7280;">Pedido #[ORDER_REF] • [VALOR]</strong>
+                                  <strong style="color: #6b7280;">Pedido #[ORDER_REF] • R$ [VALOR]</strong>
                               </p>
                           </td>
                       </tr>
@@ -161,11 +160,11 @@ export function getConfirmationEmail({ name, orderRef, value }: ConfirmationEmai
   
   return template
     .replace(/\[NOME\]/g, name)
-    .replace(/\[ORDER_REF\]/g, orderRef)
-    .replace(/\[VALOR\]/g, value);
+    .replace(/\[ORDER_REF\]/g, order_ref)
+    .replace(/\[VALOR\]/g, amount);
 }
 
-export function getAbandonedCartEmail({ name, productName, checkoutUrl }: AbandonedCartEmailProps): string {
+export function cartAbandonedTemplate({ name, checkout_link }: AbandonedCartEmailProps): string {
   const template = `
   <!DOCTYPE html>
   <html>
@@ -330,5 +329,5 @@ export function getAbandonedCartEmail({ name, productName, checkoutUrl }: Abando
       </table>
   </body>
   </html>`;
-  return template.replace(/\[NOME\]/g, name);
+  return template.replace(/\[NOME\]/g, name).replace(/\[CHECKOUT_LINK\]/g, checkout_link);
 }
