@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
 import { ChatWidget } from '@/components/chat/ChatWidget';
 import { Inter, Poppins } from 'next/font/google';
+import { use } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
