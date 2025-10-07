@@ -166,115 +166,160 @@ export function getConfirmationEmail({ name, orderRef, value }: ConfirmationEmai
 }
 
 export function getAbandonedCartEmail({ name, productName, checkoutUrl }: AbandonedCartEmailProps): string {
-  return `
+  const template = `
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Você estava quase lá...</title>
   </head>
-  <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #fef3c7;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fef3c7; padding: 40px 20px;">
+  <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #fff7ed;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #fff7ed; padding: 20px;">
           <tr>
               <td align="center">
-                  <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                  <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 100%;">
                       
-                      <!-- Header -->
+                      <!-- Header emocional -->
                       <tr>
-                          <td style="padding: 40px 30px; text-align: center;">
-                              <div style="font-size: 48px; margin-bottom: 15px;">😔</div>
-                              <h1 style="color: #1f2937; margin: 0; font-size: 26px; font-weight: bold;">
-                                  Você estava tão perto, ${name}...
+                          <td style="padding: 35px 25px 25px 25px; text-align: center;">
+                              <div style="font-size: 56px; margin-bottom: 15px;">💔</div>
+                              <h1 style="color: #1f2937; margin: 0 0 10px 0; font-size: 24px; font-weight: 800; line-height: 1.3;">
+                                  [NOME], você estava a 1 clique<br>de nunca mais repetir a mesma receita...
                               </h1>
-                              <p style="color: #6b7280; margin: 10px 0 0 0; font-size: 16px;">
-                                  Notamos que você não finalizou sua compra do ${productName}
+                              <p style="color: #6b7280; margin: 0; font-size: 15px;">
+                                  Mas algo te fez parar. Posso adivinhar o quê?
                               </p>
                           </td>
                       </tr>
                       
-                      <!-- Corpo -->
+                      <!-- Objeções respondidas -->
                       <tr>
-                          <td style="padding: 0 30px 40px 30px;">
-                              <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin: 0 0 25px 0;">
-                                  Sabemos como é difícil alimentar uma criança com APLV. A repetição, o medo de errar, a frustração de ver seu filho recusar comida...
-                              </p>
+                          <td style="padding: 0 25px 30px 25px;">
                               
-                              <p style="color: #1f2937; font-size: 17px; line-height: 1.6; margin: 0 0 25px 0; font-weight: 600;">
-                                  Mas não precisa continuar assim.
-                              </p>
-                              
-                              <!-- O que você perde -->
-                              <table width="100%" cellpadding="15" cellspacing="0" style="background-color: #f0fdf4; border-radius: 8px; margin: 25px 0;">
+                              <!-- Objeção 1 -->
+                              <table width="100%" cellpadding="14" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; margin-bottom: 12px;">
                                   <tr>
                                       <td>
-                                          <p style="color: #065f46; font-size: 15px; margin: 0 0 12px 0; font-weight: bold;">
-                                              O que está esperando por você:
+                                          <p style="color: #78350f; font-size: 14px; font-weight: 700; margin: 0 0 6px 0;">
+                                              💭 "E se não funcionar comigo?"
                                           </p>
-                                          <ul style="color: #047857; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
-                                              <li>1000 receitas testadas e seguras</li>
-                                              <li>Variedade para seu filho nunca enjoar</li>
-                                              <li>Organização por idade e tempo (sem improviso)</li>
-                                              <li>Receitas de festa (inclusão de verdade)</li>
-                                              <li>Paz de espírito a cada refeição</li>
-                                          </ul>
+                                          <p style="color: #92400e; font-size: 13px; margin: 0; line-height: 1.5;">
+                                              <strong>7 dias de garantia.</strong> Não gostou? Devolvemos tudo. Você literalmente não tem nada a perder.
+                                          </p>
                                       </td>
                                   </tr>
                               </table>
                               
-                              <!-- Urgência -->
-                              <table width="100%" cellpadding="15" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; margin: 25px 0;">
+                              <!-- Objeção 2 -->
+                              <table width="100%" cellpadding="14" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; margin-bottom: 12px;">
                                   <tr>
                                       <td>
-                                          <p style="color: #92400e; font-size: 14px; margin: 0; font-weight: 600;">
-                                              ⏰ Preço especial de R$ 35,90 expira em breve
+                                          <p style="color: #78350f; font-size: 14px; font-weight: 700; margin: 0 0 6px 0;">
+                                              💭 "Meu filho é muito enjoado..."
                                           </p>
-                                          <p style="color: #b45309; font-size: 13px; margin: 8px 0 0 0;">
-                                              Após o timer acabar, o investimento volta para R$ 97,00
+                                          <p style="color: #92400e; font-size: 13px; margin: 0; line-height: 1.5;">
+                                              <strong>São 1000 receitas.</strong> Se ele recusar 50, você ainda tem 950 opções. Impossível não encontrar o que ele gosta.
                                           </p>
                                       </td>
                                   </tr>
                               </table>
                               
-                              <!-- Botão CTA -->
-                              <table width="100%" cellpadding="0" cellspacing="0" style="margin: 35px 0;">
+                              <!-- Objeção 3 -->
+                              <table width="100%" cellpadding="14" cellspacing="0" style="background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px; margin-bottom: 25px;">
                                   <tr>
-                                      <td align="center">
-                                          <a href="${checkoutUrl}" style="display: inline-block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 18px 45px; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);">
-                                              Finalizar Minha Compra Agora
-                                          </a>
+                                      <td>
+                                          <p style="color: #78350f; font-size: 14px; font-weight: 700; margin: 0 0 6px 0;">
+                                              💭 "Vou pensar melhor..."
+                                          </p>
+                                          <p style="color: #92400e; font-size: 13px; margin: 0; line-height: 1.5;">
+                                              Enquanto isso, <strong>você vai servir frango com arroz de novo amanhã?</strong> E depois? E na próxima festa que ele não poderá comer nada?
+                                          </p>
                                       </td>
                                   </tr>
                               </table>
                               
-                              <!-- Garantia -->
-                              <table width="100%" cellpadding="15" cellspacing="0" style="background-color: #f0fdf4; border-radius: 8px; margin: 30px 0;">
+                              <!-- Dor vs Solução -->
+                              <h2 style="color: #dc2626; font-size: 18px; margin: 0 0 15px 0; font-weight: 700; text-align: center;">
+                                  O Que Você Está Perdendo AGORA:
+                              </h2>
+                              
+                              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                                  <tr>
+                                      <td style="width: 50%; padding-right: 8px; vertical-align: top;">
+                                          <div style="background-color: #fef2f2; border: 2px solid #fca5a5; border-radius: 8px; padding: 15px; height: 100%;">
+                                              <p style="color: #991b1b; font-size: 14px; font-weight: 700; margin: 0 0 10px 0; text-align: center;">
+                                                  ❌ SEM O CARDÁPIO
+                                              </p>
+                                              <ul style="color: #b91c1c; font-size: 13px; margin: 0; padding-left: 18px; line-height: 1.7;">
+                                                  <li>Mesmas 3 receitas</li>
+                                                  <li>Criança enjoada</li>
+                                                  <li>Medo constante</li>
+                                                  <li>Exclusão em festas</li>
+                                                  <li>Culpa diária</li>
+                                              </ul>
+                                          </div>
+                                      </td>
+                                      <td style="width: 50%; padding-left: 8px; vertical-align: top;">
+                                          <div style="background-color: #f0fdf4; border: 2px solid #86efac; border-radius: 8px; padding: 15px; height: 100%;">
+                                              <p style="color: #065f46; font-size: 14px; font-weight: 700; margin: 0 0 10px 0; text-align: center;">
+                                                  ✅ COM O CARDÁPIO
+                                              </p>
+                                              <ul style="color: #047857; font-size: 13px; margin: 0; padding-left: 18px; line-height: 1.7;">
+                                                  <li>1000 opções</li>
+                                                  <li>Variedade todo dia</li>
+                                                  <li>Segurança total</li>
+                                                  <li>Bolos de festa</li>
+                                                  <li>Paz de espírito</li>
+                                              </ul>
+                                          </div>
+                                      </td>
+                                  </tr>
+                              </table>
+                              
+                              <!-- Urgência REAL -->
+                              <table width="100%" cellpadding="18" cellspacing="0" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border: 3px solid #dc2626; border-radius: 10px; margin-bottom: 25px;">
                                   <tr>
                                       <td style="text-align: center;">
-                                          <p style="color: #065f46; font-size: 15px; margin: 0 0 8px 0; font-weight: bold;">
-                                              🛡️ Garantia de 7 Dias • Risco Zero
+                                          <p style="color: #7f1d1d; font-size: 15px; font-weight: 800; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+                                              ⚠️ ÚLTIMA CHANCE
                                           </p>
-                                          <p style="color: #047857; font-size: 13px; margin: 0; line-height: 1.5;">
-                                              Não gostou? Devolvemos 100% do seu dinheiro.<br>
-                                              Sem perguntas, sem burocracia.
+                                          <p style="color: #991b1b; font-size: 17px; font-weight: 700; margin: 0 0 10px 0;">
+                                              O preço de R$ 35,90 expira em HORAS
+                                          </p>
+                                          <p style="color: #b91c1c; font-size: 14px; margin: 0; line-height: 1.5;">
+                                              Depois disso, volta para <strong>R$ 97,00</strong>.<br>
+                                              Você vai perder <span style="background-color: #7f1d1d; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-weight: 700;">R$ 61,10</span> por hesitar.
                                           </p>
                                       </td>
                                   </tr>
                               </table>
                               
-                              <p style="color: #6b7280; font-size: 14px; text-align: center; margin: 25px 0 0 0; line-height: 1.6;">
-                                  Você literalmente não tem nada a perder.<br>
-                                  <strong style="color: #1f2937;">E tem tudo a ganhar: paz, variedade e segurança.</strong>
-                              </p>
-                          </td>
-                      </tr>
+                              <!-- CTA GIGANTE -->
+                              <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 25px 0;">
+                                  <tr>
+                                      <td align="center">
+                                          <a href="https://pay.kiwify.com.br/v2XN6QB" style="display: block; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; text-decoration: none; padding: 22px 30px; border-radius: 10px; font-size: 19px; font-weight: 800; text-align: center; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4); border: 3px solid #7f1d1d; text-transform: uppercase;">
+                                              🔥 SIM, QUERO GARANTIR POR R$ 35,90 AGORA
+                                          </a>
+                                          <p style="color: #6b7280; font-size: 12px; margin: 8px 0 0 0; text-align: center;">
+                                              Acesso imediato • 7 dias de garantia • Sem risco
+                                          </p>
+                                      </td>
+                                  </tr>
+                              </table>
+                              
+                              
+                      
                       
                       <!-- Footer -->
                       <tr>
-                          <td style="background-color: #f9fafb; padding: 25px; text-align: center; border-top: 1px solid #e5e7eb;">
-                              <p style="color: #9ca3af; font-size: 12px; margin: 0;">
-                                  Cardápio Sem Leite da Mãe Prevenida<br>
-                                  Você recebeu este email porque iniciou uma compra que não foi finalizada.
+                          <td style="background-color: #f9fafb; padding: 20px 25px; text-align: center; border-top: 1px solid #e5e7eb;">
+                              <p style="color: #6b7280; font-size: 13px; margin: 0 0 8px 0; line-height: 1.5;">
+                                  <strong>P.S.</strong> Cada dia que passa é mais uma refeição repetida,<br>mais uma festa perdida, mais um momento de culpa.<br>
+                                  <span style="color: #1f2937; font-weight: 600;">Você pode mudar isso nos próximos 60 segundos.</span>
+                              </p>
+                              <p style="color: #9ca3af; font-size: 11px; margin: 12px 0 0 0;">
+                                  Cardápio Sem Leite da Mãe Prevenida
                               </p>
                           </td>
                       </tr>
@@ -284,6 +329,6 @@ export function getAbandonedCartEmail({ name, productName, checkoutUrl }: Abando
           </tr>
       </table>
   </body>
-  </html>
-  `;
+  </html>`;
+  return template.replace(/\[NOME\]/g, name);
 }
