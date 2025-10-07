@@ -4,44 +4,40 @@ import crypto from 'crypto';
 import { sendEmail } from '@/lib/emailService';
 import { getConfirmationEmail, getAbandonedCartEmail } from '@/templates/emailTemplates';
 
-const verifyWebhook = (req: Request, body: any) => {
-  const secret = process.env.KIWIFY_WEBHOOK_SECRET;
-  if (!secret) {
-    console.warn('KIWIFY_WEBHOOK_SECRET não configurada. Pulando verificação de segurança.');
+const verifyWebhook = (req: Request) => {
+  const providedToken = req.headers.get('kiwify-token');
+  const secretToken = process.env.KIWIFY_TOKEN;
+
+  if (!secretToken) {
+    console.warn('KIWIFY_TOKEN não configurado. Pulando verificação de segurança.');
     // Para desenvolvimento, pode ser útil pular a verificação.
-    // Em produção, é altamente recomendável configurar o segredo.
+    // Em produção, é altamente recomendável configurar o token.
     return true; 
   }
   
-  const signature = req.headers.get('signature');
-  if (!signature) {
-    console.error('Assinatura do Webhook não encontrada no cabeçalho.');
+  if (!providedToken) {
+    console.error('Token do Webhook não encontrado no cabeçalho.');
     return false;
   }
-  
-  const hmac = crypto.createHmac('sha256', secret);
-  hmac.update(JSON.stringify(body));
-  const digest = hmac.digest('hex');
-  
-  const signatureBuffer = Buffer.from(signature);
-  const digestBuffer = Buffer.from(digest);
 
-  return crypto.timingSafeEqual(signatureBuffer, digestBuffer);
+  // Comparação simples de tokens
+  return providedToken === secretToken;
 };
 
 export async function POST(req: Request) {
   let body;
   try {
+    // A verificação agora é feita antes de fazer o parse do body
+    if (!verifyWebhook(req)) {
+      console.error('Falha na verificação do token do Webhook.');
+      return NextResponse.json({ status: 'error', message: 'Token inválido' }, { status: 401 });
+    }
+    
     const rawBody = await req.text();
     body = JSON.parse(rawBody);
 
     // Log para depuração
     console.log('Webhook recebido:', JSON.stringify(body, null, 2));
-
-    if (!verifyWebhook(req, body)) {
-      console.error('Falha na verificação da assinatura do Webhook.');
-      return NextResponse.json({ status: 'error', message: 'Assinatura inválida' }, { status: 401 });
-    }
 
     const {
       webhook_event_type,
