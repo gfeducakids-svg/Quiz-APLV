@@ -8,7 +8,9 @@ const verifyWebhook = (req: Request, body: any) => {
   const secret = process.env.KIWIFY_WEBHOOK_SECRET;
   if (!secret) {
     console.warn('KIWIFY_WEBHOOK_SECRET não configurada. Pulando verificação de segurança.');
-    return true; // Pula a verificação se o segredo não estiver configurado
+    // Para desenvolvimento, pode ser útil pular a verificação.
+    // Em produção, é altamente recomendável configurar o segredo.
+    return true; 
   }
   
   const signature = req.headers.get('signature');
@@ -21,7 +23,10 @@ const verifyWebhook = (req: Request, body: any) => {
   hmac.update(JSON.stringify(body));
   const digest = hmac.digest('hex');
   
-  return crypto.timingSafeEqual(Buffer.from(digest), Buffer.from(signature));
+  const signatureBuffer = Buffer.from(signature);
+  const digestBuffer = Buffer.from(digest);
+
+  return crypto.timingSafeEqual(signatureBuffer, digestBuffer);
 };
 
 export async function POST(req: Request) {
@@ -46,7 +51,6 @@ export async function POST(req: Request) {
       Product,
       order_ref,
       Commissions,
-      access_url,
     } = body;
     
     const customerName = Customer?.full_name || 'Cliente';
@@ -61,14 +65,12 @@ export async function POST(req: Request) {
     if (order_status === 'paid' && (payment_method === 'pix' || payment_method === 'credit_card')) {
       const chargeAmount = Commissions?.[0]?.charge_amount || 0;
       const formattedValue = (chargeAmount / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-      const subject = `✅ Pagamento confirmado: Seu acesso ao ${productName} está liberado!`;
+      const subject = `✅ Acesso Liberado! Seu ${productName} chegou!`;
       
       const emailHtml = getConfirmationEmail({
         name: customerName,
         orderRef: order_ref,
         value: formattedValue,
-        accessUrl: access_url,
-        productName: productName,
       });
 
       await sendEmail({
