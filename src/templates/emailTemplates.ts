@@ -309,8 +309,8 @@ export function getAbandonedCartEmail({ name, productName, checkoutUrl }: Abando
                               </table>
                               
                               
-                      
-                      
+                    
+                    
                       <!-- Footer -->
                       <tr>
                           <td style="background-color: #f9fafb; padding: 20px 25px; text-align: center; border-top: 1px solid #e5e7eb;">
