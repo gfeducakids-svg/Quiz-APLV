@@ -49,6 +49,7 @@ Principais benefícios:
 - Economia: Evita desperdício com receitas que dão errado e compras de produtos caros e inadequados.
 
 Preço: O investimento é de R$ 197, ou 12x de R$ 19,66.
+Link de Checkout: https://pay.kiwify.com.br/v2XN6QB
 Garantia: 7 dias incondicional. Se não gostar, recebe todo o dinheiro de volta.
 Diferenciais: Não é apenas um livro de receitas, é um sistema completo com cardápios prontos, lista de compras e guia de produtos seguros.
 
