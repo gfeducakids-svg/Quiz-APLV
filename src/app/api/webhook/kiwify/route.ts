@@ -8,60 +8,48 @@ import {
 
 export async function POST(request: NextRequest) {
   try {
-    // 1. Parse do JSON
     const body = await request.json();
     
-    // 2. Log para debug
-    console.log('📩 Webhook Kiwify recebido:', {
-      timestamp: new Date().toISOString(),
-      order_id: body.order_id,
-      order_ref: body.order_ref,
-      status: body.order_status,
-      payment_method: body.payment_method,
-      event_type: body.webhook_event_type,
-      email: body.Customer?.email,
-      store_id: body.store_id
-    });
-    
-    // 3. Validação SIMPLES (apenas campos obrigatórios)
-    if (!body.Customer?.email) {
-      console.error('❌ Email do cliente não encontrado');
+    console.log('📩 Webhook Kiwify recebido:', JSON.stringify(body, null, 2));
+
+    let customerEmail: string | undefined;
+    let customerName: string | undefined;
+    let eventType: 'paid' | 'abandoned' | 'other' = 'other';
+
+    // Distinguir entre webhook de compra e de carrinho abandonado
+    if (body.cart && body.cart.status === 'abandoned') {
+        eventType = 'abandoned';
+        customerEmail = body.cart.email;
+        customerName = body.cart.first_name || 'Cliente';
+    } else if (body.order_status === 'paid') {
+        eventType = 'paid';
+        customerEmail = body.Customer?.email;
+        customerName = body.Customer?.full_name || body.Customer?.first_name || 'Cliente';
+    } else {
+        console.log('ℹ️ Evento não processado:', body.order_status || 'sem status');
+    }
+
+    if (!customerEmail) {
+      console.error('❌ Email do cliente não encontrado no payload.');
       return Response.json(
         { error: 'Email do cliente obrigatório' }, 
         { status: 400 }
       );
     }
-    
-    if (!body.order_status && !body.webhook_event_type) {
-      console.error('❌ Status do pedido não encontrado');
-      return Response.json(
-        { error: 'Status do pedido obrigatório' }, 
-        { status: 400 }
-      );
-    }
-    
-    // 4. Validação OPCIONAL de Store ID (segurança extra)
-    const STORE_ID = process.env.KIWIFY_STORE_ID;
-    if (STORE_ID && body.store_id !== STORE_ID) {
-      console.warn('⚠️ Store ID não corresponde:', {
-        recebido: body.store_id,
-        esperado: STORE_ID
-      });
-      // NÃO bloqueia, apenas loga
-    }
-    
-    // 5. Processar evento
-    const customerEmail = body.Customer.email;
-    const customerName = body.Customer.full_name || body.Customer.first_name || 'Cliente';
-    
-    // COMPRA APROVADA
-    if (body.order_status === 'paid') {
+
+    // Processar evento
+    if (eventType === 'paid') {
       console.log('✅ Compra aprovada, enviando email...');
       
+      const chargeAmount = body.Commissions?.[0]?.charge_amount;
+      const amount = typeof chargeAmount === 'number' 
+        ? (chargeAmount / 100).toFixed(2).replace('.', ',') 
+        : '35,90';
+
       const emailData = {
-        name: customerName,
-        order_ref: body.order_ref,
-        amount: ((body.Commissions?.[0]?.charge_amount || 3590) / 100).toFixed(2).replace('.', ',')
+        name: customerName!,
+        order_ref: body.order_ref || 'N/A',
+        amount: amount,
       };
       
       await sendEmail({
@@ -73,13 +61,12 @@ export async function POST(request: NextRequest) {
       console.log('✅ Email de confirmação enviado para:', customerEmail);
     }
     
-    // CARRINHO ABANDONADO
-    else if (body.webhook_event_type === 'cart_abandoned') {
+    else if (eventType === 'abandoned') {
       console.log('🛒 Carrinho abandonado, enviando email...');
       
       const emailData = {
-        name: customerName,
-        checkout_link: 'https://pay.kiwify.com.br/v2XN6QB'
+        name: customerName!,
+        checkout_link: `https://pay.kiwify.com.br/${body.cart.checkout_link}`
       };
       
       await sendEmail({
@@ -91,7 +78,6 @@ export async function POST(request: NextRequest) {
       console.log('✅ Email de recuperação enviado para:', customerEmail);
     }
     
-    // 6. SEMPRE retornar 200 OK (evita reenvio)
     return Response.json({ 
       success: true,
       message: 'Webhook processado com sucesso'
@@ -103,8 +89,6 @@ export async function POST(request: NextRequest) {
       stack: error.stack
     });
     
-    // ⚠️ IMPORTANTE: Retornar 200 mesmo com erro
-    // para evitar que Kiwify reenvie o webhook
     return Response.json({ 
       received: true,
       error: 'Processado com erro, mas recebido'
@@ -112,5 +96,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Desabilita body parsing do Next.js (já fazemos manual)
 export const dynamic = 'force-dynamic';
