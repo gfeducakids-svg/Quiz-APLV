@@ -4,6 +4,7 @@ interface ConfirmationEmailProps {
   name: string;
   order_ref: string;
   amount: string;
+  access_url: string;
 }
 
 interface AbandonedCartEmailProps {
@@ -11,7 +12,7 @@ interface AbandonedCartEmailProps {
   checkout_link: string;
 }
 
-export function paymentApprovedTemplate({ name, order_ref, amount }: ConfirmationEmailProps): string {
+export function paymentApprovedTemplate({ name, order_ref, amount, access_url }: ConfirmationEmailProps): string {
   let template = `
   <!DOCTYPE html>
   <html>
@@ -69,11 +70,11 @@ export function paymentApprovedTemplate({ name, order_ref, amount }: Confirmatio
                               <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 30px 0;">
                                   <tr>
                                       <td align="center">
-                                          <a href="https://drive.google.com/drive/folders/1J8E8L5jShNTgX98Q_R6atm8t7Eeqpi5a?usp=sharing" style="display: block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 20px 30px; border-radius: 10px; font-size: 19px; font-weight: 800; text-align: center; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); border: 3px solid #047857;">
+                                          <a href="[ACCESS_URL]" style="display: block; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #ffffff; text-decoration: none; padding: 20px 30px; border-radius: 10px; font-size: 19px; font-weight: 800; text-align: center; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); border: 3px solid #047857;">
                                               🚀 ACESSAR MINHAS 1000 RECEITAS AGORA
                                           </a>
                                           <p style="color: #6b7280; font-size: 12px; margin: 10px 0 0 0; text-align: center;">
-                                              Clique aqui ☝️ ou copie: https://drive.google.com/drive/folders/1J8E8L5jShNTgX98Q_R6atm8t7Eeqpi5a?usp=sharing
+                                              Clique aqui ☝️ ou copie: [ACCESS_URL_PLAIN]
                                           </p>
                                       </td>
                                   </tr>
@@ -85,33 +86,19 @@ export function paymentApprovedTemplate({ name, order_ref, amount }: Confirmatio
                               </h2>
                               
                               <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
-                                  <tr>
-                                      <td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; margin-bottom: 8px; border-radius: 6px;">
-                                          <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">
-                                              1️⃣ Clique no botão verde e salve o link
-                                          </p>
-                                          <p style="color: #6b7280; font-size: 13px; margin: 0;">
-                                              Adicione aos favoritos. É seu para sempre.
-                                          </p>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; margin-bottom: 8px; border-radius: 6px;">
-                                          <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">
-                                              2️⃣ Escolha 3 receitas para esta semana
-                                          </p>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; border-radius: 6px;">
-                                          <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">
-                                              3️⃣ Veja seu filho comer e sorrir
-                                          </p>
-                                          <p style="color: #6b7280; font-size: 13px; margin: 0;">
-                                              E sinta a paz que você merece. 💚
-                                          </p>
-                                      </td>
-                                  </tr>
+                                  <tr><td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; margin-bottom: 8px; border-radius: 6px;">
+                                    <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">1️⃣ Clique no botão verde e salve o link</p>
+                                    <p style="color: #6b7280; font-size: 13px; margin: 0;">Adicione aos favoritos. É seu para sempre.</p>
+                                  </td></tr>
+                                  <tr><td style="height: 8px;"></td></tr>
+                                  <tr><td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; margin-bottom: 8px; border-radius: 6px;">
+                                    <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">2️⃣ Escolha 3 receitas para esta semana</p>
+                                  </td></tr>
+                                   <tr><td style="height: 8px;"></td></tr>
+                                  <tr><td style="padding: 12px; background-color: #f9fafb; border-left: 4px solid #10b981; border-radius: 6px;">
+                                    <p style="color: #1f2937; font-size: 15px; font-weight: 600; margin: 0 0 4px 0;">3️⃣ Veja seu filho comer e sorrir</p>
+                                    <p style="color: #6b7280; font-size: 13px; margin: 0;">E sinta a paz que você merece. 💚</p>
+                                  </td></tr>
                               </table>
                 
                             
@@ -161,7 +148,9 @@ export function paymentApprovedTemplate({ name, order_ref, amount }: Confirmatio
   return template
     .replace(/\[NOME\]/g, name)
     .replace(/\[ORDER_REF\]/g, order_ref)
-    .replace(/\[VALOR\]/g, amount);
+    .replace(/\[VALOR\]/g, amount)
+    .replace(/\[ACCESS_URL\]/g, access_url)
+    .replace(/\[ACCESS_URL_PLAIN\]/g, access_url);
 }
 
 export function cartAbandonedTemplate({ name, checkout_link }: AbandonedCartEmailProps): string {
@@ -297,7 +286,7 @@ export function cartAbandonedTemplate({ name, checkout_link }: AbandonedCartEmai
                               <table width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 25px 0;">
                                   <tr>
                                       <td align="center">
-                                          <a href="https://pay.kiwify.com.br/v2XN6QB" style="display: block; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; text-decoration: none; padding: 22px 30px; border-radius: 10px; font-size: 19px; font-weight: 800; text-align: center; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4); border: 3px solid #7f1d1d; text-transform: uppercase;">
+                                          <a href="[CHECKOUT_LINK]" style="display: block; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; text-decoration: none; padding: 22px 30px; border-radius: 10px; font-size: 19px; font-weight: 800; text-align: center; box-shadow: 0 8px 24px rgba(220, 38, 38, 0.4); border: 3px solid #7f1d1d; text-transform: uppercase;">
                                               🔥 SIM, QUERO GARANTIR POR R$ 35,90 AGORA
                                           </a>
                                           <p style="color: #6b7280; font-size: 12px; margin: 8px 0 0 0; text-align: center;">
@@ -307,9 +296,6 @@ export function cartAbandonedTemplate({ name, checkout_link }: AbandonedCartEmai
                                   </tr>
                               </table>
                               
-                              
-                    
-                    
                       <!-- Footer -->
                       <tr>
                           <td style="background-color: #f9fafb; padding: 20px 25px; text-align: center; border-top: 1px solid #e5e7eb;">

@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
 
       if (!customerEmail) {
         console.error('❌ Email do cliente não encontrado no payload de carrinho abandonado.');
-        return Response.json({ error: 'Email do cliente obrigatório' }, { status: 400 });
+        // Retornar 200 para não receber o webhook novamente
+        return Response.json({ success: true, message: 'Email do cliente não encontrado, mas webhook recebido.' }, { status: 200 });
       }
 
       console.log('🛒 Carrinho abandonado, enviando email...');
@@ -44,11 +45,13 @@ export async function POST(request: NextRequest) {
 
       if (!customerEmail) {
         console.error('❌ Email do cliente não encontrado no payload de compra aprovada.');
-        return Response.json({ error: 'Email do cliente obrigatório' }, { status: 400 });
+        // Retornar 200 para não receber o webhook novamente
+        return Response.json({ success: true, message: 'Email do cliente não encontrado, mas webhook recebido.' }, { status: 200 });
       }
       
       console.log('✅ Compra aprovada, enviando email...');
       
+      // Garante que o valor seja formatado corretamente
       const chargeAmount = body.Commissions?.[0]?.charge_amount;
       const amount = typeof chargeAmount === 'number' 
         ? (chargeAmount / 100).toFixed(2).replace('.', ',') 
@@ -58,6 +61,7 @@ export async function POST(request: NextRequest) {
         name: customerName,
         order_ref: body.order_ref || 'N/A',
         amount: amount,
+        access_url: 'https://drive.google.com/drive/folders/1J8E8L5jShNTgX98Q_R6atm8t7Eeqpi5a?usp=sharing'
       };
       
       await sendEmail({
@@ -70,7 +74,8 @@ export async function POST(request: NextRequest) {
 
     // Outros eventos não processados
     } else {
-        console.log('ℹ️ Evento não processado:', body.order_status || (body.cart ? body.cart.status : 'sem status'));
+        const eventIdentifier = body.order_status || (body.cart ? body.cart.status : 'sem status/evento conhecido');
+        console.log('ℹ️ Evento não processado:', eventIdentifier);
     }
     
     return Response.json({ 
@@ -79,11 +84,12 @@ export async function POST(request: NextRequest) {
     }, { status: 200 });
     
   } catch (error: any) {
-    console.error('❌ Erro ao processar webhook:', {
+    console.error('❌ Erro grave ao processar webhook:', {
       message: error.message,
       stack: error.stack
     });
     
+    // Retorna 200 para que a Kiwify não reenvie o webhook em caso de erro de parsing ou outro.
     return Response.json({ 
       received: true,
       error: 'Processado com erro, mas recebido'
@@ -92,4 +98,3 @@ export async function POST(request: NextRequest) {
 }
 
 export const dynamic = 'force-dynamic';
-
