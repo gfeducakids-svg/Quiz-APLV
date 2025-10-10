@@ -72,7 +72,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     faq: [
         { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
         { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira?", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
         { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
@@ -115,7 +115,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     faq: [
         { question: "Como recebo o acesso? Funciona no celular?", answer: "Você recebe imediatamente por email após o pagamento. É um otimizado para que funcione perfeitamente em celular, tablet e computador. Pode baixar e usar offline, sem precisar de internet." },
         { question: "Tem receitas para a idade do meu filho?", answer: "Sim. O cardápio cobre de 6 meses a 13+ anos, com receitas organizadas por faixa etária. Cada receita indica a idade mínima recomendada." },
-        { question: "As receitas são difíceis? Sou péssima cozinheira.", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
+        { question: "As receitas são difíceis? Sou péssima cozinheira?", answer: "Não. As receitas são fáceis e categorizadas de acordo com seu tempo. Cada receita tem passo a passo detalhado com ingredientes." },
         { question: "Vou gastar mais com ingredientes especiais?", answer: 'Não. As receitas usam ingredientes comuns de supermercado. Você vai ECONOMIZAR parando de comprar produtos industrializados "sem leite" que custam R$ 300-500/mês.' }
     ],
     guarantee: {
@@ -496,7 +496,3 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
-
-
-
-
