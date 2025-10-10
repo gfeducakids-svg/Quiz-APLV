@@ -1,5 +1,5 @@
-// src/app/api/webhook/kiwify/route.ts
-import { NextResponse, type NextRequest } from 'next/server';
+
+import { NextRequest } from 'next/server';
 import { sendEmail } from '@/lib/emailService';
 import { 
   paymentApprovedTemplate, 
@@ -84,7 +84,6 @@ export async function POST(request: NextRequest) {
       stack: error.stack
     });
     
-    // Retornar 200 mesmo com erro para evitar reenvios da Kiwify
     return Response.json({ 
       received: true,
       error: 'Processado com erro, mas recebido'
@@ -93,3 +92,4 @@ export async function POST(request: NextRequest) {
 }
 
 export const dynamic = 'force-dynamic';
+
