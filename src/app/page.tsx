@@ -21,7 +21,7 @@ export default function Home() {
             (E Como Mudar Isso em 7 Dias)
           </h1>
 
-          <div className="mt-6 max-w-2xl mx-auto">
+          <div className="mt-4 max-w-2xl mx-auto">
             <Image
               src="https://i.imgur.com/uvWtFwo.jpeg"
               alt="Mãe com filho"
@@ -32,7 +32,7 @@ export default function Home() {
             />
           </div>
 
-          <Card className="mt-6 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
+          <Card className="mt-4 max-w-2xl mx-auto bg-card/80 p-4 rounded-lg text-left shadow-sm border-0">
             <p className="text-sm md:text-base mb-0 text-[#6B7280]">
               Este diagnóstico de 8 perguntas vai revelar exatamente o que você
               não está vendo na sua luta contra a APLV — e te dar um{' '}
@@ -43,7 +43,7 @@ export default function Home() {
             </p>
           </Card>
 
-          <div className="mt-8">
+          <div className="mt-6">
             <Button
               asChild
               variant="default"
@@ -59,19 +59,19 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <p className="mt-3 text-sm text-[#94A3B8]">
+            <p className="mt-2 text-sm text-[#94A3B8]">
               Resultado Imediato e Preciso | Leva 1 Minuto
             </p>
-            <p className="mt-4 text-base md:text-lg text-[#5D6D7E] max-w-3xl mx-auto">
+            <p className="mt-3 text-base md:text-lg text-[#5D6D7E] max-w-3xl mx-auto">
               Junte-se a +8000 mães que descobriram os{' '}
               <span className="font-bold text-destructive">3 erros</span> que
               estavam cometendo - e o sistema que resolveu tudo.
             </p>
           </div>
 
-          <div className="my-6 h-[1px] bg-border max-w-sm mx-auto"></div>
+          <div className="my-4 h-[1px] bg-border max-w-sm mx-auto"></div>
 
-          <div className="mt-8 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-destructive max-w-xl mx-auto">
+          <div className="mt-6 flex items-center justify-center gap-3 text-sm font-semibold group bg-accent p-4 rounded-lg border-l-4 border-destructive max-w-xl mx-auto">
             <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0 transition-transform group-hover:scale-125" />
             <p className="text-accent-foreground text-left">
               Cada dia que você continua cometendo esses erros pode estar
