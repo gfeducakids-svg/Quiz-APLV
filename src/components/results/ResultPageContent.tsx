@@ -54,8 +54,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
     transitionCopy: {
-        title: "EXISTE UMA SAÍDA SEGURA",
-        text: (<>Imagina acordar amanhã sabendo EXATAMENTE o que fazer em cada refeição. Sem medo. Sem dúvida. Com 1000 opções testadas na sua mão. Isso não é sonho - é o que você vai ter nos próximos minutos.</>)
+        title: "",
+        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -93,8 +93,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'O "pesadelo" das festinhas', description: 'Última festa: ele chorou porque não podia comer o bolo. Você saiu mais cedo.', consequence: 'Alegria vira estresse e exclusão.' },
     ],
     transitionCopy: {
-        title: "A VARIEDADE QUE VOCÊ PROCURAVA EXISTE",
-        text: (<>E se você nunca mais precisasse repetir a mesma receita? E se tivesse 1000 opções rápidas para os dias corridos? E se seu filho pudesse comer bolo na próxima festa? Tudo isso está organizado, testado e pronto para você usar hoje.</>)
+        title: "",
+        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -132,8 +132,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
     transitionCopy: {
-        title: "DESTA VEZ, TEM PROVA",
-        text: (<>Não é mais uma promessa vazia. São 1000 receitas validadas por nutricionista, testadas por 8.347 mães, com informação nutricional completa. Tudo em um sistema, não migalhas espalhadas. E você pode começar agora mesmo.</>)
+        title: "",
+        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -171,8 +171,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Tempo não otimizado', description: '4-5 horas por semana pesquisando receitas e planejando.', consequence: 'Horas que você poderia estar com sua família.' },
     ],
     transitionCopy: {
-        title: "O SISTEMA QUE ELIMINA O IMPROVISO",
-        text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. Retorno imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
+        title: "",
+        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -314,7 +314,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
         <section className={cn("py-6 px-6 border-y", theme.bg, theme.border)}>
             <div className="max-w-3xl mx-auto text-center">
                 <ArrowDown className={cn("h-8 w-8 mx-auto mb-3", theme.text)} />
-                <h3 className={cn("text-xl font-bold font-poppins mb-2", theme.text)}>{pageData.transitionCopy.title}</h3>
+                {pageData.transitionCopy.title && <h3 className={cn("text-xl font-bold font-poppins mb-2", theme.text)}>{pageData.transitionCopy.title}</h3>}
                 <div className="text-base text-gray-700 leading-relaxed space-y-3">{pageData.transitionCopy.text}</div>
             </div>
         </section>
