@@ -37,6 +37,12 @@ interface ResultPageProps {
     };
 }
 
+const defaultSolutionSections = [
+    { title: '1000 RECEITAS SEGURAS', benefit: 'Variedade sem medo de errar', items: ['Receitas para todas as idades e refeições.', 'Passo a passo simples, testado e validado.', 'Ingredientes fáceis de achar e substituir.'] },
+    { title: 'CARDÁPIOS PRONTOS', benefit: 'Nunca mais pensar "o que fazer hoje?"', items: ['Cardápios semanais prontos para seguir.', 'Lista de compras automática para economizar tempo.', 'Equilíbrio nutricional garantido por especialistas.'] },
+    { title: 'GUIA SOS REAÇÃO', benefit: 'Saber exatamente o que fazer na crise', items: ['O que fazer passo a passo em caso de reação.', 'Como diferenciar reações e quando ir ao médico.', 'Sua "cola" para agir com calma e segurança.'] }
+];
+
 const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
   'mae-em-panico-inicial': {
     badgeText: 'MÃE EM PÂNICO INICIAL',
@@ -52,11 +58,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Imagina acordar amanhã sabendo EXATAMENTE o que fazer em cada refeição. Sem medo. Sem dúvida. Com 1000 opções testadas na sua mão. Isso não é sonho - é o que você vai ter nos próximos minutos.</>)
     },
     solutionTitle: 'O que você recebe:',
-    solutionSections: [
-        { title: '1000 RECEITAS SEGURAS', benefit: 'Variedade sem medo de errar', items: ['Receitas para todas as idades e refeições.', 'Passo a passo simples, testado e validado.', 'Ingredientes fáceis de achar e substituir.'] },
-        { title: 'CARDÁPIOS PRONTOS', benefit: 'Nunca mais pensar "o que fazer hoje?"', items: ['Cardápios semanais prontos para seguir.', 'Lista de compras automática para economizar tempo.', 'Equilíbrio nutricional garantido por especialistas.'] },
-        { title: 'GUIA SOS REAÇÃO', benefit: 'Saber exatamente o que fazer na crise', items: ['O que fazer passo a passo em caso de reação.', 'Como diferenciar reações e quando ir ao médico.', 'Sua "cola" para agir com calma e segurança.'] }
-    ],
+    solutionSections: defaultSolutionSections,
     investment: {
         price: '35,90',
         anchorPrice: '97',
@@ -95,11 +97,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>E se você nunca mais precisasse repetir a mesma receita? E se tivesse 1000 opções rápidas para os dias corridos? E se seu filho pudesse comer bolo na próxima festa? Tudo isso está organizado, testado e pronto para você usar hoje.</>)
     },
     solutionTitle: 'O que você recebe:',
-    solutionSections: [
-        { title: 'VARIEDADE INFINITA', benefit: 'Fim da monotonia alimentar', items: ['+200 cafés da manhã', '+300 lanches escolares', '+400 almoços e jantares', 'Filtros por tempo de preparo.'] },
-        { title: 'RECEITAS DE FESTA', benefit: 'Seu filho incluído em TODOS os momentos', items: ['Bolos de aniversário, docinhos e salgados seguros.', 'Instruções para evitar contaminação cruzada.'] },
-        { title: 'ECONOMIA DE TEMPO', benefit: 'Mais tempo para você e sua família', items: ['+340 receitas prontas em menos de 15 minutos.', 'Lista de compras semanal inteligente.'] },
-    ],
+    solutionSections: defaultSolutionSections,
     investment: {
         price: '35,90',
         anchorPrice: '97',
@@ -138,11 +136,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: (<>Não é mais uma promessa vazia. São 1000 receitas validadas por nutricionista, testadas por 8.347 mães, com informação nutricional completa. Tudo em um sistema, não migalhas espalhadas. E você pode começar agora mesmo.</>)
     },
     solutionTitle: 'O que você recebe:',
-    solutionSections: [
-        { title: 'UM ÚNICO LUGAR', benefit: 'Fim da confusão de informações', items: ['Tudo o que você precisa em um único PDF.', 'Sem informações conflitantes e duvidosas.', 'Acesso offline para consultar em qualquer lugar.'] },
-        { title: 'VALIDAÇÃO NUTRICIONAL', benefit: 'Confiança no que você serve', items: ['Criado por nutricionistas especialistas em APLV.', 'Testado e aprovado por mais de 8.000 mães.', 'Balanceamento de macros e micros pensado para APLV.'] },
-        { title: 'ACESSO VITALÍCIO', benefit: 'Um investimento para a vida toda', items: ['Seu para sempre. Pague uma vez, use por anos.', 'Recebe todas as atualizações futuras sem custo extra.'] },
-    ],
+    solutionSections: defaultSolutionSections,
     investment: {
         price: '35,90',
         anchorPrice: '97',
@@ -181,11 +175,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
         text: "1000 receitas organizadas por idade, tempo e refeição. Informação nutricional completa. Guia de emergência. Retorno imediato em tempo e dinheiro. É exatamente o que você precisa para parar de improvisar e começar a ter certezas."
     },
     solutionTitle: 'O que você recebe:',
-    solutionSections: [
-        { title: 'BANCO DE DADOS COM 1000 RECEITAS', benefit: 'Eficiência e variedade', items: ['PDF otimizado com filtros inteligentes.', 'Busca por ingrediente, tempo de preparo e idade.', 'Funciona 100% offline no seu celular.'] },
-        { title: 'DASHBOARD NUTRICIONAL', benefit: 'Decisões baseadas em dados', items: ['Informação nutricional completa para cada receita.', 'Calorias, proteínas, carboidratos e gorduras.', 'Garante uma dieta balanceada sem achismos.'] },
-        { title: 'MÓDULOS DE OTIMIZAÇÃO', benefit: 'retorno sobre investimento de tempo e dinheiro', items: ['Listas de compra semanais para evitar desperdício.', 'Protocolo SOS para gerenciar crises sem pânico.'] },
-    ],
+    solutionSections: defaultSolutionSections,
     investment: {
         price: '35,90',
         anchorPrice: '97',
