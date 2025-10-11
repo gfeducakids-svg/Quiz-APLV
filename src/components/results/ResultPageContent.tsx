@@ -256,11 +256,14 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   const recipesImages = [
     { url: 'https://i.imgur.com/u6LYNWY.jpeg', alt: 'Receita sem leite 1' },
     { url: 'https://i.imgur.com/0h340zj.jpeg', alt: 'Receita sem leite 2' },
-    { url: 'https://i.imgur.com/DebYcZC.jpeg', alt: 'Receita sem leite 3' },
-    { url: 'https://i.imgur.com/2f79XUl.jpeg', alt: 'Receita sem leite 4' },
+    { url: 'https://i.imgur.com/S3k5jVQ.jpeg', alt: 'Receita sem leite 3' },
+    { url: 'https://i.imgur.com/WKkcLD0.jpeg', alt: 'Receita sem leite 4' },
     { url: 'https://i.imgur.com/4UL6HUP.jpeg', alt: 'Receita sem leite 5' },
     { url: 'https://i.imgur.com/ApG6nNb.jpeg', alt: 'Receita sem leite 6' },
-    { url: 'https://i.imgur.com/jeSGdKm.jpeg', alt: 'Receita sem leite 7' }
+    { url: 'https://i.imgur.com/jeSGdKm.jpeg', alt: 'Receita sem leite 7' },
+    { url: 'https://i.imgur.com/QVoTQaP.jpeg', alt: 'Receita sem leite 8' },
+    { url: 'https://i.imgur.com/H3DVkZS.jpeg', alt: 'Receita sem leite 9' },
+    { url: 'https://i.imgur.com/Gko4yGI.jpeg', alt: 'Receita sem leite 10' }
   ];
   
   const cakesImages = [
