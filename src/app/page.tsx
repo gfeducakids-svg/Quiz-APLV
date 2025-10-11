@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           <Card className="mt-4 max-w-2xl mx-auto bg-card/80 p-4 rounded-lg text-left shadow-sm border-0">
-            <p className="text-base md:text-lg mb-0 text-foreground">
+            <p className="text-base md:text-lg mb-0 text-foreground font-semibold">
               Este diagnóstico de 8 perguntas vai revelar exatamente o que você
               não está vendo na sua luta contra a APLV — e te dar um{' '}
               <span className="text-primary font-semibold">
