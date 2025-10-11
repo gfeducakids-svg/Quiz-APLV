@@ -1,4 +1,5 @@
 
+
 // src/components/results/ResultPageContent.tsx
 'use client';
 
@@ -55,8 +56,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
     transitionCopy: {
-        title: "",
-        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
+        title: "Você não está sozinha. E a culpa não é sua.",
+        text: <>Esses erros acontecem porque ninguém te deu um <span className="font-bold">mapa</span>. Um sistema claro. Você está navegando no escuro, tentando proteger seu filho com as poucas ferramentas que tem. <br/><br/><span className="font-bold">Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -94,8 +95,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'O "pesadelo" das festinhas', description: 'Última festa: ele chorou porque não podia comer o bolo. Você saiu mais cedo.', consequence: 'Alegria vira estresse e exclusão.' },
     ],
     transitionCopy: {
-        title: "",
-        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
+        title: "Você já lutou o suficiente. Está na hora de receber ajuda.",
+        text: <>A exaustão que você sente é o resultado de travar uma guerra diária sem um exército. Cada refeição, cada lanche, cada evento social é uma batalha. <br/><br/><span className="font-bold">Mas e se você tivesse um arsenal completo à sua disposição?</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -133,8 +134,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
     transitionCopy: {
-        title: "",
-        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
+        title: "E se desta vez for diferente?",
+        text: <>Você não precisa de mais uma promessa. Você precisa de um <span className="font-bold">sistema</span>. Algo que funcione de forma integrada, que elimine a necessidade de procurar, testar e se decepcionar. <br/><br/><span className="font-bold">Chega de soluções parciais.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -172,8 +173,8 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Tempo não otimizado', description: '4-5 horas por semana pesquisando receitas e planejando.', consequence: 'Horas que você poderia estar com sua família.' },
     ],
     transitionCopy: {
-        title: "",
-        text: "Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura."
+        title: "Otimização é a chave. E você está prestes a ter a chave mestra.",
+        text: <>Você já entendeu que precisa de um sistema. O que talvez não tenha calculado é o <span className="font-bold">ROI (Retorno Sobre o Investimento)</span> de ter paz de espírito. <br/><br/><span className="font-bold">Vamos analisar os dados.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
