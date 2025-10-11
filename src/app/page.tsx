@@ -65,7 +65,7 @@ export default function Home() {
             <p className="mt-3 text-base md:text-lg text-foreground max-w-3xl mx-auto">
               Junte-se a +8000 mães que descobriram os{' '}
               <span className="font-bold text-destructive">3 erros</span> que
-              estavam cometendo e o sistema que mudaram suas vidas.
+              estavam cometendo e a solução que mudou suas vidas.
             </p>
           </div>
 
