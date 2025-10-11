@@ -5,9 +5,27 @@ import { CheckCircle2, AlertTriangle, Shield, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import Image from 'next/image';
+import ImageCarousel from '@/components/ImageCarousel';
 
 export default function Home() {
+  const recipesImages = [
+    { url: 'https://i.imgur.com/u6LYNWY.jpeg', alt: 'Receita sem leite 1' },
+    { url: 'https://i.imgur.com/0h340zj.jpeg', alt: 'Receita sem leite 2' },
+    { url: 'https://i.imgur.com/DebYcZC.jpeg', alt: 'Receita sem leite 3' },
+    { url: 'https://i.imgur.com/2f79XUl.jpeg', alt: 'Receita sem leite 4' },
+    { url: 'https://i.imgur.com/4UL6HUP.jpeg', alt: 'Receita sem leite 5' },
+    { url: 'https://i.imgur.com/ApG6nNb.jpeg', alt: 'Receita sem leite 6' },
+    { url: 'https://i.imgur.com/jeSGdKm.jpeg', alt: 'Receita sem leite 7' }
+  ];
+  
+  const cakesImages = [
+    { url: 'https://i.imgur.com/hDs4tiz.jpeg', alt: 'Bolo sem leite 1' },
+    { url: 'https://i.imgur.com/4U4jN0U.jpeg', alt: 'Bolo sem leite 2' },
+    { url: 'https://i.imgur.com/nmlQnZw.jpeg', alt: 'Bolo sem leite 3' }
+  ];
+
   return (
+    <>
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground pt-8 pb-12 px-6 md:px-10 relative overflow-hidden">
       <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
       <div className="relative w-full max-w-4xl mx-auto text-center">
@@ -116,5 +134,18 @@ export default function Home() {
         </div>
       </div>
     </div>
+    
+      <ImageCarousel 
+        title="📚 1000 Receitas Testadas e Aprovadas"
+        images={recipesImages}
+        autoplayDelay={3500}
+      />
+      
+      <ImageCarousel 
+        title="🎂 Bolos e Recheios Especiais"
+        images={cakesImages}
+        autoplayDelay={4000}
+      />
+    </>
   );
 }
