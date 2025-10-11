@@ -44,7 +44,7 @@ export default function Home() {
         </div>
 
         <Card className="mt-6 max-w-2xl mx-auto bg-card/80 p-6 rounded-lg text-left shadow-sm border-0">
-          <p className="text-sm md:text-base mb-6 text-[#6B7280]">
+          <p className="text-sm md:text-base mb-0 text-[#6B7280]">
             Este diagnóstico de 8 perguntas vai revelar exatamente o que você
             não está vendo na sua luta contra a APLV — e te dar um{' '}
             <span className="text-primary font-semibold">
@@ -52,38 +52,6 @@ export default function Home() {
             </span>
             .
           </p>
-          <ul className="space-y-4">
-            <li className="flex items-start">
-              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-              </div>
-              <span className="text-foreground/90 pt-0.5">
-                Qual o seu <span className="font-bold text-primary">perfil</span> de mãe
-                APLV (e o cardápio ideal para você)
-              </span>
-            </li>
-            <li className="flex items-start">
-              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-              </div>
-              <span className="text-foreground/90 pt-0.5">
-                Receba{' '}
-                <span className="font-bold text-primary">
-                  receitas seguras
-                </span>{' '}
-                específicas para sua situação
-              </span>
-            </li>
-            <li className="flex items-start">
-              <div className="bg-[#E8F5E9] rounded-full p-1 mr-3 flex-shrink-0">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-              </div>
-              <span className="text-foreground/90 pt-0.5">
-                Pare de ter{' '}
-                <span className="font-bold text-primary">medo na hora de alimentar</span> seu filho
-              </span>
-            </li>
-          </ul>
         </Card>
 
         <div className="mt-8">
