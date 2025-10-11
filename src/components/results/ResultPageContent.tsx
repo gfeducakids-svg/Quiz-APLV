@@ -1,5 +1,3 @@
-
-
 // src/components/results/ResultPageContent.tsx
 'use client';
 
@@ -48,9 +46,9 @@ const newTransitionCopy = {
         Mas aqui está a verdade que ninguém te contou:
         <br/><br/>
         <ul className="list-none space-y-2 my-4 text-left max-w-md mx-auto">
-          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa virar nutricionista.</li>
-          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa passar horas pesquisando.</li>
-          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa testar receitas arriscando a saúde dele.</li>
+          <li className="flex items-start gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" /> <span>Você <strong>NÃO</strong> precisa virar nutricionista.</span></li>
+          <li className="flex items-start gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" /> <span>Você <strong>NÃO</strong> precisa passar horas pesquisando.</span></li>
+          <li className="flex items-start gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" /> <span>Você <strong>NÃO</strong> precisa testar receitas arriscando a saúde dele.</span></li>
         </ul>
         Você só precisa de um <strong>cardápio completo — organizado, aprovado e pronto</strong>.
         <br/><br/>
@@ -224,28 +222,28 @@ const personaThemes: Record<string, { bg: string; text: string; border: string, 
     text: 'text-blue-700', 
     border: 'border-blue-500', 
     gradient: 'bg-gradient-to-r from-blue-500 to-blue-700',
-    buttonGradient: 'bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900'
+    buttonGradient: 'bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900'
   },
   'mae-guerreira-esgotada': { 
     bg: 'bg-orange-50', 
     text: 'text-orange-700', 
     border: 'border-orange-500', 
     gradient: 'bg-gradient-to-r from-orange-500 to-orange-700',
-    buttonGradient: 'bg-gradient-to-r from-orange-600 to-orange-800 hover:from-orange-700 hover:to-orange-900'
+    buttonGradient: 'bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900'
   },
   'mae-desacreditada-ao-extremo': { 
     bg: 'bg-purple-50', 
     text: 'text-purple-700', 
     border: 'border-purple-500', 
     gradient: 'bg-gradient-to-r from-purple-500 to-purple-700',
-    buttonGradient: 'bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900'
+    buttonGradient: 'bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900'
   },
   'mae-racional-estrategica': { 
     bg: 'bg-emerald-50', 
     text: 'text-emerald-700', 
     border: 'border-emerald-500', 
     gradient: 'bg-gradient-to-r from-emerald-500 to-emerald-700',
-    buttonGradient: 'bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-700 hover:to-emerald-900'
+    buttonGradient: 'bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900'
   },
 };
 
@@ -354,9 +352,9 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
 
         <section className={cn("py-12 px-6 border-y", theme.bg, theme.border)}>
             <div className="max-w-3xl mx-auto text-center">
-                <ArrowDown className={cn("h-8 w-8 mx-auto mb-4", theme.text)} />
                 {pageData.transitionCopy.title && <h3 className={cn("text-2xl font-bold font-poppins mb-4", theme.text)}>{pageData.transitionCopy.title}</h3>}
                 <div className="text-base text-gray-700 leading-relaxed space-y-3">{pageData.transitionCopy.text}</div>
+                <ArrowDown className={cn("h-8 w-8 mx-auto mt-6", theme.text)} />
             </div>
         </section>
 
@@ -425,7 +423,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                               </ul>
                           }
                           {index === 0 && (
-                            <div className='mt-4'>
+                            <div className='-mx-6 -mb-6 mt-4'>
                                 <ImageCarousel 
                                     images={recipesImages}
                                     autoplayDelay={2500}
@@ -435,7 +433,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                             </div>
                           )}
                            {index === 1 && (
-                            <div className='mt-4'>
+                            <div className='-mx-6 -mb-6 mt-4'>
                                 <ImageCarousel 
                                     images={cakesImages}
                                     autoplayDelay={4000}
@@ -546,3 +544,5 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
       </div>
   );
 }
+
+    

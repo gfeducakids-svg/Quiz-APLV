@@ -72,7 +72,7 @@ export default function ImageCarousel({
                       fill
                       className="object-cover"
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 25vw"
-                      priority={index < 4} 
+                      priority
                       placeholder="blur"
                       blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/+F9PQAI8wNPvd7POQAAAABJRU5ErkJggg=="
                       quality={80}
@@ -106,3 +106,5 @@ export default function ImageCarousel({
     </div>
   );
 }
+
+    
