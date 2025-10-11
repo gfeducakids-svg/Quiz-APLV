@@ -498,7 +498,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                   <div className="my-4">
                       <CountdownTimer initialMinutes={pageData.countdown.minutes} />
                   </div>
-                  <p className="text-xs text-gray-600">Após este período, o sistema ajusta automaticamente para o preço padrão.</p>
               </section>
 
               <section className={cn("text-center p-8 rounded-2xl")}>
