@@ -57,7 +57,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "Você não está sozinha. E a culpa não é sua.",
-        text: <>Esses erros acontecem porque ninguém te deu um <span className="font-bold">mapa</span>. Um sistema claro. Você está navegando no escuro, tentando proteger seu filho com as poucas ferramentas que tem. <br/><br/><span className="font-bold">Eu sei que você se identificou com os 3 erros mas calma existe uma saída segura.</span></>
+        text: <>Esses erros acontecem porque ninguém te deu um <span className="font-bold">mapa</span>. Um sistema claro. Você está navegando no escuro, tentando proteger seu filho com as poucas ferramentas que tem. <br/><br/><span className="font-bold text-lg">Eu sei que você se identificou com os 3 erros mas calma, existe uma saída segura.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -96,7 +96,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "Você já lutou o suficiente. Está na hora de receber ajuda.",
-        text: <>A exaustão que você sente é o resultado de travar uma guerra diária sem um exército. Cada refeição, cada lanche, cada evento social é uma batalha. <br/><br/><span className="font-bold">Mas e se você tivesse um arsenal completo à sua disposição?</span></>
+        text: <>A exaustão que você sente é o resultado de travar uma guerra diária sem um exército. Cada refeição, cada lanche, cada evento social é uma batalha. <br/><br/><span className="font-bold text-lg">Mas e se você tivesse um arsenal completo à sua disposição?</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -135,7 +135,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "E se desta vez for diferente?",
-        text: <>Você não precisa de mais uma promessa. Você precisa de um <span className="font-bold">sistema</span>. Algo que funcione de forma integrada, que elimine a necessidade de procurar, testar e se decepcionar. <br/><br/><span className="font-bold">Chega de soluções parciais.</span></>
+        text: <>Você não precisa de mais uma promessa. Você precisa de um <span className="font-bold">sistema</span>. Algo que funcione de forma integrada, que elimine a necessidade de procurar, testar e se decepcionar. <br/><br/><span className="font-bold text-lg">Chega de soluções parciais.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -174,7 +174,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     ],
     transitionCopy: {
         title: "Otimização é a chave. E você está prestes a ter a chave mestra.",
-        text: <>Você já entendeu que precisa de um sistema. O que talvez não tenha calculado é o <span className="font-bold">ROI (Retorno Sobre o Investimento)</span> de ter paz de espírito. <br/><br/><span className="font-bold">Vamos analisar os dados.</span></>
+        text: <>Você já entendeu que precisa de um sistema. O que talvez não tenha calculado é o <span className="font-bold">ROI (Retorno Sobre o Investimento)</span> de ter paz de espírito. <br/><br/><span className="font-bold text-lg">Vamos analisar os dados.</span></>
     },
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
@@ -411,6 +411,16 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                                 />
                             </div>
                           )}
+                          {index === 1 && (
+                            <div className='mt-4'>
+                                <ImageCarousel 
+                                    images={cakesImages}
+                                    autoplayDelay={4000}
+                                    containerClassName="py-2 bg-transparent"
+                                    itemClassName="flex-[0_0_50%] sm:flex-[0_0_33.33%] lg:flex-[0_0_25%]"
+                                />
+                            </div>
+                          )}
                       </div>
                   ))}
               </div>
@@ -453,13 +463,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
             </div>
           </div>
         </section>
-        
-      
-        <ImageCarousel 
-            title="🎂 Bolos e Recheios Especiais"
-            images={cakesImages}
-            autoplayDelay={4000}
-        />
 
         <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
