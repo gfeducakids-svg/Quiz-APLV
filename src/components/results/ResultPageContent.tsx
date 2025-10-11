@@ -41,7 +41,7 @@ interface ResultPageProps {
 
 const defaultSolutionSections = [
     { title: '1000 RECEITAS SEGURAS', benefit: 'Variedade sem medo de errar', items: ['Receitas para todas as idades e refeições.', 'Passo a passo simples, testado e validado.', 'Ingredientes fáceis de achar e substituir.'] },
-    { title: 'CARDÁPIOS PRONTOS', benefit: 'Nunca mais pensar "o que fazer hoje?"', items: ['Cardápios semanais prontos para seguir.', 'Lista de compras automática para economizar tempo.', 'Equilíbrio nutricional garantido por especialistas.'] },
+    { title: 'RECEITAS DE FESTA', benefit: 'Seu filho NUNCA MAIS vai ficar de fora', items: ['Receitas especiais para festas e aniversários', 'Doces: Bolos decorados, brigadeiros gourmet, tortas, cupcakes', 'Salgados: Coxinhas crocantes, esfirras, empadinhas, mini pizzas', 'Ele vai comer TUDO que os amiguinhos comem (e você vai dormir tranquila)'] },
     { title: 'GUIA SOS REAÇÃO', benefit: 'Saber exatamente o que fazer na crise', items: ['O que fazer passo a passo em caso de reação.', 'Como diferenciar reações e quando ir ao médico.', 'Sua "cola" para agir com calma e segurança.'] }
 ];
 
