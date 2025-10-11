@@ -269,7 +269,13 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
   const cakesImages = [
     { url: 'https://i.imgur.com/hDs4tiz.jpeg', alt: 'Bolo sem leite 1' },
     { url: 'https://i.imgur.com/4U4jN0U.jpeg', alt: 'Bolo sem leite 2' },
-    { url: 'https://i.imgur.com/nmlQnZw.jpeg', alt: 'Bolo sem leite 3' }
+    { url: 'https://i.imgur.com/nmlQnZw.jpeg', alt: 'Bolo sem leite 3' },
+    { url: 'https://i.imgur.com/NT6IrCU.jpeg', alt: 'Bolo sem leite 4' },
+    { url: 'https://i.imgur.com/T331BMZ.jpeg', alt: 'Bolo sem leite 5' },
+    { url: 'https://i.imgur.com/QLgz2UQ.jpeg', alt: 'Bolo sem leite 6' },
+    { url: 'https://i.imgur.com/l5SW3Zk.jpeg', alt: 'Bolo sem leite 7' },
+    { url: 'https://i.imgur.com/DaaSDe4.jpeg', alt: 'Bolo sem leite 8' },
+    { url: 'https://i.imgur.com/9vhmNc3.jpeg', alt: 'Bolo sem leite 9' }
   ];
   
   useEffect(() => {
