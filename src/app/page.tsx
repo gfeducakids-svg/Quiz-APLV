@@ -22,14 +22,16 @@ export default function Home() {
           </h1>
 
           <div className="mt-4 max-w-2xl mx-auto">
-            <Image
-              src="https://i.imgur.com/uvWtFwo.jpeg"
-              alt="Mãe com filho"
-              width={700}
-              height={400}
-              priority
-              className="rounded-lg shadow-lg mx-auto"
-            />
+            <Link href="/quiz">
+              <Image
+                src="https://i.imgur.com/uvWtFwo.jpeg"
+                alt="Mãe com filho"
+                width={700}
+                height={400}
+                priority
+                className="rounded-lg shadow-lg mx-auto"
+              />
+            </Link>
           </div>
 
           <Card className="mt-4 max-w-2xl mx-auto bg-card/80 p-4 rounded-lg text-left shadow-sm border-0">
