@@ -21,12 +21,6 @@ export default function Home() {
             (E Como Mudar Isso em 7 Dias)
           </h1>
 
-          <p className="mt-4 text-base md:text-xl text-[#5D6D7E] max-w-3xl mx-auto">
-            Junte-se a +8000 mães que descobriram os{' '}
-            <span className="font-bold text-destructive">3 erros</span> que
-            estavam cometendo - e o sistema que resolveu tudo.
-          </p>
-
           <div className="mt-6 max-w-2xl mx-auto">
             <Image
               src="https://i.imgur.com/uvWtFwo.jpeg"
@@ -67,6 +61,11 @@ export default function Home() {
             </Button>
             <p className="mt-3 text-sm text-[#94A3B8]">
               Resultado Imediato e Preciso | Leva 1 Minuto
+            </p>
+            <p className="mt-4 text-base md:text-lg text-[#5D6D7E] max-w-3xl mx-auto">
+              Junte-se a +8000 mães que descobriram os{' '}
+              <span className="font-bold text-destructive">3 erros</span> que
+              estavam cometendo - e o sistema que resolveu tudo.
             </p>
           </div>
 
