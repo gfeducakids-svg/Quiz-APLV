@@ -39,6 +39,32 @@ interface ResultPageProps {
     };
 }
 
+const newTransitionCopy = {
+    title: "Você se viu nesses 3 erros, né?",
+    text: (
+      <>
+        Não é coincidência. É o que acontece quando você improvisa sem ter um sistema.
+        <br/><br/>
+        Mas aqui está a verdade que ninguém te contou:
+        <br/><br/>
+        <ul className="list-none space-y-2 my-4 text-left max-w-md mx-auto">
+          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa virar nutricionista.</li>
+          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa passar horas pesquisando.</li>
+          <li className="flex items-center gap-2"><X className="h-5 w-5 text-red-500 flex-shrink-0" /> Você <strong>NÃO</strong> precisa testar receitas arriscando a saúde dele.</li>
+        </ul>
+        Você só precisa de um <strong>cardápio completo — organizado, aprovado e pronto</strong>.
+        <br/><br/>
+        Onde as receitas nunca se repetem.
+        <br/>
+        Onde ele pode comer em TODAS as festas.
+        <br/>
+        Onde você finalmente tem paz em sua casa.
+        <br/><br/>
+        <span className="font-bold text-lg">A solução para os 3 erros está logo abaixo.</span>
+      </>
+    ),
+  };
+
 const defaultSolutionSections = [
     { title: '1000 RECEITAS SEGURAS', benefit: 'Variedade sem medo de errar', items: ['Receitas para todas as idades e refeições.', 'Passo a passo simples, testado e validado.', 'Ingredientes fáceis de achar e substituir.'] },
     { title: 'RECEITAS DE FESTA', benefit: 'Seu filho NUNCA MAIS vai ficar de fora', items: ['Receitas especiais para festas e aniversários', 'Doces: Bolos decorados, brigadeiros gourmet, tortas, cupcakes', 'Salgados: Coxinhas crocantes, esfirras, empadinhas, mini pizzas', 'Ele vai comer TUDO que os amiguinhos comem (e você vai dormir tranquila)'] },
@@ -55,10 +81,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Repetir as mesmas 3 receitas', description: 'Frango, arroz, batata. Sempre. Você tem medo de testar algo novo. Ele enjoa e recusa.', consequence: 'A refeição vira batalha, não momento de carinho.' },
       { title: 'Ceder "só um pouquinho"', description: 'Na festa, você cede. Três horas depois: cólica, noite sem dormir.', consequence: 'A culpa consome e o intestino volta à estaca zero.' },
     ],
-    transitionCopy: {
-        title: "Você não está sozinha. E a culpa não é sua.",
-        text: <>Esses erros acontecem porque ninguém te deu um <span className="font-bold">mapa</span>. Um sistema claro. Você está navegando no escuro, tentando proteger seu filho com as poucas ferramentas que tem. <br/><br/><span className="font-bold text-lg">Eu sei que você se identificou com os 3 erros mas calma, existe uma saída segura.</span></>
-    },
+    transitionCopy: newTransitionCopy,
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
     investment: {
@@ -94,10 +117,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Improviso na lancheira escolar', description: 'Correria todo dia para pensar em algo seguro. Ele leva sempre a mesma fruta.', consequence: 'Ele se sente diferente. Você se sente que não dá conta.' },
       { title: 'O "pesadelo" das festinhas', description: 'Última festa: ele chorou porque não podia comer o bolo. Você saiu mais cedo.', consequence: 'Alegria vira estresse e exclusão.' },
     ],
-    transitionCopy: {
-        title: "Você já lutou o suficiente. Está na hora de receber ajuda.",
-        text: <>A exaustão que você sente é o resultado de travar uma guerra diária sem um exército. Cada refeição, cada lanche, cada evento social é uma batalha. <br/><br/><span className="font-bold text-lg">Mas e se você tivesse um arsenal completo à sua disposição?</span></>
-    },
+    transitionCopy: newTransitionCopy,
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
     investment: {
@@ -133,10 +153,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Coleção de "soluções" que falharam', description: 'E-book da influencer, dieta da nutri famosa... nada mudou. Prateleira cheia de promessas vazias.', consequence: 'Você acha que o problema é você, não os métodos.' },
       { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
-    transitionCopy: {
-        title: "E se desta vez for diferente?",
-        text: <>Você não precisa de mais uma promessa. Você precisa de um <span className="font-bold">sistema</span>. Algo que funcione de forma integrada, que elimine a necessidade de procurar, testar e se decepcionar. <br/><br/><span className="font-bold text-lg">Chega de soluções parciais.</span></>
-    },
+    transitionCopy: newTransitionCopy,
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
     investment: {
@@ -172,10 +189,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
       { title: 'Incerteza nutricional', description: 'Receitas seguras, mas você não sabe se a dieta está balanceada em vitaminas e minerais.', consequence: 'Risco de deficiências no desenvolvimento.' },
       { title: 'Tempo não otimizado', description: '4-5 horas por semana pesquisando receitas e planejando.', consequence: 'Horas que você poderia estar com sua família.' },
     ],
-    transitionCopy: {
-        title: "Otimização é a chave. E você está prestes a ter a chave mestra.",
-        text: <>Você já entendeu que precisa de um sistema. O que talvez não tenha calculado é o <span className="font-bold">ROI (Retorno Sobre o Investimento)</span> de ter paz de espírito. <br/><br/><span className="font-bold text-lg">Vamos analisar os dados.</span></>
-    },
+    transitionCopy: newTransitionCopy,
     solutionTitle: 'O que você recebe:',
     solutionSections: defaultSolutionSections,
     investment: {
@@ -329,10 +343,10 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           </div>
         </section>
 
-        <section className={cn("py-6 px-6 border-y", theme.bg, theme.border)}>
+        <section className={cn("py-12 px-6 border-y", theme.bg, theme.border)}>
             <div className="max-w-3xl mx-auto text-center">
-                <ArrowDown className={cn("h-8 w-8 mx-auto mb-3", theme.text)} />
-                {pageData.transitionCopy.title && <h3 className={cn("text-xl font-bold font-poppins mb-2", theme.text)}>{pageData.transitionCopy.title}</h3>}
+                <ArrowDown className={cn("h-8 w-8 mx-auto mb-4", theme.text)} />
+                {pageData.transitionCopy.title && <h3 className={cn("text-2xl font-bold font-poppins mb-4", theme.text)}>{pageData.transitionCopy.title}</h3>}
                 <div className="text-base text-gray-700 leading-relaxed space-y-3">{pageData.transitionCopy.text}</div>
             </div>
         </section>
@@ -411,7 +425,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                                 />
                             </div>
                           )}
-                          {index === 1 && (
+                           {index === 1 && (
                             <div className='mt-4'>
                                 <ImageCarousel 
                                     images={cakesImages}
