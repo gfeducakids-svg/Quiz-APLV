@@ -8,6 +8,7 @@ import CountdownTimer from '@/components/results/CountdownTimer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import ImageCarousel from '@/components/ImageCarousel';
 
 
 interface ResultPageProps {
@@ -236,6 +237,22 @@ const personaThemes: Record<string, { bg: string; text: string; border: string, 
 export function ResultPageContent({ persona }: { persona: string, searchParams: any }) {
   const pageData = pagesData[persona as keyof typeof pagesData];
   const theme = personaThemes[persona] || personaThemes['mae-em-panico-inicial'];
+
+  const recipesImages = [
+    { url: 'https://i.imgur.com/u6LYNWY.jpeg', alt: 'Receita sem leite 1' },
+    { url: 'https://i.imgur.com/0h340zj.jpeg', alt: 'Receita sem leite 2' },
+    { url: 'https://i.imgur.com/DebYcZC.jpeg', alt: 'Receita sem leite 3' },
+    { url: 'https://i.imgur.com/2f79XUl.jpeg', alt: 'Receita sem leite 4' },
+    { url: 'https://i.imgur.com/4UL6HUP.jpeg', alt: 'Receita sem leite 5' },
+    { url: 'https://i.imgur.com/ApG6nNb.jpeg', alt: 'Receita sem leite 6' },
+    { url: 'https://i.imgur.com/jeSGdKm.jpeg', alt: 'Receita sem leite 7' }
+  ];
+  
+  const cakesImages = [
+    { url: 'https://i.imgur.com/hDs4tiz.jpeg', alt: 'Bolo sem leite 1' },
+    { url: 'https://i.imgur.com/4U4jN0U.jpeg', alt: 'Bolo sem leite 2' },
+    { url: 'https://i.imgur.com/nmlQnZw.jpeg', alt: 'Bolo sem leite 3' }
+  ];
   
   useEffect(() => {
     document.body.style.backgroundColor = theme.bg;
@@ -425,6 +442,18 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
             </div>
           </div>
         </section>
+        
+        <ImageCarousel 
+            title="📚 1000 Receitas Testadas e Aprovadas"
+            images={recipesImages}
+            autoplayDelay={3500}
+        />
+      
+        <ImageCarousel 
+            title="🎂 Bolos e Recheios Especiais"
+            images={cakesImages}
+            autoplayDelay={4000}
+        />
 
         <div className="bg-gray-50 py-8 px-4">
           <div className="max-w-2xl mx-auto space-y-8">
