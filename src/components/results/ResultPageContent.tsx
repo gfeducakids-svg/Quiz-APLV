@@ -128,7 +128,7 @@ const pagesData: Record<string, Omit<ResultPageProps, 'persona' | 'theme'>> = {
     title: "A frustração que você sente tem nome: falta de sistema.",
     subtitle: "Abaixo estão os três padrões que mantêm você presa. Depois, a solução completa.",
     errors: [
-      { title: 'Overdose de informação conflitante', description: 'Noites no Google, 15 grupos. Cada um diz uma coisa diferente. Mais confusa que antes.', consequence: 'Paralisia total. Você não confia em nada e não faz nada.' },
+      { title: 'Overdose de informação conflitante', description: 'Noites no Google, 15 grupos. Cada um diz uma चीज diferente. Mais confusa que antes.', consequence: 'Paralisia total. Você não confia em nada e não faz nada.' },
       { title: 'Coleção de "soluções" que falharam', description: 'E-book da influencer, dieta da nutri famosa... nada mudou. Prateleira cheia de promessas vazias.', consequence: 'Você acha que o problema é você, não os métodos.' },
       { title: 'Ceticismo com qualquer promessa nova', description: "Você vê '1000 receitas' e pensa 'lá vem mais um...'. Recusa-se a ter esperança.", consequence: 'Você se fecha para o que pode funcionar, por medo.' },
     ],
@@ -350,7 +350,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                       <div 
                         key={index} 
                         className={cn(
-                          "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all",
+                          "p-6 rounded-xl border-2 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all flex flex-col",
                           "bg-gradient-to-br",
                           index === 0 && "from-blue-100 to-indigo-100 border-blue-400",
                           index === 1 && "from-purple-100 to-pink-100 border-purple-400",
@@ -382,7 +382,7 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                           </div>
                           {section.items.length > 0 && 
                               <ul className={cn(
-                                "space-y-2",
+                                "space-y-2 flex-grow",
                                 index === 0 && "text-blue-800",
                                 index === 1 && "text-purple-800",
                                 index === 2 && "text-green-800"
@@ -400,6 +400,16 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
                                   ))}
                               </ul>
                           }
+                          {index === 0 && (
+                            <div className='mt-4'>
+                                <ImageCarousel 
+                                    images={recipesImages}
+                                    autoplayDelay={2500}
+                                    containerClassName="py-2 bg-transparent"
+                                    itemClassName="flex-[0_0_50%] sm:flex-[0_0_33.33%] lg:flex-[0_0_25%]"
+                                />
+                            </div>
+                          )}
                       </div>
                   ))}
               </div>
@@ -443,11 +453,6 @@ export function ResultPageContent({ persona }: { persona: string, searchParams: 
           </div>
         </section>
         
-        <ImageCarousel 
-            title="📚 1000 Receitas Testadas e Aprovadas"
-            images={recipesImages}
-            autoplayDelay={3500}
-        />
       
         <ImageCarousel 
             title="🎂 Bolos e Recheios Especiais"

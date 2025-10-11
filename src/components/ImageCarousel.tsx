@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface CarouselImage {
   url: string;
@@ -12,15 +13,19 @@ interface CarouselImage {
 }
 
 interface ImageCarouselProps {
-  title: string;
+  title?: string;
   images: CarouselImage[];
   autoplayDelay?: number;
+  containerClassName?: string;
+  itemClassName?: string;
 }
 
 export default function ImageCarousel({ 
   title, 
   images, 
-  autoplayDelay = 3500 
+  autoplayDelay = 3500,
+  containerClassName,
+  itemClassName
 }: ImageCarouselProps) {
   
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -41,13 +46,13 @@ export default function ImageCarousel({
   }, [emblaApi]);
 
   return (
-    <div className="w-full py-12 bg-gradient-to-b from-white to-green-50">
+    <div className={cn("w-full py-12 bg-gradient-to-b from-white to-green-50", containerClassName)}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Título da seção */}
-        <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8 font-headline">
+        {title && <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8 font-headline">
           {title}
-        </h3>
+        </h3>}
         
         {/* Container do carrossel */}
         <div className="relative">
@@ -58,7 +63,7 @@ export default function ImageCarousel({
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className="flex-[0_0_80%] sm:flex-[0_0_40%] lg:flex-[0_0_25%] min-w-0 pl-4"
+                  className={cn("flex-[0_0_80%] sm:flex-[0_0_40%] lg:flex-[0_0_25%] min-w-0 pl-4", itemClassName)}
                 >
                   <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <Image
