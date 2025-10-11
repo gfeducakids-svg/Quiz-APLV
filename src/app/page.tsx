@@ -15,7 +15,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground pt-12 md:pt-12 pb-12 px-6 md:px-10 relative overflow-hidden">
         <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
         <div className="relative w-full max-w-4xl mx-auto text-center">
-          <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-4">
+          <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline mt-8">
             Descubra Por Que Seu Filho com APLV Ainda{' '}
             <span className="text-destructive font-bold">Não Come Sem MEDO</span>{' '}
             (E Como Mudar Isso em 7 Dias)
