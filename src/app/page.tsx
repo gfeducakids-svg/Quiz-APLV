@@ -16,7 +16,7 @@ export default function Home() {
         <Shield className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 w-1/2 text-gray-200/10 -z-1" />
         <div className="relative w-full max-w-4xl mx-auto text-center">
           <h1 className="text-[32px] md:text-[52px] font-extrabold text-foreground !leading-tight font-headline">
-            DESCUBRA por que seu FILHO com APLV ainda não COME sem MEDO (E como MUDAR Isso em 7 Dias)
+            DESCUBRA por que SEU FILHO com APLV ainda <span className="text-destructive">NÃO COME SEM MEDO</span> (E como MUDAR isso em 7 Dias).
           </h1>
 
           <div className="mt-4 max-w-2xl mx-auto">
