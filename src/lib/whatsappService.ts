@@ -76,19 +76,41 @@ export async function sendWhatsAppMessage(to: string, message: string) {
     
     return response.data;
   } catch (error: any) {
-    console.error(`❌ Erro ao enviar mensagem de WhatsApp para ${formattedPhone}:`);
-    if (error.response) {
-      // O servidor respondeu com um status fora do range 2xx
-      console.error('Dados do erro:', JSON.stringify(error.response.data, null, 2));
-      console.error('Status do erro:', error.response.status);
-      console.error('Headers do erro:', error.response.headers);
-    } else if (error.request) {
-      // A requisição foi feita mas não houve resposta
-      console.error('Requisição enviada, mas sem resposta:', error.request);
+    const errorCode = error.response?.data?.error?.code;
+    const errorMessage = error.response?.data?.error?.message || error.message;
+
+    if (errorCode === 133010) {
+      console.error(`
+❌ ERRO CRÍTICO: Número não registrado (#133010)
+Tentativa de envio para: ${formattedPhone}
+
+📋 MOTIVO PROVÁVEL:
+Você está usando um NÚMERO DE TESTE da Meta, que SÓ PODE enviar mensagens para números pré-aprovados.
+
+🔑 SOLUÇÃO IMEDIATA:
+1. Acesse o painel do seu aplicativo na Meta for Developers.
+2. Vá para a seção "WhatsApp" > "Configuração da API".
+3. No Passo 2 ("Envie e receba mensagens"), clique no menu suspenso "Para".
+4. Clique em "Gerenciar lista de números de telefone" e adicione o número de destino.
+5. Verifique o número com o código que será enviado a ele.
+6. Tente novamente.
+
+(Se o número já estiver em produção, verifique se ele possui uma conta do WhatsApp ativa).
+      `);
     } else {
-      // Algo aconteceu ao configurar a requisição que disparou um erro
-      console.error('Erro na configuração da requisição:', error.message);
+        console.error(`❌ Erro ao enviar mensagem de WhatsApp para ${formattedPhone}:`);
+        if (error.response) {
+          console.error('Dados do erro:', JSON.stringify(error.response.data, null, 2));
+          console.error('Status do erro:', error.response.status);
+        } else if (error.request) {
+          console.error('Requisição enviada, mas sem resposta:', error.request);
+        } else {
+          console.error('Erro na configuração da requisição:', error.message);
+        }
+        console.error('Payload enviado:', JSON.stringify(payload, null, 2));
     }
-    console.error('Payload enviado:', JSON.stringify(payload, null, 2));
+    
+    // Lançamos o erro para que a chamada original saiba que falhou, mas com uma mensagem clara.
+    throw new Error(`WhatsApp API Error ${errorCode}: ${errorMessage}`);
   }
 }
