@@ -1,7 +1,6 @@
 // src/app/api/webhook/kiwify/route.ts
 import { NextRequest } from 'next/server';
 import { sendEmail } from '@/lib/emailService';
-import { sendWhatsAppMessage } from '@/lib/whatsappService';
 import { 
   paymentApprovedTemplate, 
   cartAbandonedTemplate 
@@ -17,7 +16,6 @@ export async function POST(request: NextRequest) {
     
     // Unificação dos campos de diferentes tipos de webhook (compra, carrinho, etc.)
     const customerEmail = body.Customer?.email || body.email;
-    const customerPhone = body.Customer?.phone || body.phone;
     const customerName = body.Customer?.full_name || body.Customer?.first_name || body.first_name || 'Cliente';
     const status = body.order_status || body.status;
     
@@ -25,7 +23,6 @@ export async function POST(request: NextRequest) {
       status,
       customerName,
       customerEmail,
-      customerPhone,
     });
     
     // ✅ PROCESSAR COMPRA APROVADA
@@ -50,14 +47,6 @@ export async function POST(request: NextRequest) {
         console.log('⚠️ Email não encontrado para enviar confirmação.');
       }
 
-      if (customerPhone) {
-        console.log('...Preparando WhatsApp de confirmação...');
-        const productName = body.product?.name || "Cardápio Sem Leite da Mãe Prevenida";
-        const whatsappMessage = `🎉 Parabéns ${customerName}!\n\nSeu pagamento foi *APROVADO* com sucesso! ✅\n\n📦 Produto: ${productName}\n🔢 Pedido: #${body.order_id}\n\nVocê já pode acessar sua área de membros! 🚀\n\nObrigado pela confiança! 💚`;
-        await sendWhatsAppMessage(customerPhone, whatsappMessage);
-      } else {
-        console.log('⚠️ Telefone não encontrado para enviar WhatsApp.');
-      }
     }
     
     // 🛒 PROCESSAR CARRINHO ABANDONADO
@@ -78,16 +67,6 @@ export async function POST(request: NextRequest) {
         console.log(`✅ Email de recuperação enviado para ${customerEmail}`);
       } else {
         console.log('⚠️ Email não encontrado para enviar recuperação.');
-      }
-
-      if (customerPhone) {
-        console.log('...Preparando WhatsApp de recuperação...');
-        const checkoutLink = body.cart?.checkout_link ? `https://pay.kiwify.com.br/checkout/${body.cart.checkout_link}` : 'https://pay.kiwify.com.br/v2XN6QB';
-        const productName = body.cart?.product_name || "Cardápio Sem Leite da Mãe Prevenida";
-        const whatsappMessage = `Olá ${customerName}! 👋\n\nNotamos que você iniciou a compra do *${productName}* mas não finalizou.\n\n😔 Ficou com alguma dúvida?\n\nFinalize agora e garanta seu acesso! 🎯\n\nLink do carrinho: ${checkoutLink}\n\nEstamos aqui para ajudar! 💚`;
-        await sendWhatsAppMessage(customerPhone, whatsappMessage);
-      } else {
-        console.log('⚠️ Telefone não encontrado para enviar WhatsApp.');
       }
     }
     
