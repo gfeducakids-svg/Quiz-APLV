@@ -4,66 +4,6 @@ import axios from 'axios';
 const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
 
-<<<<<<< HEAD
-interface SendWhatsAppMessageParams {
-  to: string;
-  message: string;
-}
-
-function formatPhoneNumber(phone: string): string {
-    // Remove all non-numeric characters
-    let cleaned = phone.replace(/\D/g, '');
-
-    // If it starts with 55 and is longer than 11 digits (55 + DDD + 9xxxxxxxx),
-    // it likely has the country code already.
-    if (cleaned.startsWith('55') && cleaned.length > 11) {
-        return cleaned;
-    }
-
-    // If it doesn't start with 55, add it.
-    if (!cleaned.startsWith('55')) {
-        cleaned = '55' + cleaned;
-    }
-    
-    return cleaned;
-}
-
-export async function sendWhatsAppMessage({ to, message }: SendWhatsAppMessageParams): Promise<any> {
-    if (!WHATSAPP_TOKEN || !PHONE_NUMBER_ID) {
-        console.error('Credenciais do WhatsApp não configuradas nas variáveis de ambiente.');
-        throw new Error('Serviço de WhatsApp não configurado.');
-    }
-
-    const formattedPhone = formatPhoneNumber(to);
-
-    try {
-        const response = await axios.post(
-            `https://graph.facebook.com/v21.0/${PHONE_NUMBER_ID}/messages`,
-            {
-                messaging_product: 'whatsapp',
-                to: formattedPhone,
-                type: 'text',
-                text: {
-                    preview_url: false,
-                    body: message
-                }
-            },
-            {
-                headers: {
-                    'Authorization': `Bearer ${WHATSAPP_TOKEN}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-
-        console.log('📱 Mensagem de WhatsApp enviada com sucesso para:', formattedPhone, response.data);
-        return response.data;
-    } catch (error: any) {
-        console.error('❌ Erro ao enviar WhatsApp:', error.response?.data || error.message);
-        // Don't throw error to not stop the main webhook flow
-        return { error: error.response?.data || error.message };
-    }
-=======
 /**
  * Formata um número de telefone para o padrão E.164, removendo caracteres não numéricos.
  * Garante que o número comece com 55 (código do Brasil) se for um número brasileiro.
@@ -71,13 +11,20 @@ export async function sendWhatsAppMessage({ to, message }: SendWhatsAppMessagePa
  * @returns O número de telefone formatado.
  */
 function formatPhoneNumber(phone: string): string {
+  if (!phone) return '';
   let digits = phone.replace(/\D/g, '');
+  
+  // Se o número já tem o código do país (55), não faz nada.
   if (digits.startsWith('55')) {
     return digits;
   }
+  
+  // Se for um número brasileiro comum (com DDD), adiciona o 55.
   if (digits.length === 11 || digits.length === 10) {
     return `55${digits}`;
   }
+  
+  // Retorna os dígitos como estão se não for um padrão reconhecido.
   return digits;
 }
 
@@ -89,25 +36,31 @@ function formatPhoneNumber(phone: string): string {
  */
 export async function sendWhatsAppMessage(to: string, message: string) {
   if (!WHATSAPP_TOKEN || !PHONE_NUMBER_ID) {
-    console.error('❌ Credenciais do WhatsApp não configuradas nas variáveis de ambiente.');
-    // Não lança erro para não parar o fluxo principal (ex: envio de email)
+    console.error('❌ Credenciais do WhatsApp não configuradas nas variáveis de ambiente. Mensagem não enviada.');
     return;
   }
   
   const formattedPhone = formatPhoneNumber(to);
+  if (!formattedPhone) {
+      console.error('❌ Número de telefone inválido ou não fornecido. Mensagem não enviada.');
+      return;
+  }
+
+  const payload = {
+    messaging_product: 'whatsapp',
+    to: formattedPhone,
+    type: 'text',
+    text: {
+      preview_url: false,
+      body: message
+    }
+  };
 
   try {
+    console.log(`...Enviando WhatsApp para ${formattedPhone}`);
     const response = await axios.post(
       `https://graph.facebook.com/v21.0/${PHONE_NUMBER_ID}/messages`,
-      {
-        messaging_product: 'whatsapp',
-        to: formattedPhone,
-        type: 'text',
-        text: {
-          preview_url: false,
-          body: message
-        }
-      },
+      payload,
       {
         headers: {
           'Authorization': `Bearer ${WHATSAPP_TOKEN}`,
@@ -123,8 +76,19 @@ export async function sendWhatsAppMessage(to: string, message: string) {
     
     return response.data;
   } catch (error: any) {
-    console.error('❌ Erro ao enviar mensagem de WhatsApp:', error.response?.data || error.message);
-    // Não lança erro para não parar o fluxo do webhook
+    console.error(`❌ Erro ao enviar mensagem de WhatsApp para ${formattedPhone}:`);
+    if (error.response) {
+      // O servidor respondeu com um status fora do range 2xx
+      console.error('Dados do erro:', JSON.stringify(error.response.data, null, 2));
+      console.error('Status do erro:', error.response.status);
+      console.error('Headers do erro:', error.response.headers);
+    } else if (error.request) {
+      // A requisição foi feita mas não houve resposta
+      console.error('Requisição enviada, mas sem resposta:', error.request);
+    } else {
+      // Algo aconteceu ao configurar a requisição que disparou um erro
+      console.error('Erro na configuração da requisição:', error.message);
+    }
+    console.error('Payload enviado:', JSON.stringify(payload, null, 2));
   }
->>>>>>> 616207a (# Prompt para IA - Sistema de Notificações WhatsApp)
 }
