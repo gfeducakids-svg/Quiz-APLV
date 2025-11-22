@@ -7,6 +7,7 @@ import { ChatWidget } from '@/components/chat/ChatWidget';
 import { Inter, Poppins } from 'next/font/google';
 import { use } from 'react';
 import Script from 'next/script';
+import { GtagEvent } from '@/lib/types';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,6 +31,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const trackGtagEvent = (event: GtagEvent) => {
+    if (typeof window.gtag !== 'function') {
+      return;
+    }
+    window.gtag('event', event.action, event.params);
+  };
+  
   return (
     <html lang="pt-BR" className={cn("scroll-smooth", inter.variable, poppins.variable)}>
       <head>

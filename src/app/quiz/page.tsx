@@ -12,6 +12,7 @@ import * as LucideIcons from 'lucide-react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { GtagEvent } from '@/lib/types';
 
 const loadingMessages = [
   "Analisando suas respostas...",
@@ -101,6 +102,15 @@ const questionThemes = {
   },
 };
 
+const trackGtagEvent = (event: GtagEvent) => {
+  if (typeof window.gtag !== 'function') {
+    console.warn('gtag function not found. Google Analytics may not be loaded.');
+    return;
+  }
+  window.gtag('event', event.action, event.params);
+};
+
+
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
@@ -141,6 +151,16 @@ export default function QuizPage() {
   const handleAnswer = (optionIndex: number) => {
     setSelectedOption(optionIndex);
     const newAnswers = [...answers, optionIndex];
+
+    trackGtagEvent({
+      action: 'quiz_option_click',
+      params: {
+        question_id: currentQuestion.id,
+        question_text: currentQuestion.question,
+        answer_index: optionIndex,
+        answer_text: currentQuestion.options[optionIndex].text,
+      }
+    });
     
     setTimeout(() => {
         setAnswers(newAnswers);

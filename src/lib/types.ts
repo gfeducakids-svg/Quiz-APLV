@@ -20,3 +20,18 @@ export interface QuizResult {
   errors: string[];
   cta: string;
 }
+
+declare global {
+  interface Window {
+    gtag: (
+      type: 'event',
+      action: string,
+      params: { [key: string]: string | number | undefined }
+    ) => void;
+  }
+}
+
+export type GtagEvent = {
+  action: string;
+  params: { [key: string]: string | number | undefined };
+};
